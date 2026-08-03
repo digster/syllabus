@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Syllabus Library</title>
+<meta name="description" content="Self-directed study plans: a deep syllabus and a vetted reading list for every topic in the library.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#catalog">Skip to the catalog</a>
+
+<div class="wrap">
+
+  <header class="site-header">
+    <a class="site-mark" href="./"><strong>Syllabus Library</strong> — self-directed study plans</a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="https://github.com/USERNAME/REPO">Source</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="catalog-hero">
+      <h1>Read this, in this order, for this reason.</h1>
+      <p>Each entry is a full course of study for one topic: a sequenced syllabus with
+         concepts, exercises and checkpoints, followed by a categorised reading list that
+         every module links into. Built to take you past the tutorial layer.</p>
+
+      <div class="filter">
+        <label class="visually-hidden" for="q">Filter topics</label>
+        <input id="q" type="search" placeholder="Filter topics…" autocomplete="off">
+        <span class="filter-count" aria-live="polite"></span>
+      </div>
+    </div>
+
+    <div id="catalog">
+      <!--
+        HOW TO ADD A TOPIC
+        Insert a <li class="card"> inside the matching <ul class="card-list">.
+        If no group fits, add a whole new <section class="cat-group"> in alphabetical
+        order and delete nothing. Keep the markers below intact — they are the
+        insertion points. Card template:
+
+        <li class="card">
+          <a href="TOPIC-SLUG/">
+            <span class="card-code">TS-01</span>
+            <span>
+              <span class="card-title">Topic Title</span>
+              <span class="card-desc">One line on what the syllabus covers and who it is for.</span>
+            </span>
+            <span class="card-meta">12 modules · 41 resources · 2026-08-02</span>
+          </a>
+        </li>
+      -->
+
+      <!-- CATALOG:START -->
+      <p class="empty-state">
+        No topics yet. Ask Claude for one — “add a syllabus for <em>information theory</em>” —
+        and this catalog fills itself in.
+      </p>
+      <!-- CATALOG:END -->
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <span>Syllabus Library</span>
+    <span>Static site · no build step · hosted from /docs</span>
+  </footer>
+
+</div>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>

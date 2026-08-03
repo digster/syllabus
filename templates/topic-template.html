@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--
+  TOPIC PAGE TEMPLATE
+  Copy to docs/<topic-slug>/index.html and replace every {{PLACEHOLDER}}.
+  Rules live in /CLAUDE.md. Structure below is not optional: same sections,
+  same order, same classes. Delete the HTML comments as you fill each one in.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TOPIC}} — Syllabus Library</title>
+<meta name="description" content="{{ONE_SENTENCE_DESCRIPTION}}">
+<meta name="syllabus:modules" content="{{N}}">
+<meta name="syllabus:resources" content="{{N}}">
+<meta name="syllabus:updated" content="{{YYYY-MM-DD}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the syllabus</a>
+
+<div class="wrap">
+
+  <header class="site-header">
+    <a class="site-mark" href="../"><strong>Syllabus Library</strong> — self-directed study plans</a>
+    <nav class="site-nav" aria-label="Page">
+      <a href="../">All topics</a>
+      <a href="#resources">Resources</a>
+    </nav>
+  </header>
+
+  <div class="topic-hero">
+    <p class="eyebrow">{{CATEGORY}}</p>
+    <h1>{{TOPIC}}</h1>
+    <!-- Lede: 2–3 sentences. What the field actually studies and why it exists. -->
+    <p class="lede">{{LEDE}}</p>
+    <div class="meta-row">
+      <span class="meta">{{N}} modules</span>
+      <span class="meta">{{N}} resources</span>
+      <span class="meta">≈{{N}} hours</span>
+      <span class="meta">{{Beginner → Advanced}}</span>
+      <span class="meta">Updated {{YYYY-MM-DD}}</span>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <!-- Module spine. One entry per module, in order, then the standing links. -->
+    <nav class="rail" aria-label="Modules">
+      <p class="rail-label">Modules</p>
+      <ul class="rail-list">
+        <li class="rail-item"><a href="#m1"><span class="rail-code">M01</span><span class="rail-title">{{SHORT_TITLE}}</span></a></li>
+        <!-- … one per module … -->
+      </ul>
+      <p class="rail-label" style="margin-top:1.25rem">Also</p>
+      <ul class="rail-list">
+        <li class="rail-item"><a href="#capstone"><span class="rail-code">§</span><span class="rail-title">Capstone</span></a></li>
+        <li class="rail-item"><a href="#mastery"><span class="rail-code">§</span><span class="rail-title">Mastery check</span></a></li>
+        <li class="rail-item"><a href="#resources"><span class="rail-code">§</span><span class="rail-title">Resources</span></a></li>
+      </ul>
+    </nav>
+
+    <main class="content" id="main">
+
+      <!-- 1. THE SHORT DESCRIPTION — 120–200 words. What it is, what problem it
+           solves, the two or three ideas the whole field hangs off, and where it
+           sits next to neighbouring fields. No hype, no "in today's world". -->
+      <section class="section" id="about">
+        <h2 class="section-title">What this topic is</h2>
+        <p>{{PARAGRAPH}}</p>
+        <p>{{PARAGRAPH}}</p>
+      </section>
+
+      <!-- 2. Who it's for + what you need first. Name real prerequisites and
+           link a resource anchor for each gap the reader might have. -->
+      <section class="section" id="before-you-start">
+        <h2 class="section-title">Before you start</h2>
+        <p><strong>This syllabus assumes</strong> {{ASSUMPTIONS}}.</p>
+        <ul>
+          <li>{{PREREQUISITE}} — patch it with <a class="cite" href="#r-01" data-code="R-01">{{RESOURCE}}</a></li>
+        </ul>
+        <p><strong>Not covered here:</strong> {{SCOPE_EXCLUSIONS}}.</p>
+      </section>
+
+      <!-- 3. Routes through the material. At least two: a short one and the full one. -->
+      <section class="section" id="paths">
+        <h2 class="section-title">How to use this</h2>
+        <ul>
+          <li><strong>Working knowledge (≈{{N}} h):</strong> M01–M0{{N}}, skip {{…}}, do the M0{{N}} project.</li>
+          <li><strong>Full course (≈{{N}} h):</strong> every module in order, every checkpoint answered out loud before moving on.</li>
+          <li><strong>Already working in this area:</strong> start at M0{{N}}; use M01–M0{{N}} as reference.</li>
+        </ul>
+      </section>
+
+      <!-- 4. Outcomes — capability statements, not topic names.
+           "You can derive X", "you can debug Y", not "you will learn about Z". -->
+      <section class="section" id="outcomes">
+        <h2 class="section-title">What you'll be able to do</h2>
+        <ul>
+          <li>{{CAPABILITY}}</li>
+        </ul>
+      </section>
+
+      <!-- 5. THE SYLLABUS. Repeat the <article class="module"> block per module. -->
+      <section class="section" id="syllabus">
+        <h2 class="section-title">Syllabus</h2>
+
+        <article class="module" id="m1">
+          <div class="module-head">
+            <span class="module-code">M01</span>
+            <h3 class="module-title">{{MODULE_TITLE}}</h3>
+            <span class="module-effort">≈{{N}} h</span>
+          </div>
+
+          <p class="module-why">{{WHY_THIS_MODULE_EXISTS_AND_WHAT_IT_UNLOCKS}}</p>
+
+          <h4>Concepts</h4>
+          <ul class="concepts">
+            <li>{{NAMED_CONCEPT}} — {{the specific thing to understand about it}}
+              <ul>
+                <li>{{sub-point: a mechanism, a proof step, a tradeoff, a failure mode}}</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h4>Work through</h4>
+          <ul class="assigned">
+            <li><a class="cite" href="#r-01" data-code="R-01">{{RESOURCE_TITLE}}</a> — {{which chapters/sections, and what to take from them}}</li>
+          </ul>
+
+          <div class="callout callout--practice">
+            <h4>Practice</h4>
+            <p>{{A concrete thing to build, derive, measure or break. Include the
+               acceptance condition — how the reader knows it worked.}}</p>
+          </div>
+
+          <div class="callout callout--trap">
+            <h4>Where people go wrong</h4>
+            <p>{{A real misconception with the correction. Not "this is hard".}}</p>
+          </div>
+
+          <div class="callout callout--check">
+            <h4>Checkpoint</h4>
+            <p>You've got this when you can: {{question or task that fails if the
+               reader has only memorised vocabulary}}</p>
+          </div>
+        </article>
+
+        <!-- … repeat for every module … -->
+      </section>
+
+      <!-- 6. Capstone — one or two projects that need most of the syllabus at once. -->
+      <section class="section" id="capstone">
+        <h2 class="section-title">Capstone</h2>
+        <p>{{PROJECT_BRIEF}}</p>
+        <ul>
+          <li><strong>Scope:</strong> {{…}}</li>
+          <li><strong>Draws on:</strong> M0{{N}}, M0{{N}}, M0{{N}}</li>
+          <li><strong>Done when:</strong> {{observable finish condition}}</li>
+          <li><strong>Stretch:</strong> {{…}}</li>
+        </ul>
+      </section>
+
+      <!-- 7. Self-assessment. Ten-ish items, each testable without a grader. -->
+      <section class="section" id="mastery">
+        <h2 class="section-title">Mastery check</h2>
+        <ul class="checklist">
+          <li>{{TESTABLE_CLAIM}}</li>
+        </ul>
+      </section>
+
+      <!-- 8. Adjacent topics, with a line on why you'd go there. Link to sibling
+           pages in this library where they exist. -->
+      <section class="section" id="next">
+        <h2 class="section-title">Where to go next</h2>
+        <ul>
+          <li><strong>{{TOPIC}}</strong> — {{what it gives you that this one doesn't}}</li>
+        </ul>
+      </section>
+
+      <!-- 9. RESOURCES. Every anchor referenced above must exist here, and every
+           entry here must be cited above. Groups in this order; drop a group only
+           if the topic genuinely has nothing for it. -->
+      <section class="section" id="resources">
+        <h2 class="section-title">Resources</h2>
+        <p>Numbered so the syllabus can point at them. <strong>Core</strong> marks the
+           ones worth buying or blocking out real time for.</p>
+
+        <div class="resource-group">
+          <h3>Books</h3>
+          <p>{{one line on how to choose between them}}</p>
+          <ol class="resource-list">
+            <li class="resource" id="r-01">
+              <span class="r-code">R-01</span>
+              <span class="r-title"><a href="{{URL}}">{{TITLE}}</a></span>
+              <span class="r-byline">— {{AUTHOR}}, {{YEAR}}{{, edition}}</span>
+              <p class="r-note">{{What it's good for, what it assumes, which parts to
+                 read and which to skip. One or two sentences, specific.}}</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">~600 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m1">M01</a> <a href="#m3">M03</a></span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Courses &amp; lecture series</h3>
+          <ol class="resource-list"><!-- … --></ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Papers &amp; primary sources</h3>
+          <ol class="resource-list"><!-- … --></ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Talks &amp; video</h3>
+          <ol class="resource-list"><!-- … --></ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Articles, essays &amp; blogs</h3>
+          <ol class="resource-list"><!-- … --></ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Reference &amp; documentation</h3>
+          <ol class="resource-list"><!-- … --></ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Tools, datasets &amp; playgrounds</h3>
+          <ol class="resource-list"><!-- … --></ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Practice: problem sets &amp; project ideas</h3>
+          <ol class="resource-list"><!-- … --></ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Communities &amp; staying current</h3>
+          <ol class="resource-list"><!-- … --></ol>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <span><a href="../">← All topics</a></span>
+    <span>Updated {{YYYY-MM-DD}} · {{N}} modules · {{N}} resources</span>
+  </footer>
+
+</div>
+
+<script src="../assets/site.js" defer></script>
+</body>
+</html>
