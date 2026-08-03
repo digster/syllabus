@@ -195,15 +195,19 @@ a:focus-visible, button:focus-visible {
 
 /* ---------- citations (module -> resource) ---------- */
 
+/* Citation titles wrap: real resource titles run to 70+ characters and would
+   otherwise force horizontal scrolling on narrow screens. The R-NN code must
+   still never orphan from the title, so ::after is glued to the last word with
+   a non-breaking space and kept unbreakable itself. */
 .cite {
   text-decoration: none;
   border-bottom: 2px solid var(--mark);
   padding-bottom: 0.05em;
-  white-space: nowrap;
+  overflow-wrap: break-word;
 }
 .cite:hover { background: color-mix(in srgb, var(--mark) 28%, transparent); }
 .cite::after {
-  content: " " attr(data-code);
+  content: "\00a0" attr(data-code);
   font-family: var(--font-mono); font-size: 0.68em; color: var(--muted);
   white-space: nowrap;
 }

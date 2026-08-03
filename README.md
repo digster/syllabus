@@ -49,9 +49,10 @@ python3 -m http.server -d docs 8000   # then open http://localhost:8000
 grep -o 'href="#r-[0-9]*"' docs/<slug>/index.html | sed 's/href="#//;s/"//' | sort -u
 grep -o 'id="r-[0-9]*"'    docs/<slug>/index.html | sed 's/id="//;s/"//'    | sort -u
 
-# modules vs rail entries — the two counts should match
-grep -c 'class="module"' docs/<slug>/index.html
-grep -c 'rail-item'      docs/<slug>/index.html
+# modules vs rail entries — rail-item over-counts by 3, because the "Also"
+# list adds capstone/mastery/resources. These two should match exactly.
+grep -c 'class="module"'          docs/<slug>/index.html
+grep -c 'class="rail-item"><a href="#m[0-9]' docs/<slug>/index.html
 ```
 
 ## Design notes
