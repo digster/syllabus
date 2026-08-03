@@ -6,7 +6,7 @@
 <title>Information Theory — Syllabus Library</title>
 <meta name="description" content="A sequenced study plan for Shannon information theory: entropy, typicality, source and channel coding, rate-distortion, and the modern reach into statistics, machine learning and physics.">
 <meta name="syllabus:modules" content="13">
-<meta name="syllabus:resources" content="49">
+<meta name="syllabus:resources" content="50">
 <meta name="syllabus:updated" content="2026-08-03">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
     <p class="lede">Information theory asks how far a message can be squeezed, and how fast it can be pushed through a noisy channel — then proves that one quantity answers both. Claude Shannon posed and settled the two questions in a single 1948 paper; the field has spent the seventy-odd years since turning his existence proofs into codes that ship, and exporting his inequalities into statistics, machine learning and thermodynamics. This syllabus runs from why entropy has the form it does to why a 128-byte packet cannot reach capacity.</p>
     <div class="meta-row">
       <span class="meta">13 modules</span>
-      <span class="meta">49 resources</span>
+      <span class="meta">50 resources</span>
       <span class="meta">≈104 hours</span>
       <span class="meta">Beginner → Advanced</span>
       <span class="meta">Updated 2026-08-03</span>
@@ -81,7 +81,7 @@
           <li><strong>Probability, joint distributions, Markov chains.</strong> If conditional independence is shaky, work <a class="cite" href="#r-01" data-code="R-01">Information Theory, Inference, and Learning Algorithms</a> chapters 1–2 first; they are written for exactly this gap.</li>
           <li><strong>Convexity and Jensen's inequality.</strong> Almost every result below is Jensen wearing a hat. Section 2.6 of <a class="cite" href="#r-02" data-code="R-02">Elements of Information Theory</a> is the compact version.</li>
           <li><strong>Concentration and tail bounds.</strong> Needed from M03 onward. Chapter 2 of <a class="cite" href="#r-08" data-code="R-08">High-Dimensional Statistics</a> is the cleanest short treatment.</li>
-          <li><strong>Enough Python to implement a coder.</strong> If you would rather read working code than a spec, the <a class="cite" href="#r-41" data-code="R-41">Stanford Compression Library</a> is deliberately slow, readable and complete.</li>
+          <li><strong>Enough Python to implement a coder.</strong> If you would rather read working code than a spec, the <a class="cite" href="#r-42" data-code="R-42">Stanford Compression Library</a> is deliberately slow, readable and complete.</li>
         </ul>
         <p><strong>Not covered here:</strong> quantum Shannon theory (a genuinely separate subject with its own entropies); the algebraic half of coding theory — finite fields, BCH and Reed–Solomon constructions — beyond one paragraph of context in M08; measure-theoretic information theory on abstract alphabets; algorithmic randomness past the invariance theorem; and information geometry, which deserves its own page.</p>
       </section>
@@ -93,7 +93,7 @@
           <li><strong>Full course (≈104 h):</strong> every module in order, every checkpoint answered out loud before moving on. M12 is the one module nothing else depends on; it is here because the entropy-and-thermodynamics question comes up constantly and is usually answered badly.</li>
           <li><strong>Coming from machine learning (≈48 h):</strong> M01–M04 for the vocabulary, then jump to M09 and M11, which are where your cross-entropy losses and mutual-information objectives actually live. Return to M06–M08 when you want to know why anyone believes the bounds.</li>
           <li><strong>Already working in communications or coding:</strong> start at M08, treat M01–M07 as reference, and spend your time in M11–M13 — the statistical, physical and open-problem wings are the parts a comms education usually skips.</li>
-          <li><strong>If you prefer lectures to books:</strong> run <a class="cite" href="#r-12" data-code="R-12">Information Theory, Pattern Recognition and Neural Networks</a> alongside the first six modules; MacKay's ordering is close to this one and the video course is complete.</li>
+          <li><strong>If you prefer lectures to books:</strong> run <a class="cite" href="#r-13" data-code="R-13">Information Theory, Pattern Recognition and Neural Networks</a> alongside the first six modules; MacKay's ordering is close to this one and the video course is complete.</li>
         </ul>
       </section>
 
@@ -149,11 +149,12 @@
 
           <h4>Work through</h4>
           <ul class="assigned">
-            <li><a class="cite" href="#r-14" data-code="R-14">A Mathematical Theory of Communication</a> — Part I and Appendix 2. Read it as a document, not a textbook chapter; notice how much of the modern subject is already there in seventy pages.</li>
+            <li><a class="cite" href="#r-15" data-code="R-15">A Mathematical Theory of Communication</a> — Part I and Appendix 2. Read it as a document, not a textbook chapter; notice how much of the modern subject is already there in seventy pages.</li>
             <li><a class="cite" href="#r-01" data-code="R-01">Information Theory, Inference, and Learning Algorithms</a> — chapter 1. The noisy-channel framing arrives before any machinery, which is the right order.</li>
-            <li><a class="cite" href="#r-10" data-code="R-10">EE 376A: Information Theory</a> — the course overview and lecture 1 notes, for the modern statement of what the two theorems claim.</li>
-            <li><a class="cite" href="#r-32" data-code="R-32">Information Theory, Pattern Recognition and Neural Networks: course videos</a> — lecture 1, if you want the argument spoken rather than read.</li>
-            <li><a class="cite" href="#r-34" data-code="R-34">The Bit Player</a> — optional, for the biographical context in one sitting.</li>
+            <li><a class="cite" href="#r-11" data-code="R-11">EE 376A: Information Theory</a> — the course overview and lecture 1 notes, for the modern statement of what the two theorems claim.</li>
+            <li><a class="cite" href="#r-33" data-code="R-33">Information Theory, Pattern Recognition and Neural Networks: course videos</a> — lecture 1, if you want the argument spoken rather than read.</li>
+            <li><a class="cite" href="#r-09" data-code="R-09">A Mind at Play</a> — the Bell Labs chapters. Optional, but it is the fastest way to understand why 1948 was a discontinuity rather than an increment.</li>
+            <li><a class="cite" href="#r-35" data-code="R-35">The Bit Player</a> — optional, for the biographical context in one sitting.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -216,14 +217,14 @@
           <ul class="assigned">
             <li><a class="cite" href="#r-02" data-code="R-02">Elements of Information Theory</a> — chapter 2 entire, plus 8.1–8.6 for differential entropy. The exercise set here is the best in the book.</li>
             <li><a class="cite" href="#r-03" data-code="R-03">Information Theory: From Coding to Learning</a> — part I. This is the treatment that puts divergence first and derives the rest; if chapter 2 of Cover &amp; Thomas felt like a list of identities, this is the antidote.</li>
-            <li><a class="cite" href="#r-09" data-code="R-09">6.441 Information Theory (MIT OpenCourseWare)</a> — chapters 1–4 of the notes, especially the convexity and continuity properties.</li>
-            <li><a class="cite" href="#r-35" data-code="R-35">Visual Information Theory</a> — read once, early. The variable-width-code picture of entropy is the clearest single visual in the subject.</li>
-            <li><a class="cite" href="#r-40" data-code="R-40">dit: discrete information theory</a> — the multivariate-measures documentation, for a tour of how many distinct generalisations exist.</li>
+            <li><a class="cite" href="#r-10" data-code="R-10">6.441 Information Theory (MIT OpenCourseWare)</a> — chapters 1–4 of the notes, especially the convexity and continuity properties.</li>
+            <li><a class="cite" href="#r-36" data-code="R-36">Visual Information Theory</a> — read once, early. The variable-width-code picture of entropy is the clearest single visual in the subject.</li>
+            <li><a class="cite" href="#r-41" data-code="R-41">dit: discrete information theory</a> — the multivariate-measures documentation, for a tour of how many distinct generalisations exist.</li>
           </ul>
 
           <div class="callout callout--practice">
             <h4>Practice</h4>
-            <p>Derive the data processing inequality from the chain rule in two ways (expanding I(X;Y,Z) in both orders), and mark the line where Markovianity is used. Then build the counterexample: find a joint distribution on three binary variables where I(X;Y;Z) &lt; 0, and one where H(X|Y=y) &gt; H(X) for some y while H(X|Y) &lt; H(X). Verify all of it against <a class="cite" href="#r-40" data-code="R-40">dit</a>. <em>Done when</em> your hand computations and the library agree to floating-point precision and you can explain the negative term.</p>
+            <p>Derive the data processing inequality from the chain rule in two ways (expanding I(X;Y,Z) in both orders), and mark the line where Markovianity is used. Then build the counterexample: find a joint distribution on three binary variables where I(X;Y;Z) &lt; 0, and one where H(X|Y=y) &gt; H(X) for some y while H(X|Y) &lt; H(X). Verify all of it against <a class="cite" href="#r-41" data-code="R-41">dit</a>. <em>Done when</em> your hand computations and the library agree to floating-point precision and you can explain the negative term.</p>
           </div>
 
           <div class="callout callout--trap">
@@ -274,11 +275,11 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-02" data-code="R-02">Elements of Information Theory</a> — chapter 3 for the AEP, then chapter 11 for types, Sanov and the conditional limit theorem. Chapter 11 is the one people skip and later wish they had not.</li>
-            <li><a class="cite" href="#r-19" data-code="R-19">The Method of Types</a> — Csiszár's own retrospective. Read it after you have seen types used once; it is a survey, not an introduction.</li>
+            <li><a class="cite" href="#r-20" data-code="R-20">The Method of Types</a> — Csiszár's own retrospective. Read it after you have seen types used once; it is a survey, not an introduction.</li>
             <li><a class="cite" href="#r-04" data-code="R-04">Information Theory: Coding Theorems for Discrete Memoryless Systems</a> — chapter 1 and its problem section. The whole book is built on types; this is where that style comes from.</li>
             <li><a class="cite" href="#r-01" data-code="R-01">Information Theory, Inference, and Learning Algorithms</a> — chapter 4, for the "bent coin lottery" framing, which makes the typical-set counting concrete.</li>
-            <li><a class="cite" href="#r-09" data-code="R-09">6.441 Information Theory (MIT OpenCourseWare)</a> — the large-deviations and hypothesis-testing chapters, for the finite-n versions of these statements.</li>
-            <li><a class="cite" href="#r-12" data-code="R-12">Information Theory, Pattern Recognition and Neural Networks</a> — the past papers with worked solutions. Sit an exam question on typicality before you decide you have understood this module.</li>
+            <li><a class="cite" href="#r-10" data-code="R-10">6.441 Information Theory (MIT OpenCourseWare)</a> — the large-deviations and hypothesis-testing chapters, for the finite-n versions of these statements.</li>
+            <li><a class="cite" href="#r-13" data-code="R-13">Information Theory, Pattern Recognition and Neural Networks</a> — the past papers with worked solutions. Sit an exam question on typicality before you decide you have understood this module.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -346,15 +347,15 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-01" data-code="R-01">Information Theory, Inference, and Learning Algorithms</a> — chapters 5–6. The clearest exposition of arithmetic coding in any textbook, and the exercises are worth doing.</li>
-            <li><a class="cite" href="#r-11" data-code="R-11">EE 274: Data Compression, course notes</a> — the prefix-code, arithmetic-coding and ANS chapters. Written to be implemented, with the numerics spelled out.</li>
-            <li><a class="cite" href="#r-23" data-code="R-23">Asymmetric numeral systems</a> — Duda's paper. Dense; read sections 1–3 for rANS and treat the rest as reference.</li>
-            <li><a class="cite" href="#r-36" data-code="R-36">rANS in practice</a> — Giesen on what the paper leaves out: normalisation intervals, alias tables, and the interleaving trick.</li>
-            <li><a class="cite" href="#r-37" data-code="R-37">ans_fast implementation notes</a> — Bloom's field notes on tANS versus rANS trade-offs at production speed.</li>
-            <li><a class="cite" href="#r-38" data-code="R-38">Data Compression Explained</a> — sections on modelling and context mixing, for the practitioner's taxonomy.</li>
-            <li><a class="cite" href="#r-42" data-code="R-42">ryg_rans</a> — public-domain reference implementations, including the SSE4.1 decoder. Read rans_byte.h before you write your own.</li>
-            <li><a class="cite" href="#r-45" data-code="R-45">EE 274 assignments</a> — the coding assignments, which are exactly this module's practice with tests attached.</li>
-            <li><a class="cite" href="#r-32" data-code="R-32">Information Theory, Pattern Recognition and Neural Networks: course videos</a> — lectures 2–4 on source coding.</li>
-            <li><a class="cite" href="#r-49" data-code="R-49">comp.compression</a> — the FAQ and archives, when an implementation detail has clearly been argued about before.</li>
+            <li><a class="cite" href="#r-12" data-code="R-12">EE 274: Data Compression, course notes</a> — the prefix-code, arithmetic-coding and ANS chapters. Written to be implemented, with the numerics spelled out.</li>
+            <li><a class="cite" href="#r-24" data-code="R-24">Asymmetric numeral systems</a> — Duda's paper. Dense; read sections 1–3 for rANS and treat the rest as reference.</li>
+            <li><a class="cite" href="#r-37" data-code="R-37">rANS in practice</a> — Giesen on what the paper leaves out: normalisation intervals, alias tables, and the interleaving trick.</li>
+            <li><a class="cite" href="#r-38" data-code="R-38">ans_fast implementation notes</a> — Bloom's field notes on tANS versus rANS trade-offs at production speed.</li>
+            <li><a class="cite" href="#r-39" data-code="R-39">Data Compression Explained</a> — sections on modelling and context mixing, for the practitioner's taxonomy.</li>
+            <li><a class="cite" href="#r-43" data-code="R-43">ryg_rans</a> — public-domain reference implementations, including the SSE4.1 decoder. Read rans_byte.h before you write your own.</li>
+            <li><a class="cite" href="#r-46" data-code="R-46">EE 274 assignments</a> — the coding assignments, which are exactly this module's practice with tests attached.</li>
+            <li><a class="cite" href="#r-33" data-code="R-33">Information Theory, Pattern Recognition and Neural Networks: course videos</a> — lectures 2–4 on source coding.</li>
+            <li><a class="cite" href="#r-50" data-code="R-50">comp.compression</a> — the FAQ and archives, when an implementation detail has clearly been argued about before.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -422,14 +423,14 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-02" data-code="R-02">Elements of Information Theory</a> — chapter 4 for entropy rate, chapter 13 for universal coding and LZ, chapter 14 for Kolmogorov complexity.</li>
-            <li><a class="cite" href="#r-17" data-code="R-17">A universal algorithm for sequential data compression</a> — the 1977 paper. Short, and the construction is more legible in the original than in most retellings.</li>
+            <li><a class="cite" href="#r-18" data-code="R-18">A universal algorithm for sequential data compression</a> — the 1977 paper. Short, and the construction is more legible in the original than in most retellings.</li>
             <li><a class="cite" href="#r-06" data-code="R-06">An Introduction to Kolmogorov Complexity and Its Applications</a> — chapters 1–3 and the incompressibility-method sections in chapter 6. Reference for the rest.</li>
-            <li><a class="cite" href="#r-11" data-code="R-11">EE 274: Data Compression, course notes</a> — the LZ and context-modelling chapters, with runnable code.</li>
-            <li><a class="cite" href="#r-27" data-code="R-27">Language Modeling Is Compression</a> — the modern statement of the equivalence, with the striking result that a text-trained model compresses images better than PNG.</li>
-            <li><a class="cite" href="#r-38" data-code="R-38">Data Compression Explained</a> — Mahoney on what actually wins benchmarks, which is context mixing rather than any single clever idea.</li>
-            <li><a class="cite" href="#r-43" data-code="R-43">Large Text Compression Benchmark</a> — the leaderboard and the enwik8/enwik9 corpora you will test against.</li>
-            <li><a class="cite" href="#r-46" data-code="R-46">Hutter Prize</a> — the rules page, which is a compact argument for why compression and intelligence might be the same problem.</li>
-            <li><a class="cite" href="#r-41" data-code="R-41">Stanford Compression Library</a> — the LZ77 and context-adaptive arithmetic implementations, as a reference to check yours against.</li>
+            <li><a class="cite" href="#r-12" data-code="R-12">EE 274: Data Compression, course notes</a> — the LZ and context-modelling chapters, with runnable code.</li>
+            <li><a class="cite" href="#r-28" data-code="R-28">Language Modeling Is Compression</a> — the modern statement of the equivalence, with the striking result that a text-trained model compresses images better than PNG.</li>
+            <li><a class="cite" href="#r-39" data-code="R-39">Data Compression Explained</a> — Mahoney on what actually wins benchmarks, which is context mixing rather than any single clever idea.</li>
+            <li><a class="cite" href="#r-44" data-code="R-44">Large Text Compression Benchmark</a> — the leaderboard and the enwik8/enwik9 corpora you will test against.</li>
+            <li><a class="cite" href="#r-47" data-code="R-47">Hutter Prize</a> — the rules page, which is a compact argument for why compression and intelligence might be the same problem.</li>
+            <li><a class="cite" href="#r-42" data-code="R-42">Stanford Compression Library</a> — the LZ77 and context-adaptive arithmetic implementations, as a reference to check yours against.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -491,13 +492,13 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-02" data-code="R-02">Elements of Information Theory</a> — chapter 7 entire. Work the BSC and BEC by hand before reading the general proof.</li>
-            <li><a class="cite" href="#r-14" data-code="R-14">A Mathematical Theory of Communication</a> — Part III, Theorem 11. Shannon's own argument is sketchier and more readable than its descendants.</li>
+            <li><a class="cite" href="#r-15" data-code="R-15">A Mathematical Theory of Communication</a> — Part III, Theorem 11. Shannon's own argument is sketchier and more readable than its descendants.</li>
             <li><a class="cite" href="#r-03" data-code="R-03">Information Theory: From Coding to Learning</a> — the channel-coding part, which develops the finite-blocklength bounds alongside the asymptotic theorem rather than after it.</li>
             <li><a class="cite" href="#r-04" data-code="R-04">Information Theory: Coding Theorems for Discrete Memoryless Systems</a> — for the method-of-types proof and the error exponents, which are sharper than the typicality version.</li>
-            <li><a class="cite" href="#r-09" data-code="R-09">6.441 Information Theory (MIT OpenCourseWare)</a> — the channel-coding chapters and the strong-converse treatment.</li>
-            <li><a class="cite" href="#r-10" data-code="R-10">EE 376A: Information Theory</a> — the capacity lectures, for a second pass at achievability with different notation.</li>
+            <li><a class="cite" href="#r-10" data-code="R-10">6.441 Information Theory (MIT OpenCourseWare)</a> — the channel-coding chapters and the strong-converse treatment.</li>
+            <li><a class="cite" href="#r-11" data-code="R-11">EE 376A: Information Theory</a> — the capacity lectures, for a second pass at achievability with different notation.</li>
             <li><a class="cite" href="#r-01" data-code="R-01">Information Theory, Inference, and Learning Algorithms</a> — chapters 9–10, for the geometric picture of decoding spheres.</li>
-            <li><a class="cite" href="#r-44" data-code="R-44">6.441 problem sets</a> — the capacity problems. Do them; this is a module where reading is not enough.</li>
+            <li><a class="cite" href="#r-45" data-code="R-45">6.441 problem sets</a> — the capacity problems. Do them; this is a module where reading is not enough.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -560,7 +561,7 @@
             <li><a class="cite" href="#r-02" data-code="R-02">Elements of Information Theory</a> — chapters 9 and 10.1–10.4. The water-filling derivation is compact and worth reproducing from scratch.</li>
             <li><a class="cite" href="#r-03" data-code="R-03">Information Theory: From Coding to Learning</a> — the Gaussian-channel chapters, including the entropy power inequality treatment.</li>
             <li><a class="cite" href="#r-01" data-code="R-01">Information Theory, Inference, and Learning Algorithms</a> — chapter 11, for the geometric intuition on sphere packing.</li>
-            <li><a class="cite" href="#r-44" data-code="R-44">6.441 problem sets</a> — the Gaussian and parallel-channel problems.</li>
+            <li><a class="cite" href="#r-45" data-code="R-45">6.441 problem sets</a> — the Gaussian and parallel-channel problems.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -630,9 +631,9 @@
           <ul class="assigned">
             <li><a class="cite" href="#r-01" data-code="R-01">Information Theory, Inference, and Learning Algorithms</a> — chapters 47–50. MacKay co-rediscovered LDPC codes, and this is the most approachable account of belief propagation on a Tanner graph anywhere.</li>
             <li><a class="cite" href="#r-07" data-code="R-07">Modern Coding Theory</a> — chapters 3–4 for density evolution and thresholds. The reference for anything about LDPC ensembles.</li>
-            <li><a class="cite" href="#r-21" data-code="R-21">Channel Polarization: A Method for Constructing Capacity-Achieving Codes</a> — Arıkan's paper. Sections I–IV carry the construction; the martingale argument for polarisation is short and worth following line by line.</li>
-            <li><a class="cite" href="#r-33" data-code="R-33">Polar Codes I (Simons Institute)</a> — Arıkan lecturing on his own construction, which is the fastest route in if the paper's notation resists.</li>
-            <li><a class="cite" href="#r-22" data-code="R-22">Channel Coding Rate in the Finite Blocklength Regime</a> — read the introduction and the normal-approximation section; the full bounds are reference material.</li>
+            <li><a class="cite" href="#r-22" data-code="R-22">Channel Polarization: A Method for Constructing Capacity-Achieving Codes</a> — Arıkan's paper. Sections I–IV carry the construction; the martingale argument for polarisation is short and worth following line by line.</li>
+            <li><a class="cite" href="#r-34" data-code="R-34">Polar Codes I (Simons Institute)</a> — Arıkan lecturing on his own construction, which is the fastest route in if the paper's notation resists.</li>
+            <li><a class="cite" href="#r-23" data-code="R-23">Channel Coding Rate in the Finite Blocklength Regime</a> — read the introduction and the normal-approximation section; the full bounds are reference material.</li>
             <li><a class="cite" href="#r-03" data-code="R-03">Information Theory: From Coding to Learning</a> — the dispersion chapters, for where that √(V/n) term comes from.</li>
           </ul>
 
@@ -696,10 +697,10 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-02" data-code="R-02">Elements of Information Theory</a> — chapter 10 entire, including the separation theorem in 10.4.</li>
-            <li><a class="cite" href="#r-09" data-code="R-09">6.441 Information Theory (MIT OpenCourseWare)</a> — the lossy-compression chapters, which handle the finite-blocklength version.</li>
-            <li><a class="cite" href="#r-31" data-code="R-31">Nonlinear Transform Coding</a> — the clearest statement of how learned compression is still rate–distortion theory, with the quantisation and entropy-model details made explicit.</li>
-            <li><a class="cite" href="#r-11" data-code="R-11">EE 274: Data Compression, course notes</a> — the quantisation and lossy-coding chapters, for the practical bridge from R(D) to a working codec.</li>
-            <li><a class="cite" href="#r-24" data-code="R-24">The information bottleneck method</a> — sections 1–3, read as a rate–distortion problem rather than as a machine-learning paper.</li>
+            <li><a class="cite" href="#r-10" data-code="R-10">6.441 Information Theory (MIT OpenCourseWare)</a> — the lossy-compression chapters, which handle the finite-blocklength version.</li>
+            <li><a class="cite" href="#r-32" data-code="R-32">Nonlinear Transform Coding</a> — the clearest statement of how learned compression is still rate–distortion theory, with the quantisation and entropy-model details made explicit.</li>
+            <li><a class="cite" href="#r-12" data-code="R-12">EE 274: Data Compression, course notes</a> — the quantisation and lossy-coding chapters, for the practical bridge from R(D) to a working codec.</li>
+            <li><a class="cite" href="#r-25" data-code="R-25">The information bottleneck method</a> — sections 1–3, read as a rate–distortion problem rather than as a machine-learning paper.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -762,9 +763,9 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-05" data-code="R-05">Lecture Notes on Network Information Theory</a> — the standard reference for this whole module. Chapters on Slepian–Wolf, MAC, broadcast and interference; read the "open problems" remarks, they are the point.</li>
-            <li><a class="cite" href="#r-18" data-code="R-18">Noiseless coding of correlated information sources</a> — the 1973 Slepian–Wolf paper. Four pages, and still the cleanest statement.</li>
+            <li><a class="cite" href="#r-19" data-code="R-19">Noiseless coding of correlated information sources</a> — the 1973 Slepian–Wolf paper. Four pages, and still the cleanest statement.</li>
             <li><a class="cite" href="#r-02" data-code="R-02">Elements of Information Theory</a> — chapter 15, for a gentler first pass before El Gamal and Kim.</li>
-            <li><a class="cite" href="#r-20" data-code="R-20">On characterization of entropy function via information inequalities</a> — the Zhang–Yeung paper. Read for the statement and the construction; the proof is technical.</li>
+            <li><a class="cite" href="#r-21" data-code="R-21">On characterization of entropy function via information inequalities</a> — the Zhang–Yeung paper. Read for the statement and the construction; the proof is technical.</li>
             <li><a class="cite" href="#r-04" data-code="R-04">Information Theory: Coding Theorems for Discrete Memoryless Systems</a> — the multi-terminal chapters, for the method-of-types treatment.</li>
           </ul>
 
@@ -839,14 +840,14 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-08" data-code="R-08">High-Dimensional Statistics</a> — chapter 15 entire. The canonical modern treatment of Le Cam, Fano, Assouad and Yang–Barron, with worked minimax rates.</li>
-            <li><a class="cite" href="#r-13" data-code="R-13">Information-theoretic Methods for High-dimensional Statistics</a> — Wu's lecture notes, for the same material in a lecture arc with exercises.</li>
+            <li><a class="cite" href="#r-14" data-code="R-14">Information-theoretic Methods for High-dimensional Statistics</a> — Wu's lecture notes, for the same material in a lecture arc with exercises.</li>
             <li><a class="cite" href="#r-03" data-code="R-03">Information Theory: From Coding to Learning</a> — the statistical-applications parts. This is the book whose whole thesis is this module.</li>
             <li><a class="cite" href="#r-02" data-code="R-02">Elements of Information Theory</a> — chapter 11.7–11.9 for Stein and Chernoff, chapter 6 for the Kelly gambling connection.</li>
-            <li><a class="cite" href="#r-24" data-code="R-24">The information bottleneck method</a> and <a class="cite" href="#r-25" data-code="R-25">On the Information Bottleneck Theory of Deep Learning</a> — read in that order, in one sitting. The pair is a good model of how an empirical claim gets tested.</li>
-            <li><a class="cite" href="#r-26" data-code="R-26">Formal Limitations on the Measurement of Mutual Information</a> — short, and it will change how you read any paper reporting an MI number.</li>
-            <li><a class="cite" href="#r-30" data-code="R-30">Estimation of Entropy and Mutual Information</a> — Paninski on bias, variance and what is actually consistent. The reference to reach for before you trust an estimator.</li>
-            <li><a class="cite" href="#r-15" data-code="R-15">A New Interpretation of Information Rate</a> — Kelly's six pages. Optional, and one of the most enjoyable papers in the subject.</li>
-            <li><a class="cite" href="#r-40" data-code="R-40">dit: discrete information theory</a> — for estimating these quantities on discrete data without writing your own estimator.</li>
+            <li><a class="cite" href="#r-25" data-code="R-25">The information bottleneck method</a> and <a class="cite" href="#r-26" data-code="R-26">On the Information Bottleneck Theory of Deep Learning</a> — read in that order, in one sitting. The pair is a good model of how an empirical claim gets tested.</li>
+            <li><a class="cite" href="#r-27" data-code="R-27">Formal Limitations on the Measurement of Mutual Information</a> — short, and it will change how you read any paper reporting an MI number.</li>
+            <li><a class="cite" href="#r-31" data-code="R-31">Estimation of Entropy and Mutual Information</a> — Paninski on bias, variance and what is actually consistent. The reference to reach for before you trust an estimator.</li>
+            <li><a class="cite" href="#r-16" data-code="R-16">A New Interpretation of Information Rate</a> — Kelly's six pages. Optional, and one of the most enjoyable papers in the subject.</li>
+            <li><a class="cite" href="#r-41" data-code="R-41">dit: discrete information theory</a> — for estimating these quantities on discrete data without writing your own estimator.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -908,8 +909,8 @@
 
           <h4>Work through</h4>
           <ul class="assigned">
-            <li><a class="cite" href="#r-16" data-code="R-16">Information Theory and Statistical Mechanics</a> — Jaynes's 1957 paper. Read the first half; the argument is philosophical as much as technical and is worth engaging on those terms.</li>
-            <li><a class="cite" href="#r-29" data-code="R-29">Notes on Landauer's principle, reversible computation, and Maxwell's Demon</a> — Bennett's own retrospective, including the honest account of what the resolution does and does not settle.</li>
+            <li><a class="cite" href="#r-17" data-code="R-17">Information Theory and Statistical Mechanics</a> — Jaynes's 1957 paper. Read the first half; the argument is philosophical as much as technical and is worth engaging on those terms.</li>
+            <li><a class="cite" href="#r-30" data-code="R-30">Notes on Landauer's principle, reversible computation, and Maxwell's Demon</a> — Bennett's own retrospective, including the honest account of what the resolution does and does not settle.</li>
             <li><a class="cite" href="#r-02" data-code="R-02">Elements of Information Theory</a> — chapter 12 for maximum entropy and its relation to exponential families.</li>
             <li><a class="cite" href="#r-01" data-code="R-01">Information Theory, Inference, and Learning Algorithms</a> — chapter 22 for MaxEnt in an inference framing, and chapter 4's thermodynamic asides.</li>
           </ul>
@@ -978,14 +979,14 @@
 
           <h4>Work through</h4>
           <ul class="assigned">
-            <li><a class="cite" href="#r-28" data-code="R-28">The Wire-Tap Channel</a> — Wyner's paper. Read the model and the secrecy-capacity statement carefully, and note exactly which assumption about the eavesdropper's channel the whole result rests on.</li>
+            <li><a class="cite" href="#r-29" data-code="R-29">The Wire-Tap Channel</a> — Wyner's paper. Read the model and the secrecy-capacity statement carefully, and note exactly which assumption about the eavesdropper's channel the whole result rests on.</li>
             <li><a class="cite" href="#r-05" data-code="R-05">Lecture Notes on Network Information Theory</a> — the open-problem remarks throughout, collected. This is the closest thing the field has to a maintained list of what is unknown.</li>
-            <li><a class="cite" href="#r-22" data-code="R-22">Channel Coding Rate in the Finite Blocklength Regime</a> — revisit the introduction now that M08 is behind you, and form a view on how much of it changes engineering practice rather than notation.</li>
-            <li><a class="cite" href="#r-27" data-code="R-27">Language Modeling Is Compression</a> — reread as a claim about intelligence rather than about codecs, and decide what evidence would falsify it.</li>
-            <li><a class="cite" href="#r-46" data-code="R-46">Hutter Prize</a> — the FAQ's argument, and twenty years of records, as the empirical test of that claim.</li>
-            <li><a class="cite" href="#r-39" data-code="R-39">arXiv cs.IT / math.IT listing</a> — set up the habit now: skim a week of titles and try to classify each paper as achievability, converse, or application.</li>
-            <li><a class="cite" href="#r-47" data-code="R-47">IEEE Information Theory Society</a> — the paper-award lists, as a curated view of what the field itself thought mattered each year.</li>
-            <li><a class="cite" href="#r-48" data-code="R-48">Information Theory and Applications Workshop</a> — past programmes, for what is being argued about before it reaches print.</li>
+            <li><a class="cite" href="#r-23" data-code="R-23">Channel Coding Rate in the Finite Blocklength Regime</a> — revisit the introduction now that M08 is behind you, and form a view on how much of it changes engineering practice rather than notation.</li>
+            <li><a class="cite" href="#r-28" data-code="R-28">Language Modeling Is Compression</a> — reread as a claim about intelligence rather than about codecs, and decide what evidence would falsify it.</li>
+            <li><a class="cite" href="#r-47" data-code="R-47">Hutter Prize</a> — the FAQ's argument, and twenty years of records, as the empirical test of that claim.</li>
+            <li><a class="cite" href="#r-40" data-code="R-40">arXiv cs.IT / math.IT listing</a> — set up the habit now: skim a week of titles and try to classify each paper as achievability, converse, or application.</li>
+            <li><a class="cite" href="#r-48" data-code="R-48">IEEE Information Theory Society</a> — the paper-award lists, as a curated view of what the field itself thought mattered each year.</li>
+            <li><a class="cite" href="#r-49" data-code="R-49">Information Theory and Applications Workshop</a> — past programmes, for what is being argued about before it reaches print.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -1043,7 +1044,7 @@
           <li><strong>Statistical learning theory</strong> — the other route to generalisation bounds. M11's information-theoretic bounds and VC/Rademacher complexity are answering the same question with different machinery, and comparing them is instructive.</li>
           <li><strong>Large deviations theory</strong> — M03's method of types is a special case. Cramér, Gärtner–Ellis and Varadhan's lemma give you the general framework, and it pays back immediately in statistics and stochastic processes.</li>
           <li><strong>Statistical mechanics</strong> — the natural continuation of M12, and the place where partition functions, free energy and the variational principle become tools rather than analogies.</li>
-          <li><strong>Data compression as engineering</strong> — if M04 and M05 were the fun ones, follow them into codec design proper: <a class="cite" href="#r-11" data-code="R-11">EE 274: Data Compression, course notes</a> continues where this page stops, and <a class="cite" href="#r-43" data-code="R-43">Large Text Compression Benchmark</a> is where you find out whether your ideas work.</li>
+          <li><strong>Data compression as engineering</strong> — if M04 and M05 were the fun ones, follow them into codec design proper: <a class="cite" href="#r-12" data-code="R-12">EE 274: Data Compression, course notes</a> continues where this page stops, and <a class="cite" href="#r-44" data-code="R-44">Large Text Compression Benchmark</a> is where you find out whether your ideas work.</li>
         </ul>
       </section>
 
@@ -1154,6 +1155,18 @@
               </div>
               <span class="r-used">Used in <a href="#before-you-start">Prereqs</a> <a href="#m11">M11</a></span>
             </li>
+            <li class="resource" id="r-09">
+              <span class="r-code">R-09</span>
+              <span class="r-title"><a href="https://www.simonandschuster.com/books/A-Mind-at-Play/Jimmy-Soni/9781476766690">A Mind at Play: How Claude Shannon Invented the Information Age</a></span>
+              <span class="r-byline">— Jimmy Soni &amp; Rob Goodman, Simon &amp; Schuster, 2017</span>
+              <p class="r-note">The biography, and the best account of where the 1948 paper came from: the master's thesis that put Boolean algebra into switching circuits, the wartime cryptography work at Bell Labs that ran in parallel with the information theory, and Shannon's decision to stop publishing while the field he started accelerated. Read the Bell Labs chapters alongside M01; skip the later chapters if you only want the science. Won the 2017 Neumann Prize for the history of mathematics. (Publisher page returns 403 to automated link checks — it opens normally in a browser.)</p>
+              <div class="r-tags">
+                <span class="tag tag--paid">Paid</span>
+                <span class="tag">Beginner</span>
+                <span class="tag">~375 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m1">M01</a></span>
+            </li>
           </ol>
         </div>
 
@@ -1161,8 +1174,8 @@
           <h3>Courses &amp; lecture series</h3>
           <p>Two complete graduate courses with notes and problem sets, one implementation-first compression course, and two sets of lecture notes that cover the statistical wing better than any textbook chapter does.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-09">
-              <span class="r-code">R-09</span>
+            <li class="resource" id="r-10">
+              <span class="r-code">R-10</span>
               <span class="r-title"><a href="https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/">6.441 Information Theory (MIT OpenCourseWare)</a></span>
               <span class="r-byline">— Yury Polyanskiy, MIT, Spring 2016</span>
               <p class="r-note">The full graduate course behind R-03, with chapter-by-chapter notes, problem sets and exams free to download. The binary hypothesis testing and finite-blocklength chapters are the ones you will not find in an older syllabus. Assumes a real probability background — this is not a gentle entry point.</p>
@@ -1174,8 +1187,8 @@
               </div>
               <span class="r-used">Used in <a href="#m2">M02</a> <a href="#m3">M03</a> <a href="#m6">M06</a> <a href="#m9">M09</a></span>
             </li>
-            <li class="resource" id="r-10">
-              <span class="r-code">R-10</span>
+            <li class="resource" id="r-11">
+              <span class="r-code">R-11</span>
               <span class="r-title"><a href="https://web.stanford.edu/class/ee376a/">EE 376A: Information Theory</a></span>
               <span class="r-byline">— Tsachy Weissman, Stanford University (now numbered EE 276)</span>
               <p class="r-note">The gentler counterpart to 6.441: scribed lecture notes, homework and a course outline, taught with an emphasis on intuition and on where information theory shows up in real systems. Good as a second voice on the coding theorems when one presentation stops making sense.</p>
@@ -1186,8 +1199,8 @@
               </div>
               <span class="r-used">Used in <a href="#m1">M01</a> <a href="#m6">M06</a></span>
             </li>
-            <li class="resource" id="r-11">
-              <span class="r-code">R-11</span>
+            <li class="resource" id="r-12">
+              <span class="r-code">R-12</span>
               <span class="r-title"><a href="https://stanforddatacompressionclass.github.io/notes/">EE 274: Data Compression, course notes</a></span>
               <span class="r-byline">— Stanford University, Tsachy Weissman and colleagues, 2022–2024</span>
               <p class="r-note">Written to be implemented: prefix codes, arithmetic coding, ANS, LZ, context modelling and lossy coding, each with working Python and the numerical edge cases spelled out. The single best bridge from the theorems in M03 to code that round-trips. Pairs directly with the Stanford Compression Library (R-41).</p>
@@ -1199,8 +1212,8 @@
               </div>
               <span class="r-used">Used in <a href="#m4">M04</a> <a href="#m5">M05</a> <a href="#m9">M09</a> <a href="#next">Next</a></span>
             </li>
-            <li class="resource" id="r-12">
-              <span class="r-code">R-12</span>
+            <li class="resource" id="r-13">
+              <span class="r-code">R-13</span>
               <span class="r-title"><a href="https://www.inference.org.uk/itprnn/">Information Theory, Pattern Recognition and Neural Networks</a></span>
               <span class="r-byline">— David J. C. MacKay, University of Cambridge Part III course page</span>
               <p class="r-note">Slides, handouts and — unusually — past exam papers with worked solutions, which are hard to find elsewhere for this material. Use the solved papers as a self-test after M03 and M04. The course maps onto R-01 chapter by chapter.</p>
@@ -1211,8 +1224,8 @@
               </div>
               <span class="r-used">Used in <a href="#paths">Paths</a> <a href="#m3">M03</a></span>
             </li>
-            <li class="resource" id="r-13">
-              <span class="r-code">R-13</span>
+            <li class="resource" id="r-14">
+              <span class="r-code">R-14</span>
               <span class="r-title"><a href="http://www.stat.yale.edu/~yw562/teaching/it-stats.pdf">Information-theoretic Methods for High-dimensional Statistics</a></span>
               <span class="r-byline">— Yihong Wu, lecture notes for ECE 598 / S&amp;DS 677</span>
               <p class="r-note">Lecture notes for the course that is entirely M11: mutual information methods, Fano, Assouad, Le Cam, metric entropy and minimax rates, with the statistical problems worked rather than gestured at. Denser than Wainwright chapter 15 but covers more ground; read them together.</p>
@@ -1230,8 +1243,8 @@
           <h3>Papers &amp; primary sources</h3>
           <p>Information theory rewards reading originals more than most fields — the papers are short, the notation is close to modern, and several of them are simply better written than their textbook summaries. Start with Shannon and Slepian–Wolf.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-14">
-              <span class="r-code">R-14</span>
+            <li class="resource" id="r-15">
+              <span class="r-code">R-15</span>
               <span class="r-title"><a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x">A Mathematical Theory of Communication</a></span>
               <span class="r-byline">— Claude E. Shannon, Bell System Technical Journal, 1948</span>
               <p class="r-note">The founding paper, and still worth reading in full: Part I sets up the discrete source, Part III proves the channel coding theorem, and Appendix 2 contains the axiomatic derivation of entropy. What surprises most readers is how much of the modern field is already present, including rate–distortion in embryo. Widely mirrored; the DOI record above is the canonical citation.</p>
@@ -1243,8 +1256,8 @@
               </div>
               <span class="r-used">Used in <a href="#m1">M01</a> <a href="#m6">M06</a></span>
             </li>
-            <li class="resource" id="r-15">
-              <span class="r-code">R-15</span>
+            <li class="resource" id="r-16">
+              <span class="r-code">R-16</span>
               <span class="r-title"><a href="https://doi.org/10.1002/j.1538-7305.1956.tb03809.x">A New Interpretation of Information Rate</a></span>
               <span class="r-byline">— J. L. Kelly Jr., Bell System Technical Journal, 1956</span>
               <p class="r-note">Six pages showing that a gambler with a noisy side channel grows capital at exactly the channel's information rate — the first demonstration that entropy means something outside communication. The origin of the Kelly criterion. Read it after M06 for the interpretation, not before.</p>
@@ -1255,8 +1268,8 @@
               </div>
               <span class="r-used">Used in <a href="#m11">M11</a></span>
             </li>
-            <li class="resource" id="r-16">
-              <span class="r-code">R-16</span>
+            <li class="resource" id="r-17">
+              <span class="r-code">R-17</span>
               <span class="r-title"><a href="https://doi.org/10.1103/PhysRev.106.620">Information Theory and Statistical Mechanics</a></span>
               <span class="r-byline">— E. T. Jaynes, Physical Review, 1957</span>
               <p class="r-note">The maximum-entropy principle, and the argument that statistical mechanics is inference under constraints rather than physics. Read the first half; the second is period-specific. It is a position paper as much as a result, and the objections to it are part of what makes it worth reading.</p>
@@ -1267,8 +1280,8 @@
               </div>
               <span class="r-used">Used in <a href="#m12">M12</a></span>
             </li>
-            <li class="resource" id="r-17">
-              <span class="r-code">R-17</span>
+            <li class="resource" id="r-18">
+              <span class="r-code">R-18</span>
               <span class="r-title"><a href="https://doi.org/10.1109/TIT.1977.1055714">A universal algorithm for sequential data compression</a></span>
               <span class="r-byline">— Jacob Ziv &amp; Abraham Lempel, IEEE Transactions on Information Theory, 1977</span>
               <p class="r-note">LZ77, the ancestor of DEFLATE, zstd and LZ4. Seven pages, and the construction is clearer in the original than in most textbook retellings. The universality argument — approaching entropy rate with no probability model at all — is the part to sit with.</p>
@@ -1279,8 +1292,8 @@
               </div>
               <span class="r-used">Used in <a href="#m5">M05</a></span>
             </li>
-            <li class="resource" id="r-18">
-              <span class="r-code">R-18</span>
+            <li class="resource" id="r-19">
+              <span class="r-code">R-19</span>
               <span class="r-title"><a href="https://doi.org/10.1109/TIT.1973.1055037">Noiseless coding of correlated information sources</a></span>
               <span class="r-byline">— David Slepian &amp; Jack K. Wolf, IEEE Transactions on Information Theory, 1973</span>
               <p class="r-note">Four pages containing the most counter-intuitive result in the subject: separate encoders, no communication between them, and no rate penalty. If you read only one multi-user paper, read this one, and stop at the corner point until it stops seeming impossible.</p>
@@ -1292,8 +1305,8 @@
               </div>
               <span class="r-used">Used in <a href="#m10">M10</a></span>
             </li>
-            <li class="resource" id="r-19">
-              <span class="r-code">R-19</span>
+            <li class="resource" id="r-20">
+              <span class="r-code">R-20</span>
               <span class="r-title"><a href="https://doi.org/10.1109/18.720546">The Method of Types</a></span>
               <span class="r-byline">— Imre Csiszár, IEEE Transactions on Information Theory, 1998</span>
               <p class="r-note">Csiszár's fiftieth-anniversary survey of the technique he built the field's sharpest proofs on, from hypothesis testing through error exponents to arbitrarily varying channels. A survey rather than a tutorial: read it once you have seen types used, as a map of where else they apply.</p>
@@ -1304,8 +1317,8 @@
               </div>
               <span class="r-used">Used in <a href="#m3">M03</a></span>
             </li>
-            <li class="resource" id="r-20">
-              <span class="r-code">R-20</span>
+            <li class="resource" id="r-21">
+              <span class="r-code">R-21</span>
               <span class="r-title"><a href="https://doi.org/10.1109/18.681320">On characterization of entropy function via information inequalities</a></span>
               <span class="r-byline">— Zhen Zhang &amp; Raymond W. Yeung, IEEE Transactions on Information Theory, 1998</span>
               <p class="r-note">The first non-Shannon-type information inequality, in four variables — proof that the entropy region is not carved out by the inequalities everyone had been using. Read the statement and the construction; the proof is technical and the significance is what matters. This is the structural reason some network problems stay open.</p>
@@ -1316,8 +1329,8 @@
               </div>
               <span class="r-used">Used in <a href="#m10">M10</a></span>
             </li>
-            <li class="resource" id="r-21">
-              <span class="r-code">R-21</span>
+            <li class="resource" id="r-22">
+              <span class="r-code">R-22</span>
               <span class="r-title"><a href="https://arxiv.org/abs/0807.3917">Channel Polarization: A Method for Constructing Capacity-Achieving Codes for Symmetric Binary-Input Memoryless Channels</a></span>
               <span class="r-byline">— Erdal Arıkan, IEEE Transactions on Information Theory, 2009 (arXiv preprint, 2008)</span>
               <p class="r-note">The first explicit construction proved to achieve capacity with low-complexity encoding and decoding — sixty-one years after Shannon said such codes existed. Sections I–IV carry the construction; the martingale convergence argument for polarisation is short and repays line-by-line reading. Now in 5G control channels.</p>
@@ -1329,8 +1342,8 @@
               </div>
               <span class="r-used">Used in <a href="#m8">M08</a></span>
             </li>
-            <li class="resource" id="r-22">
-              <span class="r-code">R-22</span>
+            <li class="resource" id="r-23">
+              <span class="r-code">R-23</span>
               <span class="r-title"><a href="https://doi.org/10.1109/TIT.2010.2043769">Channel Coding Rate in the Finite Blocklength Regime</a></span>
               <span class="r-byline">— Yury Polyanskiy, H. Vincent Poor &amp; Sergio Verdú, IEEE Transactions on Information Theory, 2010</span>
               <p class="r-note">The paper that made "capacity minus a dispersion term" the standard way to think about short packets, with bounds tight enough to be useful at blocklengths near 100. Read the introduction and the normal-approximation section; treat the achievability and converse bounds as reference. Essential if you work anywhere near low-latency links.</p>
@@ -1342,8 +1355,8 @@
               </div>
               <span class="r-used">Used in <a href="#m8">M08</a> <a href="#m13">M13</a></span>
             </li>
-            <li class="resource" id="r-23">
-              <span class="r-code">R-23</span>
+            <li class="resource" id="r-24">
+              <span class="r-code">R-24</span>
               <span class="r-title"><a href="https://arxiv.org/abs/1311.2540">Asymmetric numeral systems: entropy coding combining speed of Huffman coding with compression rate of arithmetic coding</a></span>
               <span class="r-byline">— Jarosław Duda, arXiv, 2013 (first version 2009)</span>
               <p class="r-note">The construction now inside zstd, LZFSE, JPEG XL and Oodle. Sections 1–3 give rANS and tANS; the remainder is reference. Duda's exposition is dense and idiosyncratic — read it alongside Giesen (R-36), which fills in the implementation details the paper leaves implicit.</p>
@@ -1354,8 +1367,8 @@
               </div>
               <span class="r-used">Used in <a href="#m4">M04</a></span>
             </li>
-            <li class="resource" id="r-24">
-              <span class="r-code">R-24</span>
+            <li class="resource" id="r-25">
+              <span class="r-code">R-25</span>
               <span class="r-title"><a href="https://arxiv.org/abs/physics/0004057">The information bottleneck method</a></span>
               <span class="r-byline">— Naftali Tishby, Fernando C. Pereira &amp; William Bialek, arXiv, 2000</span>
               <p class="r-note">Rate–distortion theory with mutual information as the distortion measure, which turns "keep what is relevant" into a variational problem. Sections 1–3 are the content. Read it as the rate–distortion paper it is, and then read Saxe et al. (R-25) before accepting any claim about what it explains in deep learning.</p>
@@ -1366,8 +1379,8 @@
               </div>
               <span class="r-used">Used in <a href="#m9">M09</a> <a href="#m11">M11</a></span>
             </li>
-            <li class="resource" id="r-25">
-              <span class="r-code">R-25</span>
+            <li class="resource" id="r-26">
+              <span class="r-code">R-26</span>
               <span class="r-title"><a href="https://openreview.net/forum?id=ry_WPG-A-">On the Information Bottleneck Theory of Deep Learning</a></span>
               <span class="r-byline">— Andrew M. Saxe, Yamini Bansal, Joel Dapello, Madhu Advani, Artemy Kolchinsky, Brendan D. Tracey &amp; David D. Cox, ICLR, 2018</span>
               <p class="r-note">A careful dismantling of three claims: that networks have a distinct compression phase, that compression causes generalisation, and that SGD noise causes compression. The compression phase turns out to depend on double-saturating nonlinearities and on the binning used to estimate mutual information. The OpenReview page includes the full review discussion, which is itself worth reading.</p>
@@ -1378,8 +1391,8 @@
               </div>
               <span class="r-used">Used in <a href="#m11">M11</a></span>
             </li>
-            <li class="resource" id="r-26">
-              <span class="r-code">R-26</span>
+            <li class="resource" id="r-27">
+              <span class="r-code">R-27</span>
               <span class="r-title"><a href="https://proceedings.mlr.press/v108/mcallester20a.html">Formal Limitations on the Measurement of Mutual Information</a></span>
               <span class="r-byline">— David McAllester &amp; Karl Stratos, AISTATS, 2020</span>
               <p class="r-note">Proves that any distribution-free high-confidence lower bound on mutual information from N samples is O(log N), which caps InfoNCE at roughly the log of the batch size. Ten pages, and it should change how you read every paper that reports an MI value. The most useful single result in this syllabus for anyone doing representation learning.</p>
@@ -1391,8 +1404,8 @@
               </div>
               <span class="r-used">Used in <a href="#m11">M11</a></span>
             </li>
-            <li class="resource" id="r-27">
-              <span class="r-code">R-27</span>
+            <li class="resource" id="r-28">
+              <span class="r-code">R-28</span>
               <span class="r-title"><a href="https://arxiv.org/abs/2309.10668">Language Modeling Is Compression</a></span>
               <span class="r-byline">— Grégoire Delétang et al. (DeepMind), ICLR, 2024</span>
               <p class="r-note">The prediction–compression equivalence, measured: a 70B text model used as an arithmetic-coding model compresses ImageNet patches to 43.4% and speech to 16.4%, beating PNG and FLAC on their own data. Read it after M05, when the identity between log loss and code length is already familiar; the interest is in how far out of distribution it holds.</p>
@@ -1403,8 +1416,8 @@
               </div>
               <span class="r-used">Used in <a href="#m5">M05</a> <a href="#m13">M13</a></span>
             </li>
-            <li class="resource" id="r-28">
-              <span class="r-code">R-28</span>
+            <li class="resource" id="r-29">
+              <span class="r-code">R-29</span>
               <span class="r-title"><a href="https://doi.org/10.1002/j.1538-7305.1975.tb02040.x">The Wire-Tap Channel</a></span>
               <span class="r-byline">— Aaron D. Wyner, Bell System Technical Journal, 1975</span>
               <p class="r-note">Secrecy with no computational assumptions: if the eavesdropper's channel is noisier than the legitimate receiver's, there is a positive rate at which the eavesdropper learns asymptotically nothing. The founding paper of physical-layer security, and the one whose preconditions people most often forget to check.</p>
@@ -1415,8 +1428,8 @@
               </div>
               <span class="r-used">Used in <a href="#m13">M13</a></span>
             </li>
-            <li class="resource" id="r-29">
-              <span class="r-code">R-29</span>
+            <li class="resource" id="r-30">
+              <span class="r-code">R-30</span>
               <span class="r-title"><a href="https://arxiv.org/abs/physics/0210005">Notes on Landauer's principle, reversible computation, and Maxwell's Demon</a></span>
               <span class="r-byline">— Charles H. Bennett, Studies in History and Philosophy of Modern Physics, 2003</span>
               <p class="r-note">The clearest account of why erasure — not measurement, not computation — carries the thermodynamic cost, written by the person who resolved the demon paradox. Honest about what the resolution assumes, which is why it survives the objections better than the textbook version does. Fifteen readable pages.</p>
@@ -1427,8 +1440,8 @@
               </div>
               <span class="r-used">Used in <a href="#m12">M12</a></span>
             </li>
-            <li class="resource" id="r-30">
-              <span class="r-code">R-30</span>
+            <li class="resource" id="r-31">
+              <span class="r-code">R-31</span>
               <span class="r-title"><a href="https://doi.org/10.1162/089976603321780272">Estimation of Entropy and Mutual Information</a></span>
               <span class="r-byline">— Liam Paninski, Neural Computation, 2003</span>
               <p class="r-note">What the plug-in estimator's bias actually is, when the standard corrections help, and what is provably consistent in the undersampled regime where alphabet size is comparable to sample count. The reference to consult before trusting any entropy number computed from real data, and the paper that explains most of the neuroscience literature's retractions.</p>
@@ -1439,8 +1452,8 @@
               </div>
               <span class="r-used">Used in <a href="#m11">M11</a></span>
             </li>
-            <li class="resource" id="r-31">
-              <span class="r-code">R-31</span>
+            <li class="resource" id="r-32">
+              <span class="r-code">R-32</span>
               <span class="r-title"><a href="https://arxiv.org/abs/2007.03034">Nonlinear Transform Coding</a></span>
               <span class="r-byline">— Johannes Ballé, Philip A. Chou, David Minnen, Saurabh Singh, Nick Johnston, Eirikur Agustsson, Sung Jin Hwang &amp; George Toderici, IEEE JSTSP, 2021</span>
               <p class="r-note">The paper that makes learned compression legible to someone who knows rate–distortion theory: quantisation, the entropy model, and the rate term as a cross-entropy, all stated as the classical theory with learned transforms. Read it after M09 and the connection to JPEG's DCT becomes obvious rather than analogical.</p>
@@ -1458,8 +1471,8 @@
           <h3>Talks &amp; video</h3>
           <p>A complete lecture course, a research talk from the person who solved the problem, and one film for the history.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-32">
-              <span class="r-code">R-32</span>
+            <li class="resource" id="r-33">
+              <span class="r-code">R-33</span>
               <span class="r-title"><a href="http://www.inference.org.uk/itprnn_lectures/">Information Theory, Pattern Recognition and Neural Networks: course videos</a></span>
               <span class="r-byline">— David J. C. MacKay, University of Cambridge, 2012</span>
               <p class="r-note">Sixteen recorded lectures with slides and synchronised snapshots, hosted by the author's own group. Lectures 1–6 cover this syllabus's M01–M05 almost exactly. MacKay was an unusually good lecturer and the bent-coin-lottery treatment of typicality lands better spoken than written.</p>
@@ -1470,8 +1483,8 @@
               </div>
               <span class="r-used">Used in <a href="#m1">M01</a> <a href="#m4">M04</a></span>
             </li>
-            <li class="resource" id="r-33">
-              <span class="r-code">R-33</span>
+            <li class="resource" id="r-34">
+              <span class="r-code">R-34</span>
               <span class="r-title"><a href="https://simons.berkeley.edu/talks/erdal-arikan-2015-01-14">Polar Codes I (Simons Institute Information Theory Boot Camp)</a></span>
               <span class="r-byline">— Erdal Arıkan, Simons Institute, Berkeley, 2015</span>
               <p class="r-note">Arıkan lecturing on his own construction, with slides. The fastest route into polar codes if the paper's notation resists — he motivates the combining/splitting step before formalising it, which the paper does not. Parts II and III on the same site cover construction and decoding.</p>
@@ -1482,8 +1495,8 @@
               </div>
               <span class="r-used">Used in <a href="#m8">M08</a></span>
             </li>
-            <li class="resource" id="r-34">
-              <span class="r-code">R-34</span>
+            <li class="resource" id="r-35">
+              <span class="r-code">R-35</span>
               <span class="r-title"><a href="https://thebitplayer.com/">The Bit Player</a></span>
               <span class="r-byline">— directed by Mark Levinson, 2018, based in part on Soni &amp; Goodman's <em>A Mind at Play</em></span>
               <p class="r-note">A documentary on Shannon that takes the mathematics seriously rather than treating it as background to the juggling and the unicycle. Useful for M01 as context, and genuinely good on why 1948 was a discontinuity rather than an increment. Paid streaming in most regions.</p>
@@ -1501,8 +1514,8 @@
           <h3>Articles, essays &amp; blogs</h3>
           <p>One essay for intuition, two sets of field notes from people who ship entropy coders for a living.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-35">
-              <span class="r-code">R-35</span>
+            <li class="resource" id="r-36">
+              <span class="r-code">R-36</span>
               <span class="r-title"><a href="https://colah.github.io/posts/2015-09-Visual-Information/">Visual Information Theory</a></span>
               <span class="r-byline">— Christopher Olah, 2015</span>
               <p class="r-note">The best visual account of entropy, cross-entropy, KL divergence and mutual information anywhere: the variable-width code-length picture makes the asymmetry of KL obvious in a way no formula does. Read it once early, then again after M02 when you can check every picture against a definition.</p>
@@ -1513,8 +1526,8 @@
               </div>
               <span class="r-used">Used in <a href="#m2">M02</a></span>
             </li>
-            <li class="resource" id="r-36">
-              <span class="r-code">R-36</span>
+            <li class="resource" id="r-37">
+              <span class="r-code">R-37</span>
               <span class="r-title"><a href="https://fgiesen.wordpress.com/2015/12/21/rans-in-practice/">rANS in practice</a></span>
               <span class="r-byline">— Fabian Giesen, 2015</span>
               <p class="r-note">Everything Duda's paper leaves implicit: normalisation intervals, alias tables, precision choices, and the interleaving trick that makes SIMD decoding possible. Written from shipping two production codecs. Read it with R-23 open in another tab, and read his earlier posts in the series if the state renormalisation is not clicking.</p>
@@ -1525,8 +1538,8 @@
               </div>
               <span class="r-used">Used in <a href="#m4">M04</a></span>
             </li>
-            <li class="resource" id="r-37">
-              <span class="r-code">R-37</span>
+            <li class="resource" id="r-38">
+              <span class="r-code">R-38</span>
               <span class="r-title"><a href="http://cbloomrants.blogspot.com/2014/02/02-18-14-ansfast-implementation-notes.html">ans_fast implementation notes</a></span>
               <span class="r-byline">— Charles Bloom, 2014</span>
               <p class="r-note">Measured trade-offs between tANS and rANS at production speed: table sizes, cache behaviour, and where each one wins. The counterweight to reading only the theory — it shows how much of a codec's performance is decided by considerations the entropy has nothing to say about.</p>
@@ -1544,8 +1557,8 @@
           <h3>Reference &amp; documentation</h3>
           <p>Things to keep open in a tab rather than read end to end.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-38">
-              <span class="r-code">R-38</span>
+            <li class="resource" id="r-39">
+              <span class="r-code">R-39</span>
               <span class="r-title"><a href="https://mattmahoney.net/dc/dce.html">Data Compression Explained</a></span>
               <span class="r-byline">— Matt Mahoney, updated through 2013</span>
               <p class="r-note">A practitioner's encyclopaedia of compression: modelling, context mixing, transforms, and honest benchmark discussion from the person who maintains the benchmark. The information-theoretic sections are informal; the value is the taxonomy of what has actually been tried and how it scored. Some tool references have aged, the ideas have not.</p>
@@ -1556,8 +1569,8 @@
               </div>
               <span class="r-used">Used in <a href="#m4">M04</a> <a href="#m5">M05</a></span>
             </li>
-            <li class="resource" id="r-39">
-              <span class="r-code">R-39</span>
+            <li class="resource" id="r-40">
+              <span class="r-code">R-40</span>
               <span class="r-title"><a href="https://arxiv.org/list/cs.IT/recent">arXiv cs.IT / math.IT listing</a></span>
               <span class="r-byline">— arXiv, updated daily</span>
               <p class="r-note">Where the field publishes first; cs.IT and math.IT are aliases of the same category, which tells you something about how the subject sees itself. ISIT and ITW submissions appear here months before the proceedings. Skim titles weekly and read the abstracts of anything claiming a converse — new converses are rarer and more consequential than new achievability schemes.</p>
@@ -1568,8 +1581,8 @@
               </div>
               <span class="r-used">Used in <a href="#m13">M13</a></span>
             </li>
-            <li class="resource" id="r-40">
-              <span class="r-code">R-40</span>
+            <li class="resource" id="r-41">
+              <span class="r-code">R-41</span>
               <span class="r-title"><a href="https://dit.readthedocs.io/en/latest/">dit: discrete information theory</a></span>
               <span class="r-byline">— Ryan G. James, Christopher J. Ellison &amp; James P. Crutchfield, JOSS, 2018</span>
               <p class="r-note">A Python library implementing an unusually large range of multivariate information measures, which makes it the fastest way to check a hand computation. Its documentation is also the best survey of how many inequivalent generalisations of mutual information exist, and why the field has not settled on one.</p>
@@ -1587,8 +1600,8 @@
           <h3>Tools, datasets &amp; playgrounds</h3>
           <p>Read the first, benchmark against the third, and check your implementations against the second.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-41">
-              <span class="r-code">R-41</span>
+            <li class="resource" id="r-42">
+              <span class="r-code">R-42</span>
               <span class="r-title"><a href="https://github.com/kedartatwawadi/stanford_compression_library">Stanford Compression Library</a></span>
               <span class="r-byline">— Kedar Tatwawadi and the EE 274 course team, Stanford University</span>
               <p class="r-note">Deliberately unoptimised Python implementations of Huffman, Shannon–Fano–Elias, Golomb, arithmetic, range, rANS and tANS coders plus LZ77 — written to be read, with tests. The reference to diff your own coder against when it round-trips but compresses badly.</p>
@@ -1599,8 +1612,8 @@
               </div>
               <span class="r-used">Used in <a href="#before-you-start">Prereqs</a> <a href="#m5">M05</a></span>
             </li>
-            <li class="resource" id="r-42">
-              <span class="r-code">R-42</span>
+            <li class="resource" id="r-43">
+              <span class="r-code">R-43</span>
               <span class="r-title"><a href="https://github.com/rygorous/ryg_rans">ryg_rans</a></span>
               <span class="r-byline">— Fabian Giesen, public domain</span>
               <p class="r-note">Public-domain reference implementations of several rANS variants in C++: byte-aligned, 64-bit, and an SSE4.1 interleaved decoder. Read rans_byte.h before writing your own — it is about 200 lines and settles most of the questions the paper raises.</p>
@@ -1611,8 +1624,8 @@
               </div>
               <span class="r-used">Used in <a href="#m4">M04</a></span>
             </li>
-            <li class="resource" id="r-43">
-              <span class="r-code">R-43</span>
+            <li class="resource" id="r-44">
+              <span class="r-code">R-44</span>
               <span class="r-title"><a href="https://mattmahoney.net/dc/text.html">Large Text Compression Benchmark</a></span>
               <span class="r-byline">— Matt Mahoney, continuously updated</span>
               <p class="r-note">The enwik8 and enwik9 corpora plus a ranked table of several hundred compressors with sizes, speeds and memory use. Use enwik8 for the M05 practice and the capstone; the table tells you immediately whether your result is respectable or whether you have a bug.</p>
@@ -1630,8 +1643,8 @@
           <h3>Practice: problem sets &amp; project ideas</h3>
           <p>Two graded problem sets with solutions available, and one open competition that has resisted everyone for twenty years.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-44">
-              <span class="r-code">R-44</span>
+            <li class="resource" id="r-45">
+              <span class="r-code">R-45</span>
               <span class="r-title"><a href="https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/pages/assignments/">6.441 problem sets</a></span>
               <span class="r-byline">— Yury Polyanskiy, MIT OpenCourseWare, Spring 2016</span>
               <p class="r-note">Graduate problem sets covering information measures, compression, hypothesis testing and channel coding. Harder than Cover &amp; Thomas's exercises and closer to what research in the area feels like. Do the capacity and hypothesis-testing sets even if you skip the rest.</p>
@@ -1642,8 +1655,8 @@
               </div>
               <span class="r-used">Used in <a href="#m6">M06</a> <a href="#m7">M07</a></span>
             </li>
-            <li class="resource" id="r-45">
-              <span class="r-code">R-45</span>
+            <li class="resource" id="r-46">
+              <span class="r-code">R-46</span>
               <span class="r-title"><a href="https://stanforddatacompressionclass.github.io/Fall23/assignments/">EE 274 assignments</a></span>
               <span class="r-byline">— Stanford University, Fall 2023</span>
               <p class="r-note">Implementation assignments against the Stanford Compression Library, with tests: build the coders, measure them, and explain the gaps. The counterpart to 6.441's theory problems, and the fastest way to find out whether your arithmetic coder is actually correct.</p>
@@ -1654,8 +1667,8 @@
               </div>
               <span class="r-used">Used in <a href="#m4">M04</a></span>
             </li>
-            <li class="resource" id="r-46">
-              <span class="r-code">R-46</span>
+            <li class="resource" id="r-47">
+              <span class="r-code">R-47</span>
               <span class="r-title"><a href="http://prize.hutter1.net/">Hutter Prize (Human Knowledge Compression Contest)</a></span>
               <span class="r-byline">— Marcus Hutter, Matt Mahoney &amp; Jim Bowery, running since 2006</span>
               <p class="r-note">Compress the first 10<sup>9</sup> bytes of Wikipedia, decompressor size included, for €5,000 per one percent improvement. Read the rules and the FAQ as a compact argument for compression as a measure of understanding — then look at how slowly the record moves, which is the counter-argument.</p>
@@ -1673,11 +1686,11 @@
           <h3>Communities &amp; staying current</h3>
           <p>The field is small, its conference proceedings are on arXiv first, and its practitioner and theory wings barely overlap — so watch both.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-47">
-              <span class="r-code">R-47</span>
+            <li class="resource" id="r-48">
+              <span class="r-code">R-48</span>
               <span class="r-title"><a href="https://www.itsoc.org/">IEEE Information Theory Society</a></span>
               <span class="r-byline">— professional society; publishes IEEE Transactions on Information Theory and runs ISIT</span>
-              <p class="r-note">The society's site carries conference calendars, the ISIT programme, paper award lists and the society newsletter — the awards list is a good filter for which recent results the field itself considers important. Its automated-access protection blocks scripted link checkers; open it in a browser.</p>
+              <p class="r-note">The society's site carries conference calendars, the ISIT programme, paper award lists and the society newsletter — the awards list is a good filter for which recent results the field itself considers important. (Cloudflare protection returns 403 to automated link checks — it opens normally in a browser.)</p>
               <div class="r-tags">
                 <span class="tag tag--free">Free</span>
                 <span class="tag">All levels</span>
@@ -1685,8 +1698,8 @@
               </div>
               <span class="r-used">Used in <a href="#m13">M13</a></span>
             </li>
-            <li class="resource" id="r-48">
-              <span class="r-code">R-48</span>
+            <li class="resource" id="r-49">
+              <span class="r-code">R-49</span>
               <span class="r-title"><a href="https://ita.ucsd.edu/">Information Theory and Applications Workshop</a></span>
               <span class="r-byline">— UC San Diego, annual since 2006</span>
               <p class="r-note">The field's least formal gathering and the one where speculative work gets aired before it is provable. Talk titles and abstracts from past years are public and make a good survey of what the community currently thinks is interesting, which is not always what the journal is publishing.</p>
@@ -1697,8 +1710,8 @@
               </div>
               <span class="r-used">Used in <a href="#m13">M13</a></span>
             </li>
-            <li class="resource" id="r-49">
-              <span class="r-code">R-49</span>
+            <li class="resource" id="r-50">
+              <span class="r-code">R-50</span>
               <span class="r-title"><a href="https://groups.google.com/g/comp.compression">comp.compression</a></span>
               <span class="r-byline">— Usenet group, archived from 1991</span>
               <p class="r-note">Thirty years of arguments about implementations, patents and benchmarks, including much of the early ANS discussion. Low traffic now, but the archive is the place where a specific question about arithmetic coder carry handling has almost certainly already been answered by someone who had shipped one.</p>
@@ -1718,7 +1731,7 @@
 
   <footer class="site-footer">
     <span><a href="../">← All topics</a></span>
-    <span>Updated 2026-08-03 · 13 modules · 49 resources</span>
+    <span>Updated 2026-08-03 · 13 modules · 50 resources</span>
   </footer>
 
 </div>

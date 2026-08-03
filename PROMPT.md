@@ -36,11 +36,15 @@ and build.
    check it against the dependency test below. Sequence is the part that makes a
    syllabus worth reading; get it wrong and no amount of good writing saves it.
 3. **Collect and verify resources.** Assemble the list, then check each link
-   resolves and is the thing you think it is. Anything you could not verify gets
-   marked unverified or gets cut. Cut is usually right.
+   resolves and is the thing you think it is. Two different failures, two
+   different answers: if you cannot confirm the thing *exists*, cut it — cut is
+   usually right there. If you have confirmed it exists but the URL won't answer
+   an automated check, **keep it** and say so in brackets. See *Inaccessible ≠
+   unciteable* under Resource rules.
 4. **Write the page.**
 5. **Report:** topic, module count, resource count, anything deliberately left
-   out, and any resource you could not verify.
+   out, any resource you kept but could not reach, and any resource you could not
+   confirm at all. The last two are different — keep them separate.
 
 ## Sequencing: the dependency test
 
@@ -156,14 +160,30 @@ This is the mechanical rule the whole page hangs on.
   the publisher, the arXiv abstract page, the university course page — not a
   mirror, not a PDF-farm, not a link aggregator. If a book is legitimately free
   online (many classics are), link the author's or publisher's own copy and tag it
-  free; don't link pirated scans. When a publisher blocks automated checking, the
-  DOI record is an acceptable way to confirm the work is what you think it is.
+  free; don't link pirated scans.
+- **Inaccessible ≠ unciteable.** A resource that is genuinely excellent does not
+  get cut because someone else's web server won't talk to a script. Publisher
+  sites, societies and journals routinely answer 403, 202 or a Cloudflare
+  challenge to anything that isn't a browser, and a site can simply be down the
+  week you happen to look. If you have confirmed the resource is what you think
+  it is, **keep it and link its canonical home anyway** — then state the problem
+  in brackets at the end of the note:
+  `(Publisher page returns 403 to automated link checks — it opens normally in a
+  browser.)` or `(Site was down as of 2026-08-03.)` Confirm identity by another
+  route rather than dropping the entry: a DOI record via Crossref, an ISBN via
+  OpenLibrary, the author's own page, an arXiv listing.
+- **The unverified mark is about identity, not reachability.** Use it when you
+  could not establish that the resource is what you claim — uncertain author,
+  year, edition, or a URL you are not sure points at the right thing. A confirmed
+  work behind an unreachable link gets the bracketed note and **no** mark; adding
+  it there tells the reader something false about the resource.
 - **Don't pad.** Ten excellent resources beat forty with thirty seat-fillers. But
   do cover the range: something for the reader who learns by video, something for
   the one who wants the original paper.
 - **Never invent** a title, author, year, ISBN or URL. If you're unsure a thing
-  exists, search. If you still can't confirm it, cut it or mark it unverified and
-  say so in the report.
+  exists, search. If you still can't confirm it exists at all, cut it — this is
+  the one case where cutting is right, and it is not the same as a link that
+  merely refused your checker.
 - **Date-sensitive fields:** note the year in the byline and flag anything where
   the state of the art has moved since publication.
 

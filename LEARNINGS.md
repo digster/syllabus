@@ -32,22 +32,45 @@ rail list ("Also") holds capstone, mastery and resources. Use
 note the `[0-9]`, without it the pattern also matches `#mastery` and you are
 back to an off-by-one. Fixed in `README.md`.
 
+## A blocked URL is not a reason to cut a resource
+
+**This is now the rule in `CLAUDE.md`, learned the hard way.** On the first pass
+I cut *A Mind at Play* (Soni & Goodman) from the information-theory page purely
+because Simon & Schuster answers 403 to every automated checker. The book is
+real, well identified and the best history of Shannon in print — cutting it threw
+away a good resource over a property of someone else's web server.
+
+Separate the two failures and treat them differently:
+
+- **Cannot confirm it exists** → cut. This is the case the old "cut is usually
+  right" advice was written for.
+- **Confirmed it exists, URL won't answer a script** → keep it, link the
+  canonical home anyway, and put the reason in brackets at the end of the note:
+  `(Publisher page returns 403 to automated link checks — it opens normally in a
+  browser.)`
+
+`tag--unverified` means *I could not establish this is what I claim*. It does
+not mean *the server refused me*. Do not use it for the second case.
+
 ## Verifying resource URLs when publishers block you
 
 A plain status check is not enough. From this environment these consistently
 return bot-challenge codes rather than real 404s:
 
-| Host | Behaviour | Workaround |
+| Host | Behaviour | How to confirm identity anyway |
 |---|---|---|
-| Wiley, Cambridge, APS, MIT Press, Simon & Schuster | 403 | Crossref: `https://api.crossref.org/works/<DOI>` returns title, year, publisher |
+| Wiley, Cambridge, APS, MIT Press | 403 | Crossref: `https://api.crossref.org/works/<DOI>` returns title, year, publisher |
 | IEEE Xplore | 202 | same — Crossref by DOI |
+| Simon & Schuster (and trade publishers generally) | 403 on every path | no DOI; use OpenLibrary `https://openlibrary.org/search.json?q=isbn:<ISBN>` for title/authors/year/pages, and Wikipedia's REST summary for the subtitle |
 | GitHub (curl) | 403 | WebFetch works; the REST API does not |
 | YouTube | 429 / captcha redirect | neither curl nor WebFetch; rely on search results |
 | itsoc.org, encode.su | 403 (Cloudflare) | search results only |
 
 Crossref confirms *the work is what you think it is* — title, year, container —
-which is the part that actually matters. Link the DOI (`https://doi.org/…`) as
-the canonical home in these cases rather than a scraped mirror.
+which is the part that actually matters. For DOI-bearing works, link
+`https://doi.org/…` as the canonical home rather than a scraped mirror. For trade
+books there is no DOI, so link the publisher's own page even though it 403s, and
+bracket the caveat.
 
 `inference.org.uk` and other academic hosts 403 the default WebFetch user agent
 but return 200 to curl with a normal browser UA. A 403 from WebFetch alone is not

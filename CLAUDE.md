@@ -50,15 +50,20 @@ docs/                         ← the entire published site
    check it against the dependency test below. Sequence is the part that makes a
    syllabus worth reading; get it wrong and no amount of good writing saves it.
 3. **Collect and verify resources.** Assemble the list, then check each link
-   resolves and is the thing you think it is. Anything you could not verify gets
-   `tag--unverified` or gets cut. Cut is usually right.
+   resolves and is the thing you think it is. Two different failures, two
+   different answers: if you cannot confirm the thing *exists*, cut it — cut is
+   usually right there. If you have confirmed it exists but the URL won't answer
+   an automated check, **keep it** and say so in brackets. See *Inaccessible ≠
+   unciteable* under Resource rules.
 4. **Write the page** from `templates/topic-template.html`.
 5. **Update `docs/index.html`** — a card inside the right `.cat-group`, between the
    `CATALOG:START` / `CATALOG:END` markers. Remove the `.empty-state` paragraph if
    it's still there.
 6. **Verify** against the pre-flight checklist at the bottom of this file.
 7. **Report** in chat: topic, slug, module count, resource count, anything you
-   deliberately left out, and any resource you could not verify.
+   deliberately left out, any resource you kept but could not reach, and any
+   resource you could not confirm at all. The last two are different — keep them
+   separate.
 
 ## Sequencing: the dependency test
 
@@ -178,12 +183,29 @@ This is the mechanical rule the whole page hangs on.
   mirror, not a PDF-farm, not a link aggregator. If a book is legitimately free
   online (many classics are), link the author's or publisher's own copy and tag it
   `tag--free`; don't link pirated scans.
+- **Inaccessible ≠ unciteable.** A resource that is genuinely excellent does not
+  get cut because someone else's web server won't talk to a script. Publisher
+  sites, societies and journals routinely answer 403, 202 or a Cloudflare
+  challenge to anything that isn't a browser, and a site can simply be down the
+  week you happen to look. If you have confirmed the resource is what you think
+  it is, **keep it and link its canonical home anyway** — then state the problem
+  in brackets at the end of the note:
+  `(Publisher page returns 403 to automated link checks — it opens normally in a
+  browser.)` or `(Site was down as of 2026-08-03.)` Confirm identity by another
+  route rather than dropping the entry: a DOI record via Crossref, an ISBN via
+  OpenLibrary, the author's own page, an arXiv listing.
+- **`tag--unverified` is about identity, not reachability.** Use it when you
+  could not establish that the resource is what you claim — uncertain author,
+  year, edition, or a URL you are not sure points at the right thing. A confirmed
+  work behind an unreachable link gets the bracketed note and **no** tag; adding
+  the tag there tells the reader something false about the resource.
 - **Don't pad.** Ten excellent resources beat forty with thirty seat-fillers. But
   do cover the range: something for the reader who learns by video, something for
   the one who wants the original paper.
 - **Never invent** a title, author, year, ISBN or URL. If you're unsure a thing
-  exists, search. If you still can't confirm it, cut it or tag it
-  `tag--unverified` and say so in your report.
+  exists, search. If you still can't confirm it exists at all, cut it — this is
+  the one case where cutting is right, and it is not the same as a link that
+  merely refused your checker.
 - **Date-sensitive fields:** note the year in the byline and flag anything where
   the state of the art has moved since publication.
 
@@ -236,6 +258,8 @@ Run this before you tell me it's done.
 - [ ] The rail lists every module, in order, with matching ids.
 - [ ] `meta` counts, the meta-row counts and the footer counts all agree with reality.
 - [ ] Every external URL was actually fetched or searched — no remembered links.
+- [ ] Any URL that refused an automated check is still on the page, with the
+      refusal stated in brackets in its note — not quietly dropped.
 - [ ] `docs/index.html` has the new card, in the right group, and the empty-state
       paragraph is gone.
 - [ ] Page renders at 380 px and with JS disabled.
