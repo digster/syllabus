@@ -26,7 +26,9 @@ of your reply, and build.
 
 ```
 CLAUDE.md                     ← you are here
+ARCHITECTURE.md               ← how the site is wired; read it before your first edit
 PROMPT.md                     ← the same brief, standalone, for use outside this repo
+LEARNINGS.md                  ← accumulated gotchas; read before starting a page
 README.md
 templates/topic-template.html ← copy this to start a page (never published)
 docs/                         ← the entire published site

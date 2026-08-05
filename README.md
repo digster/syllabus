@@ -8,7 +8,9 @@ Static HTML, no build step, hosted straight from `/docs`.
 
 ```
 CLAUDE.md                     instructions Claude reads before writing a page
+ARCHITECTURE.md               how the site is wired, and how to verify a page
 PROMPT.md                     the same brief, standalone
+LEARNINGS.md                  gotchas found the hard way
 templates/topic-template.html the page skeleton (not published)
 docs/                         the published site
   .nojekyll
@@ -54,6 +56,10 @@ grep -o 'id="r-[0-9]*"'    docs/<slug>/index.html | sed 's/id="//;s/"//'    | so
 grep -c 'class="module"'          docs/<slug>/index.html
 grep -c 'class="rail-item"><a href="#m[0-9]' docs/<slug>/index.html
 ```
+
+These greps are the quick pass. The full check — `data-code` agreement, complete
+back-references, count sites, and rendering at 380 px with JavaScript disabled —
+is in `ARCHITECTURE.md` under *Verifying a page*.
 
 ## Design notes
 
