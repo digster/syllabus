@@ -98,3 +98,71 @@ show fallback fonts, not the real ones.
 ~1,760 were `Work through` citation lists rather than prose. The depth bar and
 the word range are in tension; the depth bar is the one the brief actually
 argues for. Flag the count in the report and let the reviewer decide.
+
+## `overflow-wrap: break-word` does not fix flex-line overflow
+
+Added on 2026-08-05, while the first `<code>` elements in the repo pushed
+`blockchain-systems` to a 431 px `scrollWidth` at a 380 px viewport. The culprit
+was one token — `process_attestation` — inside an `.assigned li`, which is
+`display: flex`.
+
+`overflow-wrap: break-word` **permits** a break inside a long word but leaves the
+element's intrinsic **min-content width** at the width of that whole word. A flex
+item is sized from min-content, so the line stayed too wide and the page still
+scrolled (431 → 404 px, not fixed). `overflow-wrap: anywhere` is the one that
+also shrinks min-content:
+
+```css
+code { font-family: var(--font-mono); font-size: 0.86em; overflow-wrap: anywhere; }
+```
+
+`.cite` gets away with `break-word` because resource titles contain spaces, so
+their min-content is one word wide and that is narrow enough. Anything that can
+contain a long unbroken identifier — inline code, URLs shown as text, hashes —
+needs `anywhere`.
+
+Diagnostic that actually located it, after `getBoundingClientRect().right` on
+leaf nodes returned nothing useful (the overflowing text node is not an element):
+
+```js
+[...document.querySelectorAll('*')]
+  .filter(e => e.scrollWidth > e.clientWidth + 1 && e.clientWidth > 0)
+```
+
+The last entry in that list is the real source; everything above it is an
+ancestor inheriting the overflow.
+
+## Check every remembered arXiv id against the API
+
+An id recalled as a DeFi paper (`2306.01111`) is in fact a medical-imaging paper
+on CLIP and interstitial lung disease. A 200 from `arxiv.org/abs/<id>` proves the
+id exists, not that it is the paper you mean. One call per id settles it:
+
+```bash
+curl -sS "https://export.arxiv.org/api/query?id_list=<ID>&max_results=1"
+```
+
+Parse `<title>`, `<published>` and the `<name>` elements. Same discipline as the
+Crossref check for DOIs — the failure mode here is a *plausible wrong* citation,
+which is worse than a dead link because nothing downstream flags it.
+
+Note that `http://export.arxiv.org/...` returns an empty body from this
+environment; use `https://`.
+
+## A dead author site does not mean the book is uncitable
+
+`blocksizewar.com` no longer resolves, which nearly cost the page Jonathan Bier's
+*The Blocksize War*. The author serialised the entire book, chapter by chapter,
+free on the BitMEX Research blog, and those URLs are live. Before falling back to
+a catalog record — or cutting — search for a serialisation, an author's employer's
+blog, or a publisher in another territory. `harpercollins.com` 403s while
+`harpercollins.ca` returns 200 for the same title, which is the same lesson in
+smaller form.
+
+## Verify the page against a page that is known good
+
+The audit script written for this batch was run against `information-theory`
+before being trusted on the new pages. It caught two real problems in the new
+pages and passed cleanly on the old one — which is what makes a green result
+meaningful. A checker that has never been shown to pass on known-good input is
+just an assertion.

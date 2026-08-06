@@ -211,6 +211,18 @@ a:focus-visible, button:focus-visible {
   font-family: var(--font-mono); font-size: 0.68em; color: var(--muted);
   white-space: nowrap;
 }
+/* Inline code. Identifier-length tokens (process_attestation, eth_getStorageAt)
+   are unbreakable by default, so a single one sets the min-content width of its
+   flex line and pushes the whole page into horizontal scroll at 380 px — the
+   same failure mode the .cite rule above exists to prevent. `anywhere` rather
+   than `break-word`: only `anywhere` shrinks the element's min-content width,
+   and min-content is what sizes the flex line inside .assigned li. */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  overflow-wrap: anywhere;
+}
+
 .assigned { list-style: none; padding-left: 0 !important; }
 .assigned li { display: flex; gap: 0.55rem; align-items: baseline; }
 .assigned li::before {

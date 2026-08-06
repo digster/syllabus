@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blockchain Systems — Syllabus Library</title>
+<meta name="description" content="How permissionless blockchains actually work: cryptographic primitives, Bitcoin's UTXO machine, Nakamoto and BFT consensus, the EVM, rollups and data availability, zero-knowledge proofs, and the failure modes that keep recurring.">
+<meta name="syllabus:modules" content="13">
+<meta name="syllabus:resources" content="50">
+<meta name="syllabus:updated" content="2026-08-05">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the syllabus</a>
+
+<div class="wrap">
+
+  <header class="site-header">
+    <a class="site-mark" href="../"><strong>Syllabus Library</strong> — self-directed study plans</a>
+    <nav class="site-nav" aria-label="Page">
+      <a href="../">All topics</a>
+      <a href="#resources">Resources</a>
+    </nav>
+  </header>
+
+  <div class="topic-hero">
+    <p class="eyebrow">Computer science</p>
+    <h1>Blockchain Systems</h1>
+    <p class="lede">A blockchain is a replicated state machine that keeps working when a fraction of its operators are actively trying to cheat, and whose membership nobody controls. This syllabus takes that machine apart — the hash functions and signatures underneath it, the consensus rule that orders its history, the virtual machine that executes on top, and the rollups, proofs and bridges bolted on to make it scale. It is an engineering course, not an investment thesis.</p>
+    <div class="meta-row">
+      <span class="meta">13 modules</span>
+      <span class="meta">50 resources</span>
+      <span class="meta">≈134 hours</span>
+      <span class="meta">Intermediate → Advanced</span>
+      <span class="meta">Updated 2026-08-05</span>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <nav class="rail" aria-label="Modules">
+      <p class="rail-label">Modules</p>
+      <ul class="rail-list">
+        <li class="rail-item"><a href="#m1"><span class="rail-code">M01</span><span class="rail-title">Digital cash before Bitcoin</span></a></li>
+        <li class="rail-item"><a href="#m2"><span class="rail-code">M02</span><span class="rail-title">Primitives you cannot skip</span></a></li>
+        <li class="rail-item"><a href="#m3"><span class="rail-code">M03</span><span class="rail-title">Bitcoin as a system</span></a></li>
+        <li class="rail-item"><a href="#m4"><span class="rail-code">M04</span><span class="rail-title">Nakamoto consensus, analysed</span></a></li>
+        <li class="rail-item"><a href="#m5"><span class="rail-code">M05</span><span class="rail-title">Classical BFT and the theory</span></a></li>
+        <li class="rail-item"><a href="#m6"><span class="rail-code">M06</span><span class="rail-title">Proof of stake in production</span></a></li>
+        <li class="rail-item"><a href="#m7"><span class="rail-code">M07</span><span class="rail-title">Ethereum and the EVM</span></a></li>
+        <li class="rail-item"><a href="#m8"><span class="rail-code">M08</span><span class="rail-title">Contract engineering and security</span></a></li>
+        <li class="rail-item"><a href="#m9"><span class="rail-code">M09</span><span class="rail-title">Rollups and data availability</span></a></li>
+        <li class="rail-item"><a href="#m10"><span class="rail-code">M10</span><span class="rail-title">Zero-knowledge proofs</span></a></li>
+        <li class="rail-item"><a href="#m11"><span class="rail-code">M11</span><span class="rail-title">Nodes, networks, client diversity</span></a></li>
+        <li class="rail-item"><a href="#m12"><span class="rail-code">M12</span><span class="rail-title">Bridges and shared security</span></a></li>
+        <li class="rail-item"><a href="#m13"><span class="rail-code">M13</span><span class="rail-title">Protocol governance and frontier</span></a></li>
+      </ul>
+      <p class="rail-label" style="margin-top:1.25rem">Also</p>
+      <ul class="rail-list">
+        <li class="rail-item"><a href="#capstone"><span class="rail-code">§</span><span class="rail-title">Capstone</span></a></li>
+        <li class="rail-item"><a href="#mastery"><span class="rail-code">§</span><span class="rail-title">Mastery check</span></a></li>
+        <li class="rail-item"><a href="#resources"><span class="rail-code">§</span><span class="rail-title">Resources</span></a></li>
+      </ul>
+    </nav>
+
+    <main class="content" id="main">
+
+      <section class="section" id="about">
+        <h2 class="section-title">What this topic is</h2>
+        <p>Blockchain systems solve one narrow problem well: they let a set of mutually distrusting parties, with open membership, agree on a single ordered log of state transitions — without any of them being able to rewrite history or quietly censor a participant. Everything else in the field is a consequence of that. Consensus protocols exist because ordering is the hard part. Cryptographic accumulators and Merkle trees exist because participants need to verify claims about a large state without holding all of it. Gas metering exists because a public machine that anyone can call needs a price on computation or it dies to the first infinite loop. Rollups and validity proofs exist because the base machine is deliberately slow, and the only honest way to make it faster is to move execution off it while keeping verification on it.</p>
+        <p>The field sits at the junction of applied cryptography, distributed systems and mechanism design, and it borrows unevenly from all three. Its distinguishing constraint is that the adversary is economically rational and the protocol has a budget: security is not "can an attacker do this" but "does it cost more than it earns". That framing is what separates this from ordinary distributed systems, and it is also where most of the field's genuinely open problems live.</p>
+      </section>
+
+      <section class="section" id="before-you-start">
+        <h2 class="section-title">Before you start</h2>
+        <p><strong>This syllabus assumes</strong> you can write and debug code in at least one language, read Python or Rust comfortably, and have met hash functions, public-key cryptography and modular arithmetic at least once. It assumes you know what a race condition and a network partition are. It does not assume you have ever touched a blockchain.</p>
+        <ul>
+          <li>No cryptography background — work the first half of <a class="cite" href="#r-05" data-code="R-05">A Graduate Course in Applied Cryptography</a>, chapters 8 and 13, before M02.</li>
+          <li>No distributed-systems background — <a class="cite" href="#r-09" data-code="R-09">Principles of Blockchains</a> lectures 1–4 cover the model (synchrony, faults, adversaries) from scratch.</li>
+          <li>No Solidity — <a class="cite" href="#r-10" data-code="R-10">Cyfrin Updraft</a>'s Solidity track takes you from zero to deploying, and M08 assumes you have done it.</li>
+        </ul>
+        <p><strong>Not covered here:</strong> trading, price analysis, token valuation, or any question that starts "should I buy". The application layer — automated market makers, lending, NFTs, DAOs, regulation — is a separate course, <a href="../defi-and-onchain-economics/">DeFi, NFTs and On-Chain Economics</a>. Enterprise or permissioned chains get one paragraph in M05 and no more; their trust model is different enough that most of this syllabus does not apply to them.</p>
+      </section>
+
+      <section class="section" id="paths">
+        <h2 class="section-title">How to use this</h2>
+        <ul>
+          <li><strong>Working knowledge (≈50 h):</strong> M01–M04, M07, M08, M09. That is enough to read a protocol spec, deploy a contract you are not embarrassed by, and understand what a rollup gives up. Skip M05, M10, M12.</li>
+          <li><strong>Full course (≈134 h):</strong> every module in order, every checkpoint answered out loud before moving on. M02 → M03 → M04 → M06 is the load-bearing chain; do not shortcut it.</li>
+          <li><strong>Already writing contracts:</strong> start at M04, then M06 and M09. You almost certainly know the EVM's API and not its execution model — M07 is where that gap lives.</li>
+          <li><strong>Coming from distributed systems:</strong> M05 will be revision. Start at M02, skim M05, and spend the time you save on M06 and M09 — the economic-security framing is the part your background does not cover. <a class="cite" href="#r-08" data-code="R-08">Stanford CS251</a> makes a good parallel reference throughout.</li>
+        </ul>
+      </section>
+
+      <section class="section" id="outcomes">
+        <h2 class="section-title">What you'll be able to do</h2>
+        <ul>
+          <li>Derive a Bitcoin address from a private key by hand — point multiplication, hashing, checksum, encoding — and say what each step protects against.</li>
+          <li>Read a raw transaction's hex and account for every byte, on both the UTXO and the account model.</li>
+          <li>State the security argument for Nakamoto consensus precisely enough to say what it assumes, and show where selfish mining breaks the naive version.</li>
+          <li>Explain why FLP does not stop Raft, Paxos, PBFT or Ethereum from shipping, and name exactly what each one trades away.</li>
+          <li>Trace an Ethereum transaction from mempool to state root: gas accounting, storage slot writes, the base fee update, the attestation that finalises it.</li>
+          <li>Find the reentrancy, the storage collision and the missing access control in an unfamiliar contract, and write a Foundry invariant test that would have caught each.</li>
+          <li>Say what a specific rollup actually trusts today — who can censor you, who can upgrade the contracts, whether you can exit without permission — rather than repeating its marketing.</li>
+          <li>Explain what a SNARK proves and what it does not, why a trusted setup exists, and why circuit bugs rather than broken cryptography are how ZK systems fail in practice.</li>
+          <li>Evaluate a bridge's trust assumptions well enough to predict how it will be robbed.</li>
+          <li>Read an EIP and a consensus spec diff and tell whether it changes consensus, policy, or neither.</li>
+        </ul>
+      </section>
+
+      <section class="section" id="syllabus">
+        <h2 class="section-title">Syllabus</h2>
+
+        <article class="module" id="m1">
+          <div class="module-head">
+            <span class="module-code">M01</span>
+            <h3 class="module-title">Digital cash before Bitcoin, and the problem it could not solve</h3>
+            <span class="module-effort">≈4 h</span>
+          </div>
+
+          <p class="module-why">Every design decision in Bitcoin is an answer to a specific prior failure. If you skip the failures, the design looks arbitrary — proof of work in particular looks like gratuitous waste rather than the solution to a named problem. This module gives you the problem statement the rest of the syllabus answers.</p>
+
+          <h4>Concepts</h4>
+          <ul class="concepts">
+            <li>The double-spend problem — why a bit-string cannot be money without a way to establish which spend came first
+              <ul>
+                <li>Why the answer is <em>ordering</em>, not <em>detection</em>: a system that notices the double-spend afterwards has already let the merchant lose the goods</li>
+                <li>Why "just timestamp it" fails without an agreed clock, and why an agreed clock is a consensus problem in disguise</li>
+              </ul>
+            </li>
+            <li>Chaum's ecash (1982) and DigiCash — blind signatures gave real payer privacy, and the system still died
+              <ul>
+                <li>It required a trusted issuer; the technology was sound and the trust model was the product's problem</li>
+              </ul>
+            </li>
+            <li>The proof-of-work lineage — Dwork &amp; Naor's pricing functions (1992), Back's Hashcash (1997), Szabo's bit gold, Dai's b-money
+              <ul>
+                <li>Hashcash priced email spam; Bitcoin repurposed the same primitive as a <em>leader-election lottery</em>, which is a different job</li>
+                <li>What bit gold and b-money were missing: neither had a working rule for choosing between conflicting histories</li>
+              </ul>
+            </li>
+            <li>The Byzantine Generals framing — Lamport, Shostak and Pease (1982) and why "Byzantine" means arbitrary, not merely crashed
+              <ul>
+                <li>Permissioned BFT assumes a known participant set; open membership makes identity itself attackable (the Sybil problem)</li>
+                <li>Proof of work is best understood as Sybil resistance first and consensus second</li>
+              </ul>
+            </li>
+            <li>What the 2008 whitepaper actually claims, and what it leaves out — no formal model, no proof, an incorrect probability argument in section 11 that later work had to redo</li>
+          </ul>
+
+          <h4>Work through</h4>
+          <ul class="assigned">
+            <li><a class="cite" href="#r-11" data-code="R-11">Bitcoin: A Peer-to-Peer Electronic Cash System</a> — all nine pages. Read it twice: once for what it says, once for what it assumes without saying.</li>
+            <li><a class="cite" href="#r-01" data-code="R-01">Bitcoin and Cryptocurrency Technologies</a> — chapter 1 and the "History of cryptocurrencies" section of chapter 2.</li>
+            <li><a class="cite" href="#r-25" data-code="R-25">Andreas Antonopoulos: talks and Q&amp;A archive</a> — the "why decentralisation" material, for the framing that a permissionless system is a different product, not a better one.</li>
+          </ul>
+
+          <div class="callout callout--practice">
+            <h4>Practice</h4>
+            <p>Write a one-page design for a centralised digital cash system with a trusted issuer, then list every property it has that Bitcoin lacks (instant finality, reversibility, no energy cost, privacy from other users) and every property Bitcoin has that it lacks. Done when your list has at least four entries on each side and you can name a real system that took each tradeoff.</p>
+          </div>
+
+          <div class="callout callout--trap">
+            <h4>Where people go wrong</h4>
+            <p>Treating proof of work as "the consensus algorithm". It is not — it is a Sybil-resistance mechanism that makes leader election costly. The consensus rule is the <em>fork-choice rule</em>: follow the chain with the most accumulated work. You can swap proof of work for proof of stake and keep a similar fork choice, which is precisely what Ethereum did; that would be impossible if the two were the same thing.</p>
+          </div>
+
+          <div class="callout callout--check">
+            <h4>Checkpoint</h4>
+            <p>You've got this when you can: explain to someone who knows databases why "just use a distributed database with signatures" does not produce Bitcoin, naming the specific property that breaks — and then explain why that property is worth the energy bill only for some applications.</p>
+          </div>
+        </article>
+
+        <article class="module" id="m2">
+          <div class="module-head">
+            <span class="module-code">M02</span>
+            <h3 class="module-title">The primitives you cannot skip</h3>
+            <span class="module-effort">≈10 h</span>
+          </div>
+
+          <p class="module-why">Almost every catastrophic loss in this field traces to a misuse of one of five primitives, not to a break in any of them. You need the properties precisely — including the ones that do <em>not</em> hold — because M03 onwards will rely on them silently.</p>
+
+          <h4>Concepts</h4>
+          <ul class="concepts">
+            <li>Hash functions and their three separate properties — preimage, second-preimage, collision resistance
+              <ul>
+                <li>Collision resistance is the weakest of the three to attack; the birthday bound halves your security parameter, which is why 256-bit outputs give 128-bit collision security</li>
+                <li>Length-extension attacks on Merkle–Damgård constructions, and why Bitcoin's double SHA-256 is a partial (and slightly confused) response to them</li>
+                <li>Ethereum uses <em>Keccak-256</em>, not SHA3-256: the padding rule changed between the Keccak submission and the FIPS-202 standard, and Ethereum froze the earlier one. Hashing the same bytes with a SHA-3 library gives a different digest — a recurring bug in new client implementations</li>
+              </ul>
+            </li>
+            <li>Merkle trees — the accumulator that makes light clients possible
+              <ul>
+                <li>Inclusion proofs cost O(log n); Bitcoin's tree duplicates the last hash on odd levels, which produced CVE-2012-2459's block-invalidation bug</li>
+                <li>Merkle proofs prove <em>inclusion</em>, never <em>exclusion</em>, unless the tree is sorted or you use a different structure — Ethereum's Merkle-Patricia trie is keyed precisely so that non-inclusion is provable</li>
+              </ul>
+            </li>
+            <li>Digital signatures on elliptic curves — ECDSA over secp256k1, and what goes wrong with it
+              <ul>
+                <li>Nonce reuse leaks the private key in two signatures with grade-school algebra; this is how the 2010 Sony PS3 keys and multiple Android wallets in 2013 were lost. RFC 6979 deterministic nonces exist because of it</li>
+                <li>Signature malleability: (r, s) and (r, −s mod n) are both valid, so the txid changes without the transaction changing — the root cause of years of exchange-withdrawal confusion and the reason SegWit exists</li>
+                <li>Schnorr (BIP-340) fixes malleability, is provably secure under cleaner assumptions, and — the operationally important part — is linear, so keys and signatures aggregate</li>
+              </ul>
+            </li>
+            <li>Key management as a protocol concern — BIP-32 hierarchical deterministic derivation, BIP-39 mnemonics, BIP-44 paths
+              <ul>
+                <li>Why hardened derivation exists: with a non-hardened child private key plus the parent's extended public key, an attacker recovers the parent private key</li>
+                <li>Address encoding — Base58Check versus Bech32/Bech32m, and the checksum's job (catching typos, not forgery)</li>
+              </ul>
+            </li>
+            <li>Commitment schemes — hiding and binding, why commit-reveal appears everywhere from randomness beacons to sealed-bid auctions, and how a bad commitment leaks through a small message space</li>
+          </ul>
+
+          <h4>Work through</h4>
+          <ul class="assigned">
+            <li><a class="cite" href="#r-05" data-code="R-05">A Graduate Course in Applied Cryptography</a> — chapters 8 (hash functions) and 13 (digital signatures). Skip the proofs on a first pass; take the property statements.</li>
+            <li><a class="cite" href="#r-02" data-code="R-02">Mastering Bitcoin</a> — chapter 4, keys and addresses, end to end.</li>
+            <li><a class="cite" href="#r-01" data-code="R-01">Bitcoin and Cryptocurrency Technologies</a> — chapter 1, for hash pointers and Merkle structures in the exact form Bitcoin uses them.</li>
+            <li><a class="cite" href="#r-06" data-code="R-06">Programming Bitcoin</a> — chapters 1–4. You implement finite fields, the curve, and ECDSA yourself; there is no substitute.</li>
+            <li><a class="cite" href="#r-08" data-code="R-08">Stanford CS251</a> — the cryptographic-background lectures and their slides.</li>
+          </ul>
+
+          <div class="callout callout--practice">
+            <h4>Practice</h4>
+            <p>Implement, in any language, without a Bitcoin library: private key → public key by scalar multiplication on secp256k1 → HASH160 → Base58Check address. Then implement a Merkle root and an inclusion proof, and verify a real proof pulled from a block explorer. Done when your address matches a known test vector byte for byte and your proof verifies against the block header's Merkle root.</p>
+          </div>
+
+          <div class="callout callout--trap">
+            <h4>Where people go wrong</h4>
+            <p>Believing "hashed" means "safe". A hash of a low-entropy secret — a password, a four-digit PIN, an address you already published — is trivially reversed by enumeration. A hash commitment is hiding only if the committed value carries enough entropy or is padded with a random nonce. Every few years someone builds a commit-reveal randomness scheme without the nonce and is surprised when the space is brute-forced.</p>
+          </div>
+
+          <div class="callout callout--check">
+            <h4>Checkpoint</h4>
+            <p>You've got this when you can: given two ECDSA signatures made with the same nonce, write out the two equations and solve for the private key — and then explain why Schnorr's linearity is the property that makes key aggregation possible while ECDSA's structure does not.</p>
+          </div>
+        </article>
+
+        <article class="module" id="m3">
+          <div class="module-head">
+            <span class="module-code">M03</span>
+            <h3 class="module-title">Bitcoin as a system</h3>
+            <span class="module-effort">≈12 h</span>
+          </div>
+
+          <p class="module-why">Bitcoin is the smallest complete example of the whole stack, and it is small enough to hold in your head. Every later design — accounts, gas, rollups — is best understood as a reaction to a specific Bitcoin constraint, so you need the constraint first. M02's signatures and Merkle trees are the parts being assembled here.</p>
+
+          <h4>Concepts</h4>
+          <ul class="concepts">
+            <li>The UTXO model — state is a set of unspent outputs, not a map of balances
+              <ul>
+                <li>Consequences you can feel: transactions are trivially parallel-validatable, they carry their own proof of what they spend, and there is no "account balance" anywhere in the protocol</li>
+                <li>Costs: no persistent contract state, change outputs leak the transaction graph, and UTXO set growth is a real resource problem (dust attacks exploit exactly this)</li>
+              </ul>
+            </li>
+            <li>Script — a deliberately non-Turing-complete stack machine
+              <ul>
+                <li>No loops means no halting problem, which is why Bitcoin needs no gas metering; the whole gas apparatus in M07 is the price Ethereum pays for expressiveness</li>
+                <li>P2PKH → P2SH → P2WPKH → P2TR: each step moves the script's <em>commitment</em> around to solve a specific problem (script size, malleability, privacy)</li>
+                <li>Taproot (activated November 2021): key-path spends look like ordinary single-sig payments, so a multisig or a Lightning channel close is indistinguishable on chain from a plain payment</li>
+              </ul>
+            </li>
+            <li>Transactions and blocks byte by byte — version, inputs, outputs, witness, locktime; header fields and what each commits to
+              <ul>
+                <li>The coinbase transaction, the subsidy halving schedule, and why the fee market has to take over eventually</li>
+                <li>SegWit moved witness data outside the txid preimage — that is the malleability fix, and the block-size increase was a side effect of the weight formula</li>
+              </ul>
+            </li>
+            <li>Difficulty adjustment — 2016 blocks, ±4× clamp, and the timewarp bug the clamp does not fix
+              <ul>
+                <li>Why the retarget interval is an off-by-one (it measures 2015 intervals, not 2016) and why nobody has fixed it</li>
+              </ul>
+            </li>
+            <li>Consensus rules versus policy — the distinction that separates "the network will reject this" from "my node will not relay it"
+              <ul>
+                <li>Standardness, minimum relay fee, RBF and CPFP as policy; block validity as consensus. Getting this backwards is the most common conceptual error among people who have used Bitcoin for years</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h4>Work through</h4>
+          <ul class="assigned">
+            <li><a class="cite" href="#r-02" data-code="R-02">Mastering Bitcoin</a> — chapters 6 (transactions), 7 (advanced scripts) and 10 (mining and consensus). This is the core reading of the module.</li>
+            <li><a class="cite" href="#r-06" data-code="R-06">Programming Bitcoin</a> — chapters 5–9, where you parse and serialise real transactions and blocks.</li>
+            <li><a class="cite" href="#r-11" data-code="R-11">Bitcoin: A Peer-to-Peer Electronic Cash System</a> — re-read sections 2, 5 and 9 now that you know what they refer to.</li>
+            <li><a class="cite" href="#r-42" data-code="R-42">mempool.space</a> — watch a real fee market for an hour; find a transaction that was replaced by fee and one that was pinned.</li>
+            <li><a class="cite" href="#r-50" data-code="R-50">Bitcoin Optech newsletter</a> — the topic pages on RBF, package relay and fee estimation.</li>
+            <li><a class="cite" href="#r-47" data-code="R-47">COS/ECE 470 programming assignments</a> — parts 1–4 build a working client in Rust; start them here and finish them in M04.</li>
+            <li><a class="cite" href="#r-25" data-code="R-25">Andreas Antonopoulos: talks and Q&amp;A archive</a> — for the operational picture of what nodes and wallets actually do.</li>
+          </ul>
+
+          <div class="callout callout--practice">
+            <h4>Practice</h4>
+            <p>Take a real mainnet transaction's raw hex and annotate every byte: version, input count, each outpoint, each scriptSig, sequence numbers, outputs, witness stack, locktime. Then compute its txid and, if it is a SegWit transaction, its wtxid, and confirm both against a block explorer. Done when your annotation accounts for the full byte length with nothing left over.</p>
+          </div>
+
+          <div class="callout callout--trap">
+            <h4>Where people go wrong</h4>
+            <p>Thinking a transaction "in the mempool" is in any sense pending-but-committed. Mempools are per-node, unsynchronised, and governed by policy that differs between implementations and versions. A transaction can sit in your node's mempool and never be seen by 90% of the network. This is not an edge case — it is the basis of transaction pinning, and it is why exchange deposit crediting on zero confirmations is a business risk, not a technical one.</p>
+          </div>
+
+          <div class="callout callout--check">
+            <h4>Checkpoint</h4>
+            <p>You've got this when you can: name a change that alters policy but not consensus, a change that alters consensus in a soft-forking direction, and a change that would be a hard fork — and explain why the second category is the one Bitcoin can actually deploy.</p>
+          </div>
+        </article>
+
+        <article class="module" id="m4">
+          <div class="module-head">
+            <span class="module-code">M04</span>
+            <h3 class="module-title">Nakamoto consensus, analysed properly</h3>
+            <span class="module-effort">≈10 h</span>
+          </div>
+
+          <p class="module-why">M03 told you the rules; this module tells you whether they work. The whitepaper's own security argument is wrong in its details, and the correct analyses arrived years later with assumptions worth knowing. Without this you cannot say what "six confirmations" buys, and you will not be able to evaluate the proof-of-stake designs in M06.</p>
+
+          <h4>Concepts</h4>
+          <ul class="concepts">
+            <li>The fork-choice rule — most accumulated work, not longest chain, and why the distinction matters after a difficulty change</li>
+            <li>The Bitcoin Backbone abstraction — Garay, Kiayias and Leonardos (2015) extracted three properties from the protocol
+              <ul>
+                <li><em>Common prefix</em>: honest chains agree once you drop the last k blocks. <em>Chain quality</em>: the fraction of honest blocks in any long stretch. <em>Chain growth</em>: blocks arrive at a bounded rate</li>
+                <li>The analysis assumes a synchronous network with a known delay bound. Real security degrades as propagation delay rises relative to block interval — which is the actual argument against very fast blocks</li>
+              </ul>
+            </li>
+            <li>Selfish mining — Eyal and Sirer (2013) showed the honest strategy is not incentive-compatible
+              <ul>
+                <li>Withholding blocks and releasing them strategically earns more than the miner's hash-rate share, with a threshold well under 50% (as low as ~25% under favourable propagation)</li>
+                <li>Chain quality, not safety, is what breaks; the paper's contribution was showing that "51%" was the wrong number to quote</li>
+              </ul>
+            </li>
+            <li>The 51% attack as an <em>economic</em> event — cost to rent hash rate versus value of the double-spend
+              <ul>
+                <li>Real cases: Ethereum Classic (multiple reorgs, 2019 and 2020), Bitcoin Gold (2018, 2020). Small chains sharing an algorithm with a large chain are structurally attackable, because the attacker rents rather than builds</li>
+                <li>What the attacker can and cannot do: reorder and double-spend their own transactions, censor; not steal coins or forge signatures</li>
+              </ul>
+            </li>
+            <li>Probabilistic finality — the confirmation-count calculation, and why the whitepaper's Poisson model understates the attacker
+              <ul>
+                <li>Rosenfeld's and Grunspan–Pérez-Marco's corrections; the honest answer is that "confirmations" is a risk parameter chosen against transaction value</li>
+              </ul>
+            </li>
+            <li>Propagation and orphans — Decker and Wattenhofer's measurements, compact blocks, and why mining pools centralise relay</li>
+          </ul>
+
+          <h4>Work through</h4>
+          <ul class="assigned">
+            <li><a class="cite" href="#r-15" data-code="R-15">The Bitcoin Backbone Protocol</a> — sections 1–4. Take the three properties and the network assumption; the full proofs are optional on a first pass.</li>
+            <li><a class="cite" href="#r-16" data-code="R-16">Majority is Not Enough: Bitcoin Mining is Vulnerable</a> — all of it, including the state machine in section 4.</li>
+            <li><a class="cite" href="#r-01" data-code="R-01">Bitcoin and Cryptocurrency Technologies</a> — chapters 2 and 5 for the mining-economics framing.</li>
+            <li><a class="cite" href="#r-09" data-code="R-09">Principles of Blockchains</a> — the Nakamoto-consensus lectures, which set the security argument up formally and cleanly.</li>
+            <li><a class="cite" href="#r-47" data-code="R-47">COS/ECE 470 programming assignments</a> — parts 5–8: mining, gossip and state validation on the client you started in M03.</li>
+          </ul>
+
+          <div class="callout callout--practice">
+            <h4>Practice</h4>
+            <p>Simulate it. Write a discrete-event simulation of two miners with hash-rate shares α and 1−α and a propagation delay d. Measure orphan rate and each miner's realised block share as you sweep α and d. Then implement the selfish-mining strategy and find the α at which it starts to out-earn honest mining in your simulator. Done when your honest-only baseline reproduces α-proportional rewards, and your selfish miner beats it at an α you can state.</p>
+          </div>
+
+          <div class="callout callout--trap">
+            <h4>Where people go wrong</h4>
+            <p>Quoting "six confirmations" as if it were a constant. Six is a convention calibrated to 2010-era attacker assumptions and to transaction values in the hundreds of dollars. The right number is a function of the value at risk and the attacker's plausible hash-rate share — for a small chain with rentable hash rate, no realistic confirmation count is safe, which is why exchanges quietly require dozens on some assets and reject others entirely.</p>
+          </div>
+
+          <div class="callout callout--check">
+            <h4>Checkpoint</h4>
+            <p>You've got this when you can: state the three backbone properties, name which one selfish mining violates, and explain why a protocol can satisfy common prefix while still being unusable because chain quality is poor.</p>
+          </div>
+        </article>
+
+        <article class="module" id="m5">
+          <div class="module-head">
+            <span class="module-code">M05</span>
+            <h3 class="module-title">Classical BFT and what consensus actually costs</h3>
+            <span class="module-effort">≈8 h</span>
+          </div>
+
+          <p class="module-why">Nakamoto consensus is one point in a design space that distributed systems mapped out two decades earlier. Knowing the classical results tells you which of a new protocol's claims are impossible, and gives you the vocabulary — finality, quorum, accountable safety — that M06 uses without defining.</p>
+
+          <h4>Concepts</h4>
+          <ul class="concepts">
+            <li>The FLP impossibility (1985) — no deterministic consensus in an asynchronous system with even one crash fault
+              <ul>
+                <li>It rules out a <em>deterministic, always-terminating</em> protocol. Every shipped system evades it: randomisation, partial synchrony, or giving up liveness during asynchrony</li>
+              </ul>
+            </li>
+            <li>The partial synchrony model — Dwork, Lynch and Stockmeyer; the global stabilisation time, and why "eventually synchronous" is the assumption almost every real BFT protocol makes</li>
+            <li>PBFT (Castro &amp; Liskov, 1999) — the three-phase commit that made BFT practical
+              <ul>
+                <li>Why n ≥ 3f + 1 and why quorums of 2f + 1 intersect in at least one honest node — that intersection is the entire safety argument</li>
+                <li>View changes as the liveness mechanism, and O(n²) message complexity as the reason PBFT does not scale to thousands of validators</li>
+              </ul>
+            </li>
+            <li>HotStuff (2018) — linear message complexity and a pipelined three-chain rule; the ancestor of Tendermint-style and Diem-style chains
+              <ul>
+                <li>The key move: a threshold signature collapses a quorum's votes into one message, turning O(n²) into O(n)</li>
+              </ul>
+            </li>
+            <li>Committee BFT versus Nakamoto — the actual tradeoff table
+              <ul>
+                <li>BFT gives finality in one round trip and needs a known validator set; Nakamoto gives open membership and probabilistic finality. Neither dominates</li>
+                <li><em>Accountable safety</em>: BFT with signed votes can identify who equivocated. Proof of work cannot attribute blame at all — which is exactly why slashing needs stake, not hash rate</li>
+              </ul>
+            </li>
+            <li>Where permissioned chains sit — a one-paragraph orientation: with a known, legally accountable validator set, most of this syllabus is unnecessary and a replicated database with signatures is the honest comparison</li>
+          </ul>
+
+          <h4>Work through</h4>
+          <ul class="assigned">
+            <li><a class="cite" href="#r-13" data-code="R-13">Impossibility of Distributed Consensus with One Faulty Process</a> — read to the bivalent-configuration argument and make sure you can restate it.</li>
+            <li><a class="cite" href="#r-14" data-code="R-14">Practical Byzantine Fault Tolerance</a> — sections 1–4. Trace one view change on paper.</li>
+            <li><a class="cite" href="#r-19" data-code="R-19">HotStuff: BFT Consensus in the Lens of Blockchain</a> — sections 1–5, for the linearity argument.</li>
+            <li><a class="cite" href="#r-09" data-code="R-09">Principles of Blockchains</a> — the BFT lectures, which put PBFT and Nakamoto in the same framework.</li>
+          </ul>
+
+          <div class="callout callout--practice">
+            <h4>Practice</h4>
+            <p>Draw a four-node PBFT cluster with one Byzantine node. Walk a request through pre-prepare, prepare and commit, then partition the primary away and walk the view change. Now do the same with 3f nodes instead of 3f + 1 and find the concrete scenario where two honest nodes commit different values. Done when you can point at the exact quorum that fails to intersect.</p>
+          </div>
+
+          <div class="callout callout--trap">
+            <h4>Where people go wrong</h4>
+            <p>Claiming a protocol "beats FLP" or "achieves consensus in a fully asynchronous network". Read the fine print and you will always find one of three things: randomisation (so termination is probabilistic, not guaranteed), a synchrony assumption smuggled into a timeout, or a weaker problem being solved — reliable broadcast, or a payment system that never needs total ordering of independent transactions. All three are legitimate. Pretending they are not tradeoffs is not.</p>
+          </div>
+
+          <div class="callout callout--check">
+            <h4>Checkpoint</h4>
+            <p>You've got this when you can: explain why a chain that finalises in two seconds with 100 validators is not strictly better than one that finalises probabilistically with open participation — and name the specific attack each design absorbs that the other does not.</p>
+          </div>
+        </article>
+
+        <article class="module" id="m6">
+          <div class="module-head">
+            <span class="module-code">M06</span>
+            <h3 class="module-title">Proof of stake in production</h3>
+            <span class="module-effort">≈12 h</span>
+          </div>
+
+          <p class="module-why">Proof of stake is where the last two modules meet: a Nakamoto-style fork choice with a BFT finality gadget on top, secured by attributable penalties rather than by burned electricity. It is also where most current protocol research happens, and you cannot read that research without the machinery here.</p>
+
+          <h4>Concepts</h4>
+          <ul class="concepts">
+            <li>Gasper — LMD-GHOST for fork choice, Casper FFG for finality, glued together
+              <ul>
+                <li>GHOST weighs subtrees, not chain length, so short-range reorgs are resisted differently from Bitcoin; LMD means only each validator's <em>latest</em> message counts</li>
+                <li>FFG's two-phase justification/finalisation over checkpoints, and why finality lands two epochs (~12.8 minutes) behind the head</li>
+                <li>Slots, epochs, committees, and the shuffling that assigns validators — why committees are needed at all (aggregating 10⁶ signatures per slot is not free) and what they cost in security</li>
+              </ul>
+            </li>
+            <li>Slashing conditions — the two rules that make safety accountable
+              <ul>
+                <li>Double vote and surround vote; a validator that violates either has provably equivocated, and the proof is a transaction anyone can submit</li>
+                <li>Correlation penalties: being slashed alongside many others costs far more than being slashed alone. This is a deliberate anti-monoculture incentive and it is the economic answer to M11's client-diversity problem</li>
+              </ul>
+            </li>
+            <li>The attacks proof of work does not have
+              <ul>
+                <li><em>Nothing at stake</em>: signing every fork is free without penalties, hence slashing</li>
+                <li><em>Long-range attacks</em>: an old validator set with withdrawn stake can rewrite arbitrarily far back at no cost, hence <em>weak subjectivity</em> — a new or long-offline node must obtain a recent trusted checkpoint. This is a genuine, permanent difference from proof of work and honest treatments say so</li>
+              </ul>
+            </li>
+            <li>The inactivity leak — how the chain finalises again after losing more than a third of validators, by bleeding stake from the non-participating side until the remainder reaches a supermajority</li>
+            <li>Validator economics — issuance curve versus total stake, the withdrawal and exit queues, EIP-7251's raise of the effective balance ceiling from 32 to 2048 ETH (Pectra, May 2025), and why liquid staking derivatives emerged as a structural consequence of the 32 ETH minimum</li>
+            <li>Where it is going — single-slot finality proposals, the tension between validator-set size and finality latency, and why "more validators" and "faster finality" pull against each other</li>
+          </ul>
+
+          <h4>Work through</h4>
+          <ul class="assigned">
+            <li><a class="cite" href="#r-04" data-code="R-04">Upgrading Ethereum</a> — parts 2 and 3. This is the best technical treatment of the beacon chain that exists, and it is free.</li>
+            <li><a class="cite" href="#r-17" data-code="R-17">Casper the Friendly Finality Gadget</a> — the two slashing conditions and the accountable-safety theorem.</li>
+            <li><a class="cite" href="#r-18" data-code="R-18">Combining GHOST and Casper</a> — how the fork choice and the finality gadget interact, plus the known attacks the paper itself lists.</li>
+            <li><a class="cite" href="#r-33" data-code="R-33">Ethereum consensus specs</a> — read <code>process_attestation</code> and the slashing handlers in the executable Python spec. It is shorter than you expect.</li>
+          </ul>
+
+          <div class="callout callout--practice">
+            <h4>Practice</h4>
+            <p>Construct, on paper, a pair of attestations that violate the surround-vote condition, with concrete source and target epochs. Then find the corresponding check in the consensus spec and confirm your pair would trigger it. Follow up by running a validator on a public testnet through one full epoch and reading its attestation effectiveness. Done when you can explain why your constructed pair is slashable and a superficially similar pair is not.</p>
+          </div>
+
+          <div class="callout callout--trap">
+            <h4>Where people go wrong</h4>
+            <p>Saying proof of stake "has no external cost, so security is free". The security budget is real: it is the opportunity cost of capital plus the slashable stake, and it is bounded by issuance. The genuine asymmetry is different and more interesting — an attacker who buys hash rate keeps the hardware, while an attacker who buys stake and gets slashed loses the stake. Weak subjectivity is the real price paid, and it is a trust assumption at sync time that proof of work does not have.</p>
+          </div>
+
+          <div class="callout callout--check">
+            <h4>Checkpoint</h4>
+            <p>You've got this when you can: explain to a new node operator why they must supply a weak-subjectivity checkpoint, what would go wrong without one, and why this is not the same as trusting a third party for ongoing operation.</p>
+          </div>
+        </article>
+
+        <article class="module" id="m7">
+          <div class="module-head">
+            <span class="module-code">M07</span>
+            <h3 class="module-title">Ethereum and the EVM, one layer below the API</h3>
+            <span class="module-effort">≈14 h</span>
+          </div>
+
+          <p class="module-why">Contracts are where the field's value and its losses both live, and you cannot reason about either from Solidity alone. The costs, the storage layout, the reentrancy surface and the upgrade patterns in M08 are all consequences of the execution model here. M03's UTXO machine is the contrast that makes the account model legible.</p>
+
+          <h4>Concepts</h4>
+          <ul class="concepts">
+            <li>The account model — externally owned accounts and contract accounts, nonces, and what replaced the UTXO set
+              <ul>
+                <li>Nonces give replay protection and strict per-sender ordering; that ordering is why one stuck transaction blocks all your later ones</li>
+                <li>The world state is a Merkle-Patricia trie mapping address → (nonce, balance, storageRoot, codeHash), and each contract's storage is another trie. State roots are what light clients and rollups actually prove against</li>
+              </ul>
+            </li>
+            <li>Gas — a price list that exists because Script's no-loops answer was rejected
+              <ul>
+                <li>Gas prices resource consumption, so the halting problem becomes a budget problem instead of a correctness problem</li>
+                <li>Mispricing is a real attack surface: the September 2016 Shanghai DoS attacks exploited underpriced <code>EXTCODESIZE</code> and <code>SUICIDE</code>, and EIP-150 and EIP-1884 repriced opcodes afterwards — breaking contracts that had hard-coded gas stipends</li>
+                <li>The 63/64 rule (EIP-150) means a caller always retains gas after a failed subcall, which is why "out of gas" in a subcall does not necessarily revert the parent</li>
+              </ul>
+            </li>
+            <li>The machine itself — a 256-bit word stack machine with 1024 slots, volatile memory, persistent storage
+              <ul>
+                <li>Storage layout: slot packing, how mappings hash key and slot together, and why <code>keccak256</code> collisions between layouts are the mechanism behind proxy storage bugs in M08</li>
+                <li><code>CALL</code> versus <code>DELEGATECALL</code> versus <code>STATICCALL</code>: which context <code>msg.sender</code>, <code>address(this)</code> and storage resolve to. Getting this wrong is how the Parity multisig library was destroyed in November 2017, freezing roughly 500,000 ETH permanently</li>
+                <li><code>CREATE</code> versus <code>CREATE2</code> — deterministic addresses, and counterfactual deployment</li>
+              </ul>
+            </li>
+            <li>The transaction lifecycle — signature and nonce checks, intrinsic gas, execution, refunds, receipt and logs, state root update</li>
+            <li>EIP-1559 — a base fee that adjusts multiplicatively toward a 50% full target and is burned, plus a priority tip
+              <ul>
+                <li>What it fixed: first-price-auction fee estimation, not average cost. Fees still spike; they are just easier to predict</li>
+                <li>Burning the base fee removes the miner's incentive to manufacture congestion, and incidentally makes ETH issuance net-negative under load</li>
+              </ul>
+            </li>
+            <li>Account abstraction — EIP-4337's alternative mempool of UserOperations with bundlers and paymasters, and EIP-7702 (shipped in Pectra, May 2025) letting an ordinary EOA temporarily execute contract code, enabling batching, sponsorship and social recovery without migrating addresses</li>
+          </ul>
+
+          <h4>Work through</h4>
+          <ul class="assigned">
+            <li><a class="cite" href="#r-03" data-code="R-03">Mastering Ethereum</a> — chapters 6, 7 and 13. Note the book predates the merge: ignore everything it says about mining.</li>
+            <li><a class="cite" href="#r-12" data-code="R-12">Ethereum Yellow Paper</a> — sections 4 (block and transaction), 6 (execution model) and appendix H (the opcode gas table). You are reading it for the state-transition definition, not cover to cover.</li>
+            <li><a class="cite" href="#r-40" data-code="R-40">evm.codes</a> — step a contract call through the interactive playground and watch the stack.</li>
+            <li><a class="cite" href="#r-32" data-code="R-32">Ethereum execution specs</a> — the Python implementation of the state transition, when the Yellow Paper's notation defeats you.</li>
+            <li><a class="cite" href="#r-31" data-code="R-31">Ethereum developer documentation</a> — the EVM, gas and transaction pages, for orientation.</li>
+            <li><a class="cite" href="#r-34" data-code="R-34">Ethereum Improvement Proposals</a> — read EIP-1559, EIP-4337 and EIP-7702 in full, including the rationale sections.</li>
+            <li><a class="cite" href="#r-08" data-code="R-08">Stanford CS251</a> — the EVM and smart-contract lectures.</li>
+          </ul>
+
+          <div class="callout callout--practice">
+            <h4>Practice</h4>
+            <p>Write a small contract with a packed struct, a mapping and a dynamic array. Then, without using the compiler's storage-layout output, predict which slot each variable occupies and what <code>keccak256</code> preimage locates a given mapping entry. Verify with <code>eth_getStorageAt</code> against a local node. Done when every prediction matches, including the array's length slot and its data location.</p>
+          </div>
+
+          <div class="callout callout--trap">
+            <h4>Where people go wrong</h4>
+            <p>Treating <code>DELEGATECALL</code> as "calling a library function". It executes someone else's code against <em>your</em> storage, with your address and your caller. If the target's storage layout differs from yours by one slot, it silently writes over the wrong variable; if the target can be made to self-destruct, your contract dies with it. Every proxy pattern in M08 is a set of conventions for keeping two layouts in agreement, and the conventions exist because the EVM enforces nothing.</p>
+          </div>
+
+          <div class="callout callout--check">
+            <h4>Checkpoint</h4>
+            <p>You've got this when you can: take a failed mainnet transaction, read its trace, and say which opcode consumed the gas, whether the revert propagated from a subcall, and what the sender was actually charged.</p>
+          </div>
+        </article>
+
+        <article class="module" id="m8">
+          <div class="module-head">
+            <span class="module-code">M08</span>
+            <h3 class="module-title">Contract engineering and the security discipline</h3>
+            <span class="module-effort">≈16 h</span>
+          </div>
+
+          <p class="module-why">Contracts are immutable, public, and hold bearer assets — a combination almost nothing else in software has. The result is an unusually mature vulnerability taxonomy and an unusually rigorous testing culture. This module is the practical core of the syllabus, and it needs M07 because every bug class below is an EVM behaviour, not a Solidity one.</p>
+
+          <h4>Concepts</h4>
+          <ul class="concepts">
+            <li>Reentrancy, precisely — an external call hands control to the callee before your state is settled
+              <ul>
+                <li>The DAO (June 2016, ~3.6M ETH): a withdraw function that sent ether before zeroing the balance. The fix is checks-effects-interactions, not a mutex</li>
+                <li><em>Read-only reentrancy</em>: a view function returns stale state mid-callback, and a downstream protocol prices against it. This class was still emptying pools years after the write-path pattern was well known</li>
+                <li>Cross-function and cross-contract variants, where the guarded function is not the one you re-enter</li>
+              </ul>
+            </li>
+            <li>Upgradeability and the storage-collision family
+              <ul>
+                <li>Transparent versus UUPS proxies; where the implementation pointer lives and why EIP-1967 standardises a pseudo-random slot to keep it out of the way</li>
+                <li>Uninitialised implementation contracts — the Parity wallet freeze in one sentence: the library was never initialised, anyone could claim ownership, and <code>selfdestruct</code> did the rest</li>
+                <li>Storage gaps in upgradeable base contracts, and what happens when you insert a variable in the middle</li>
+              </ul>
+            </li>
+            <li>Access control and privilege — <code>tx.origin</code> versus <code>msg.sender</code>, unprotected initialisers, single-key admin as the most common real-world "vulnerability", and timelocks as the mitigation that actually helps users</li>
+            <li>Arithmetic and value handling — pre-0.8 overflow, unchecked blocks, rounding direction as an exploitable choice, ERC-20 non-standard behaviours (missing return values, fee-on-transfer, rebasing) that break naive integrations</li>
+            <li>External-call hazards — unchecked return values, gas stipend assumptions after EIP-1884, forced ether via <code>selfdestruct</code> breaking balance invariants, and price feeds read from manipulable sources (the mechanism is here; the economics are in the sibling course)</li>
+            <li>The toolchain, used properly
+              <ul>
+                <li>Foundry: unit tests, fork tests against mainnet state, fuzzing, and <em>invariant</em> testing — the last is the one that finds the bugs unit tests cannot, because it searches call sequences</li>
+                <li>Static analysis (Slither), symbolic execution and formal verification: what each can and cannot prove, and why "verified" always means "verified against a specification someone wrote"</li>
+                <li>Audits as sampling, not proof: the incident record is full of audited contracts, and the useful question is what the audit's scope excluded</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h4>Work through</h4>
+          <ul class="assigned">
+            <li><a class="cite" href="#r-35" data-code="R-35">Solidity documentation</a> — the security considerations page and the whole "Contracts" section. Then read the breaking-changes list for 0.8.</li>
+            <li><a class="cite" href="#r-39" data-code="R-39">Foundry Book</a> — testing, fuzzing, invariant testing and forking. Do the examples.</li>
+            <li><a class="cite" href="#r-45" data-code="R-45">Ethernaut</a> — levels 1–15 at minimum. Solve them locally with Foundry rather than in the browser console.</li>
+            <li><a class="cite" href="#r-46" data-code="R-46">Damn Vulnerable DeFi</a> — the first six challenges. Harder and more realistic than Ethernaut.</li>
+            <li><a class="cite" href="#r-10" data-code="R-10">Cyfrin Updraft</a> — the security and auditing track, which is the closest thing to a structured curriculum for this material.</li>
+            <li><a class="cite" href="#r-29" data-code="R-29">rekt.news</a> — read ten post-mortems and classify each as an implementation bug, an economic design flaw, or a key compromise. The distribution will surprise you.</li>
+          </ul>
+
+          <div class="callout callout--practice">
+            <h4>Practice</h4>
+            <p>Write a deliberately vulnerable vault with a reentrancy bug and a proxy with a storage collision. Exploit both from a Foundry test. Then fix them and write an <em>invariant</em> test — "the sum of user balances always equals the contract's ether balance" — and confirm it fails on the buggy version and passes on the fixed one. Done when the invariant test, not your unit test, is what catches the regression.</p>
+          </div>
+
+          <div class="callout callout--trap">
+            <h4>Where people go wrong</h4>
+            <p>Reaching for <code>nonReentrant</code> and considering the problem solved. A reentrancy guard on the write path does nothing for read-only reentrancy in a view function, nothing for cross-contract reentrancy through a token callback (ERC-777 and ERC-721 hooks are the usual vector), and nothing for the case where the danger is a stale price rather than a stale balance. Checks-effects-interactions is the property; the modifier is one way to approximate it.</p>
+          </div>
+
+          <div class="callout callout--check">
+            <h4>Checkpoint</h4>
+            <p>You've got this when you can: take an unfamiliar 300-line contract, list its trust assumptions (who can upgrade, who can pause, whose price it believes, which tokens it assumes are well-behaved), and write one invariant that would detect the worst of them being violated.</p>
+          </div>
+        </article>
+
+        <article class="module" id="m9">
+          <div class="module-head">
+            <span class="module-code">M09</span>
+            <h3 class="module-title">Rollups, data availability and the modular stack</h3>
+            <span class="module-effort">≈12 h</span>
+          </div>
+
+          <p class="module-why">The base layer is deliberately capacity-constrained, and the entire scaling roadmap is now organised around moving execution off it while keeping verification and data on it. Everything here depends on M07's state roots and M06's finality — a rollup's security is defined relative to the chain it settles to.</p>
+
+          <h4>Concepts</h4>
+          <ul class="concepts">
+            <li>The modular decomposition — execution, settlement, consensus, data availability as separable layers, and the observation that only the last two need to be maximally decentralised</li>
+            <li>Optimistic rollups — post the state root, assume it is right, let anyone challenge
+              <ul>
+                <li>Interactive fraud proofs bisect the disputed execution down to a single instruction that the L1 can re-execute cheaply — the reason a challenge does not require replaying the whole block on chain</li>
+                <li>The seven-day challenge window is a liveness parameter for honest challengers, not a technical necessity; it is why "fast withdrawals" are a liquidity product, not a protocol feature</li>
+              </ul>
+            </li>
+            <li>Validity (ZK) rollups — prove the transition instead of arguing about it; withdrawal is as fast as proof generation, at the cost of proving every block (M10 is the machinery)</li>
+            <li>Data availability — the actual bottleneck, and the subtlest idea in the module
+              <ul>
+                <li>A state root with unavailable data is worthless: nobody can construct the fraud proof or reconstruct the state to exit. "The data must be published" is the property, and publishing it is what costs money</li>
+                <li>EIP-4844 introduced blobs — a separate, cheap, short-lived data lane priced by its own fee market, deliberately not accessible to the EVM</li>
+                <li>Data availability sampling: erasure-code the blob and have each node check a few random chunks, so no node holds it all but withholding is detected with high probability. PeerDAS shipped in the Fusaka upgrade on 3 December 2025, cutting per-validator blob bandwidth by roughly 8×, with scheduled blob-parameter-only forks raising capacity further</li>
+              </ul>
+            </li>
+            <li>What a rollup actually trusts today — the honest audit
+              <ul>
+                <li>Sequencers are almost always a single party: they can reorder and delay, though not forge. Forced-inclusion and escape hatches are what keep that from being censorship</li>
+                <li>Upgrade keys are the dominant risk, not the proof system. L2Beat's Stages framework grades exactly this; as of mid-2026 the major rollups sit at Stage 1, and Stage 2 remains rare</li>
+                <li>"Validium" and "optimium" keep data off chain — a different security class, not a cheaper rollup</li>
+              </ul>
+            </li>
+            <li>Block production and proposer–builder separation — mev-boost's out-of-protocol relay market, why proposers outsource block building at all, and the in-protocol version (ePBS) targeted for the next upgrade. The economics of this market are the sibling course's subject; the plumbing is here</li>
+            <li>The other lineages — payment channels and Lightning (HTLCs, routing, the inbound-liquidity problem, watchtowers), and the monolithic high-throughput approach: Solana's parallel execution with declared account access and local fee markets, which trades hardware requirements for throughput</li>
+          </ul>
+
+          <h4>Work through</h4>
+          <ul class="assigned">
+            <li><a class="cite" href="#r-26" data-code="R-26">An Incomplete Guide to Rollups</a> — the clearest statement of the fraud-proof/validity-proof split and why data availability is the constraint.</li>
+            <li><a class="cite" href="#r-30" data-code="R-30">The Stages Framework</a> — the maturity criteria, then apply them yourself before reading anyone's grade.</li>
+            <li><a class="cite" href="#r-43" data-code="R-43">L2Beat</a> — pick three rollups and read their risk rows in full, including the upgrade-delay column.</li>
+            <li><a class="cite" href="#r-36" data-code="R-36">Ethereum roadmap</a> — the scaling and PeerDAS pages for the current shipped state.</li>
+            <li><a class="cite" href="#r-22" data-code="R-22">The Bitcoin Lightning Network paper</a> — sections 1–5, for the channel construction and the penalty mechanism.</li>
+            <li><a class="cite" href="#r-38" data-code="R-38">Solana documentation</a> — the transaction and fee-market pages, as the contrasting design.</li>
+          </ul>
+
+          <div class="callout callout--practice">
+            <h4>Practice</h4>
+            <p>Bridge a small amount to two different L2s — one optimistic, one validity-proof-based — and time the round trip both ways. Then find, in each rollup's L1 contracts, the address that can upgrade them and the delay before an upgrade takes effect. Write a paragraph on what each rollup's users are trusting. Done when your paragraph names specific addresses and delays, not adjectives.</p>
+          </div>
+
+          <div class="callout callout--trap">
+            <h4>Where people go wrong</h4>
+            <p>Assuming a "ZK rollup" is more trustless than an optimistic one because it has a proof. The proof establishes that the state transition is correct. It says nothing about whether the data was published, whether one sequencer decides your transaction order, or whether a multisig can replace the verifier contract tomorrow. Several validity rollups score lower on the maturity criteria than several optimistic ones, and the reason is always governance, never cryptography.</p>
+          </div>
+
+          <div class="callout callout--check">
+            <h4>Checkpoint</h4>
+            <p>You've got this when you can: explain why a rollup that publishes only state roots and keeps transaction data with a committee is not a rollup, and describe exactly what a user loses if that committee stops answering.</p>
+          </div>
+        </article>
+
+        <article class="module" id="m10">
+          <div class="module-head">
+            <span class="module-code">M10</span>
+            <h3 class="module-title">Zero-knowledge proofs, from statement to circuit</h3>
+            <span class="module-effort">≈14 h</span>
+          </div>
+
+          <p class="module-why">Succinct proofs are the load-bearing technology under validity rollups, private payments and the post-quantum roadmap. The mathematics is deep, but the engineering reality is that systems fail in the arithmetisation, not the cryptography — so this module aims at the layer where the bugs live. M02's commitments and M09's rollups are both prerequisites.</p>
+
+          <h4>Concepts</h4>
+          <ul class="concepts">
+            <li>The three properties, stated separately — completeness, soundness, zero-knowledge
+              <ul>
+                <li>Most deployed "ZK" systems are used for <em>succinctness</em>, not privacy: a validity rollup's proof hides nothing, it just verifies faster than re-execution. The name is a persistent source of confusion and you should keep the two uses apart</li>
+                <li><em>Knowledge soundness</em> versus plain soundness, and why the extractor formulation is what proof-of-knowledge means</li>
+              </ul>
+            </li>
+            <li>From interactive to non-interactive — the Fiat–Shamir transform, and the weak-Fiat–Shamir implementation error that has broken real deployed systems (hash the entire transcript, not just the last message)</li>
+            <li>Arithmetisation — turning a program into polynomial constraints
+              <ul>
+                <li>R1CS, Plonkish and AIR as three encodings; the reader should be able to hand-convert a tiny computation into R1CS</li>
+                <li><em>Underconstrained circuits</em> are the dominant real vulnerability class: the circuit accepts witnesses that the program would reject. This is not a cryptography failure, it is a specification failure, and no amount of proof-system security helps</li>
+              </ul>
+            </li>
+            <li>The proof systems and their tradeoffs
+              <ul>
+                <li>Groth16: tiny constant-size proofs, cheapest verification, but a trusted setup per circuit</li>
+                <li>PLONK: one universal, updatable setup for all circuits up to a size bound; larger proofs</li>
+                <li>STARKs: hash-based, no trusted setup, plausibly post-quantum, much larger proofs</li>
+                <li>Trusted setup ceremonies as a social protocol — the 1-of-n honesty assumption, and the perpetual powers-of-tau ceremony as the practical answer</li>
+              </ul>
+            </li>
+            <li>Recursion and zkVMs — proving a proof, aggregating many into one, and general-purpose zkVMs that prove execution of a normal instruction set. The tradeoff: developer effort collapses, prover cost rises by orders of magnitude</li>
+            <li>Privacy in practice — shielded pools and the note/nullifier construction (a nullifier proves you spent something without revealing which), Zcash's shielded-adoption problem, ring signatures and stealth addresses as a different design point, and the Tornado Cash sanctions as the moment the field learned that a privacy tool's legal exposure is part of its threat model</li>
+          </ul>
+
+          <h4>Work through</h4>
+          <ul class="assigned">
+            <li><a class="cite" href="#r-24" data-code="R-24">ZK Whiteboard Sessions</a> — modules 1–4, which build from interactive proofs to PLONK without hand-waving.</li>
+            <li><a class="cite" href="#r-20" data-code="R-20">On the Size of Pairing-based Non-interactive Arguments</a> — the Groth16 construction; read for the shape of the argument and the setup's role.</li>
+            <li><a class="cite" href="#r-21" data-code="R-21">PLONK</a> — sections 1–4, for what "universal and updatable" buys you.</li>
+            <li><a class="cite" href="#r-37" data-code="R-37">Zcash Protocol Specification</a> — the note-commitment and nullifier sections. This is a real, deployed shielded-pool design written down precisely.</li>
+            <li><a class="cite" href="#r-05" data-code="R-05">A Graduate Course in Applied Cryptography</a> — the chapters on proof systems and sigma protocols, for the formal grounding.</li>
+            <li><a class="cite" href="#r-08" data-code="R-08">Stanford CS251</a> — the SNARK lectures, which are unusually good at the arithmetisation step.</li>
+          </ul>
+
+          <div class="callout callout--practice">
+            <h4>Practice</h4>
+            <p>Write a circuit that proves you know a preimage of a given hash, compile it, generate and verify a proof. Then deliberately underconstrain it — remove a constraint that pins an intermediate value — and produce a proof for a false statement. Done when you have a verifying proof of something untrue and can point at the missing constraint that allowed it.</p>
+          </div>
+
+          <div class="callout callout--trap">
+            <h4>Where people go wrong</h4>
+            <p>Believing "zero-knowledge" implies "private". A validity rollup's proof reveals every transaction it processed — the data is published on L1 by design. Conversely, a system can be private without being succinct. Ask two separate questions of any such system: what does the verifier learn, and how much work does verification take. The answers are independent.</p>
+          </div>
+
+          <div class="callout callout--check">
+            <h4>Checkpoint</h4>
+            <p>You've got this when you can: explain to a security reviewer why auditing a ZK application means auditing the circuit's constraints against the intended program — and sketch what an underconstrained circuit would let an attacker do in a shielded pool.</p>
+          </div>
+        </article>
+
+        <article class="module" id="m11">
+          <div class="module-head">
+            <span class="module-code">M11</span>
+            <h3 class="module-title">Nodes, networking and client diversity</h3>
+            <span class="module-effort">≈8 h</span>
+          </div>
+
+          <p class="module-why">Every guarantee in M04 and M06 assumes messages propagate and that not all nodes fail together. Both assumptions are operational, not mathematical, and both have failed in production. This is the module that turns "decentralised" from an adjective into a measurement.</p>
+
+          <h4>Concepts</h4>
+          <ul class="concepts">
+            <li>The peer-to-peer layer — Bitcoin's addr-based gossip and Ethereum's devp2p/discv5 plus libp2p gossipsub on the consensus side
+              <ul>
+                <li>Eclipse attacks: fill a victim's peer slots and you control their view of the chain entirely, enabling double-spends against that victim alone. The defences are all about peer-selection diversity, not cryptography</li>
+                <li>Why block propagation delay is a consensus parameter — it sets the orphan rate that M04's analysis depends on</li>
+              </ul>
+            </li>
+            <li>What a node actually stores — full, snap/fast, archive, pruned, and light
+              <ul>
+                <li>State growth as the long-term problem: archive nodes are terabytes, and state expiry and statelessness are the research responses</li>
+                <li>Running your own node is the only way to not trust an RPC provider; the practical cost is the honest number to quote</li>
+              </ul>
+            </li>
+            <li>Client diversity as a live consensus risk
+              <ul>
+                <li>The arithmetic: a bug in a client with more than one third of validators can stop finality; above two thirds it can finalise an invalid chain. Correlated slashing penalties are the economic counterweight</li>
+                <li>Ethereum's execution layer has repeatedly run with one client above 60% share; the situation improved through 2025–2026 but remains the network's most-cited operational risk. This is a coordination problem, not a technical one</li>
+                <li>Real incidents worth reading: the November 2020 Geth consensus split, the 2023 non-finality episodes, and every case where a minority-client bug was contained precisely <em>because</em> it was a minority client</li>
+              </ul>
+            </li>
+            <li>The RPC surface — what <code>eth_call</code>, <code>eth_getLogs</code> and trace endpoints cost a provider, why archive access is expensive, and why "the chain is decentralised" and "my application depends on two RPC vendors" are both true at once</li>
+            <li>Node operation in practice — key management for validators, remote signing, doppelgänger protection, and why running two copies of a validator with the same key is the fastest way to get slashed</li>
+          </ul>
+
+          <h4>Work through</h4>
+          <ul class="assigned">
+            <li><a class="cite" href="#r-44" data-code="R-44">clientdiversity.org</a> — the live distribution. Check it before and after reading, and note how it moved.</li>
+            <li><a class="cite" href="#r-31" data-code="R-31">Ethereum developer documentation</a> — the nodes-and-clients section in full, including the client-diversity page.</li>
+            <li><a class="cite" href="#r-02" data-code="R-02">Mastering Bitcoin</a> — chapter 8, the network layer, for the gossip design and its attack surface.</li>
+            <li><a class="cite" href="#r-41" data-code="R-41">Etherscan</a> — use it, then reproduce three of its answers from your own node's RPC and notice what it was doing for you.</li>
+            <li><a class="cite" href="#r-09" data-code="R-09">Principles of Blockchains</a> — the networking lectures, for eclipse attacks and propagation analysis.</li>
+          </ul>
+
+          <div class="callout callout--practice">
+            <h4>Practice</h4>
+            <p>Sync a node — Bitcoin Core, or an Ethereum execution client with snap sync — on your own hardware. Record wall-clock time, peak disk, and bandwidth. Then query it directly for a balance and a log range you previously fetched from a hosted RPC and diff the answers. Done when you can state the real cost of not trusting a provider, in gigabytes and hours, from your own measurement.</p>
+          </div>
+
+          <div class="callout callout--trap">
+            <h4>Where people go wrong</h4>
+            <p>Counting nodes as a decentralisation metric. Node count says little; what matters is who can produce blocks, who can censor, how correlated the software is, and how many independent parties operate the infrastructure everyone else queries. A network with 10,000 nodes all running one client, hosted in three data centres, behind two RPC providers, is less robust than the number suggests — and each of those four factors has been the proximate cause of a real outage somewhere in the field.</p>
+          </div>
+
+          <div class="callout callout--check">
+            <h4>Checkpoint</h4>
+            <p>You've got this when you can: explain why a client bug at 34% validator share and the same bug at 67% produce qualitatively different failures, and say what each one does to a user trying to withdraw.</p>
+          </div>
+        </article>
+
+        <article class="module" id="m12">
+          <div class="module-head">
+            <span class="module-code">M12</span>
+            <h3 class="module-title">Bridges, interoperability and shared security</h3>
+            <span class="module-effort">≈8 h</span>
+          </div>
+
+          <p class="module-why">More value has been stolen from bridges than from any other component in this field, and the reason is structural: a bridge is a system that must attest to another chain's state without being able to verify it natively. M06 and M09 give you the tools to see exactly where each design puts its trust.</p>
+
+          <h4>Concepts</h4>
+          <ul class="concepts">
+            <li>The core difficulty — chain A cannot run chain B's consensus, so somebody or something must vouch for B's state
+              <ul>
+                <li>Every bridge design is an answer to "who vouches, and what happens when they lie"</li>
+              </ul>
+            </li>
+            <li>The design space, ordered by trust
+              <ul>
+                <li><em>Light-client / native</em>: verify the source chain's consensus on the destination chain. Strongest, most expensive; IBC is the production example, and it is why IBC works between chains with cheap-to-verify finality</li>
+                <li><em>External validator set / multisig</em>: an appointed committee signs. Cheap, general, and the design behind the largest losses</li>
+                <li><em>Optimistic</em>: assume correct, allow challenges, accept a delay</li>
+                <li><em>Liquidity networks and atomic swaps</em>: HTLCs and hash-locked exchanges never move state at all, which is why they cannot be robbed the same way and also why they cannot do general messaging</li>
+              </ul>
+            </li>
+            <li>The incident record, read as a taxonomy rather than a list
+              <ul>
+                <li>Ronin (March 2022, ~$624M): five of nine validator keys compromised — a threshold set too small and too concentrated</li>
+                <li>Wormhole (February 2022, ~$326M): a signature-verification bug let a forged guardian message mint wrapped assets</li>
+                <li>Nomad (August 2022, ~$190M): a botched upgrade made a zero root valid, and the exploit became copy-pasteable by anyone watching</li>
+                <li>The pattern: bridges concentrate value and are secured by a smaller, less-scrutinised system than either chain they connect</li>
+              </ul>
+            </li>
+            <li>Wrapped assets and what a claim actually is — a wrapped token is a liability of the bridge, and its peg holds exactly as long as the bridge's custody does</li>
+            <li>Shared security and restaking — reusing staked capital to secure additional services, the correlated-slashing and over-leverage concerns it raises, and the honest open question of whether pooled security is diversification or contagion</li>
+            <li>Intents and solvers — the current direction of travel: users sign desired outcomes and a competitive solver set finds execution paths across chains. It moves the trust from a bridge contract to a solver market and an escrow design, which is a different risk, not an absent one</li>
+          </ul>
+
+          <h4>Work through</h4>
+          <ul class="assigned">
+            <li><a class="cite" href="#r-29" data-code="R-29">rekt.news</a> — the Ronin, Wormhole and Nomad post-mortems. Classify each by which trust assumption failed.</li>
+            <li><a class="cite" href="#r-43" data-code="R-43">L2Beat</a> — the bridges section, and compare its risk categories against the taxonomy above.</li>
+            <li><a class="cite" href="#r-28" data-code="R-28">Paradigm research and writing</a> — the interoperability and intents pieces, for the current design frontier.</li>
+            <li><a class="cite" href="#r-49" data-code="R-49">ethresear.ch</a> — search "shared security" and "restaking" and read the critical threads, not just the proposals.</li>
+          </ul>
+
+          <div class="callout callout--practice">
+            <h4>Practice</h4>
+            <p>Pick any bridge holding meaningful value and write its threat model on one page: who signs, what threshold, who can upgrade the contracts, what a user can do if the signers vanish, and what the attacker's cost is to acquire the threshold. Then find the transaction on chain that would execute an upgrade and identify its sender. Done when every claim in your page cites an address or a contract function, not documentation.</p>
+          </div>
+
+          <div class="callout callout--trap">
+            <h4>Where people go wrong</h4>
+            <p>Calling a bridge "trustless" because messages are cryptographically signed. Signatures prove who spoke, never that what they said is true. The question is always what happens when the signers are wrong or coerced — and for the large majority of deployed bridges the answer is "the assets are gone and there is no recovery path". A light-client bridge is a genuinely different animal; almost nothing else is.</p>
+          </div>
+
+          <div class="callout callout--check">
+            <h4>Checkpoint</h4>
+            <p>You've got this when you can: given a new cross-chain protocol's documentation, locate the exact sentence where a trust assumption is introduced — and notice when the documentation never introduces one, which means it is hidden rather than absent.</p>
+          </div>
+        </article>
+
+        <article class="module" id="m13">
+          <div class="module-head">
+            <span class="module-code">M13</span>
+            <h3 class="module-title">Protocol governance and the frontier</h3>
+            <span class="module-effort">≈6 h</span>
+          </div>
+
+          <p class="module-why">These systems are supposed to be governed by code, and code is written by people through a process. Understanding that process — how a rule change actually ships, and who can stop it — is what separates reading a spec from predicting what the spec will say next year. It closes the loop on M04, M06 and M09.</p>
+
+          <h4>Concepts</h4>
+          <ul class="concepts">
+            <li>Soft forks versus hard forks — a rule-tightening change old nodes still accept, versus one that splits the network
+              <ul>
+                <li>Why Bitcoin can ship soft forks and struggles with hard forks, and why Ethereum coordinates hard forks routinely — the difference is a social equilibrium, not a technical capability</li>
+                <li>Activation mechanisms: BIP-9 version bits, BIP-8, the user-activated soft fork as a coordination threat, and Taproot's Speedy Trial as the compromise that worked</li>
+              </ul>
+            </li>
+            <li>The block size war (2015–2017) as the field's decisive governance case study
+              <ul>
+                <li>Miners, exchanges, businesses and users each believed they were the deciding constituency; the outcome established that users running nodes set the rules, which is not what most participants expected going in</li>
+                <li>SegWit2x's collapse, the Bitcoin Cash split, and the durable lesson: a chain's rules are whatever its economic nodes enforce</li>
+              </ul>
+            </li>
+            <li>The DAO fork (2016) and the ETH/ETC split — an irreversible bug, a discretionary intervention, and the permanent argument about whether "code is law" survived it. Both chains still exist, which is the most informative fact about it</li>
+            <li>How changes actually ship — the EIP and BIP processes, the All Core Devs calls, client teams as de facto veto holders, and the gap between "an EIP exists" and "it is scheduled"</li>
+            <li>Censorship resistance as an operational property — OFAC-compliant relays and the share of blocks built by filtering builders, inclusion lists as the protocol-level response, and why "can a transaction eventually get in" is a different question from "is it censored right now"</li>
+            <li>The live frontier as of mid-2026
+              <ul>
+                <li>Enshrined proposer–builder separation targeted for the next Ethereum upgrade, and the blob-capacity increases already scheduled after Fusaka</li>
+                <li>Post-quantum migration: hash-based signatures replacing BLS, aggregated inside a minimal zkVM to control their size — a multi-year programme with a stated target near the end of the decade</li>
+                <li>Statelessness and state expiry; single-slot finality; the unresolved centralisation pressure from proving costs and builder specialisation</li>
+                <li>Open and genuinely unsettled: whether decentralised sequencing works economically, whether restaking is a systemic risk, and whether any of the throughput gains change what these systems are used for</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h4>Work through</h4>
+          <ul class="assigned">
+            <li><a class="cite" href="#r-07" data-code="R-07">The Blocksize War</a> — the full serialisation. It is the only detailed account of a protocol governance fight written by someone who watched it closely.</li>
+            <li><a class="cite" href="#r-27" data-code="R-27">lean Ethereum</a> — the roadmap statement for the post-quantum and simplification programme.</li>
+            <li><a class="cite" href="#r-36" data-code="R-36">Ethereum roadmap</a> — the future-proofing and quantum-resistance pages for current status.</li>
+            <li><a class="cite" href="#r-34" data-code="R-34">Ethereum Improvement Proposals</a> — read EIP-1 itself, the process document, and then follow one draft EIP's discussion thread end to end.</li>
+            <li><a class="cite" href="#r-48" data-code="R-48">Ethereum Magicians</a> — pick a live contentious thread and read it to the end, including the objections.</li>
+            <li><a class="cite" href="#r-23" data-code="R-23">Devcon archive</a> — the protocol-roadmap talks from the most recent event.</li>
+            <li><a class="cite" href="#r-50" data-code="R-50">Bitcoin Optech newsletter</a> — the consensus-change coverage, for how the other tradition handles the same problem.</li>
+          </ul>
+
+          <div class="callout callout--practice">
+            <h4>Practice</h4>
+            <p>Take one EIP or BIP currently in draft and write a one-page assessment: what it changes, whether it is a consensus change, which clients must implement it, who has objected and on what grounds, and what would have to be true for it to ship. Done when you have located an actual objection from a named participant and can state the strongest version of it.</p>
+          </div>
+
+          <div class="callout callout--trap">
+            <h4>Where people go wrong</h4>
+            <p>Assuming on-chain token voting governs these protocols. It does not — no major base layer is governed by a token vote. Base-layer governance runs on rough consensus among client teams, researchers and node operators, with users' ability to reject a release as the final backstop. Token voting governs application-layer protocols, and that is a genuinely different system with genuinely different failure modes; it gets a full module in the sibling course.</p>
+          </div>
+
+          <div class="callout callout--check">
+            <h4>Checkpoint</h4>
+            <p>You've got this when you can: describe a plausible path by which a change you personally think is good would fail to ship — naming the constituency that would block it and the legitimate reason they would give.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="section" id="capstone">
+        <h2 class="section-title">Capstone</h2>
+        <p><strong>Project 1 — Build the machine.</strong> Implement a working blockchain node from scratch, in a language of your choice, with no blockchain libraries. It needs: key generation and signing, a transaction format with real validation, a Merkle-committed block structure, proof-of-work mining with difficulty adjustment, gossip between at least three of your own nodes over a network, and a fork-choice rule that resolves a partition correctly when you reconnect the peers.</p>
+        <ul>
+          <li><strong>Scope:</strong> UTXO or account model, your choice — but write down why you chose it and what it made harder.</li>
+          <li><strong>Draws on:</strong> M02, M03, M04, M11.</li>
+          <li><strong>Done when:</strong> you partition three nodes into a 2–1 split, mine on both sides, reconnect, and watch the minority side reorg to the majority chain without manual intervention — and when a transaction that double-spends across the partition is correctly rejected afterwards.</li>
+          <li><strong>Stretch:</strong> add a light client that verifies inclusion with Merkle proofs against headers only, and confirm it cannot be fooled by a node that lies about a transaction.</li>
+        </ul>
+        <p><strong>Project 2 — Break the machine.</strong> Take a deployed, audited protocol on a public testnet (or fork mainnet locally with Foundry) and write an adversarial test suite against it: fuzz the entry points, write invariants for its economic assumptions, and attempt reentrancy, storage collision and access-control attacks systematically.</p>
+        <ul>
+          <li><strong>Scope:</strong> one protocol, at least six invariants, a written threat model naming every privileged address.</li>
+          <li><strong>Draws on:</strong> M07, M08, M09, M12.</li>
+          <li><strong>Done when:</strong> you have either found a real invariant violation, or can argue precisely — invariant by invariant — why the contract holds, including what it assumes about tokens and price sources it does not control.</li>
+          <li><strong>Stretch:</strong> reproduce a historical exploit from <a class="cite" href="#r-29" data-code="R-29">rekt.news</a> against a fork of the block before it happened, then write the patch that would have prevented it.</li>
+        </ul>
+      </section>
+
+      <section class="section" id="mastery">
+        <h2 class="section-title">Mastery check</h2>
+        <ul class="checklist">
+          <li>I can derive an address from a private key by hand and say what each transformation protects against.</li>
+          <li>I can state the three Bitcoin Backbone properties and name which one selfish mining breaks.</li>
+          <li>I can explain why FLP does not prevent PBFT or Ethereum from shipping, and what each gives up instead.</li>
+          <li>I can write the two Casper slashing conditions and construct a slashable pair of attestations.</li>
+          <li>I can explain weak subjectivity to a node operator without saying "you just have to trust someone".</li>
+          <li>I can predict a contract's storage slots from its source and verify them against a live node.</li>
+          <li>I can find reentrancy, storage collision and missing access control in unfamiliar code, and write an invariant that catches each.</li>
+          <li>I can name what a specific rollup trusts today — sequencer, upgrade key, data availability — from its contracts rather than its documentation.</li>
+          <li>I can explain what a SNARK proves, why an underconstrained circuit is the likeliest failure, and why "zero-knowledge" does not imply private.</li>
+          <li>I can classify a bridge by its trust model and predict the shape of its eventual failure.</li>
+          <li>I can read an EIP and say whether it is a consensus change, and who would have to agree for it to ship.</li>
+        </ul>
+      </section>
+
+      <section class="section" id="next">
+        <h2 class="section-title">Where to go next</h2>
+        <ul>
+          <li><strong><a href="../defi-and-onchain-economics/">DeFi, NFTs and On-Chain Economics</a></strong> — the layer built on top of everything here: automated market makers, lending and liquidation, stablecoins, the MEV market whose plumbing you met in M09, NFTs, DAO governance and the regulatory frame. It is the direct sequel to this page.</li>
+          <li><strong>Distributed systems</strong> — M05 is a two-hour tour of a field with decades of results. Consistency models, replication, and the practical Paxos/Raft literature will make every consensus paper here easier to read.</li>
+          <li><strong>Applied cryptography</strong> — M02 and M10 use primitives whose security proofs you took on trust. Threshold signatures, multi-party computation and the pairing-based machinery under Groth16 are the natural continuations.</li>
+          <li><strong><a href="../information-theory/">Information Theory</a></strong> — erasure coding underpins data availability sampling in M09, and the coding-theory chapters there are the proper treatment of what a Reed–Solomon commitment is actually doing.</li>
+          <li><strong>Mechanism design and auction theory</strong> — EIP-1559, proposer–builder separation and order-flow auctions are auction designs. The economics literature on them is older and better developed than the crypto-native writing.</li>
+        </ul>
+      </section>
+
+      <section class="section" id="resources">
+        <h2 class="section-title">Resources</h2>
+        <p>Numbered so the syllabus can point at them. <strong>Core</strong> marks the
+           ones worth buying or blocking out real time for.</p>
+
+        <div class="resource-group">
+          <h3>Books</h3>
+          <p>Start with R-01 for the concepts and R-02 for the system; R-04 is the one to keep open through M06.</p>
+          <ol class="resource-list">
+            <li class="resource" id="r-01">
+              <span class="r-code">R-01</span>
+              <span class="r-title"><a href="https://press.princeton.edu/books/hardcover/9780691171692/bitcoin-and-cryptocurrency-technologies">Bitcoin and Cryptocurrency Technologies: A Comprehensive Introduction</a></span>
+              <span class="r-byline">— Arvind Narayanan, Joseph Bonneau, Edward Felten, Andrew Miller &amp; Steven Goldfeder, Princeton University Press, 2016</span>
+              <p class="r-note">Still the best conceptual textbook in the field, because it explains why each mechanism exists before showing what it is. Chapters 1–5 carry M01–M04; chapters 6–8 on mining and anonymity remain accurate; the altcoin and regulation chapters are a decade stale and should be skipped. A pre-publication draft PDF was distributed freely with the authors' Coursera course and is still widely mirrored.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--paid">Paid</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">336 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m1">M01</a> <a href="#m2">M02</a> <a href="#m4">M04</a></span>
+            </li>
+            <li class="resource" id="r-02">
+              <span class="r-code">R-02</span>
+              <span class="r-title"><a href="https://github.com/bitcoinbook/bitcoinbook">Mastering Bitcoin, 3rd edition</a></span>
+              <span class="r-byline">— Andreas M. Antonopoulos &amp; David A. Harding, O'Reilly, 2023</span>
+              <p class="r-note">The reference implementation-level description of Bitcoin, and the third edition finally covers SegWit and Taproot properly. Chapters 4, 6, 7 and 10 are the load-bearing ones here; chapter 8 is the networking material for M11. The full text is CC BY-SA in this repository, so the free copy is the authors' own, not a scan.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">~500 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m2">M02</a> <a href="#m3">M03</a> <a href="#m11">M11</a></span>
+            </li>
+            <li class="resource" id="r-03">
+              <span class="r-code">R-03</span>
+              <span class="r-title"><a href="https://github.com/ethereumbook/ethereumbook">Mastering Ethereum</a></span>
+              <span class="r-byline">— Andreas M. Antonopoulos &amp; Gavin Wood, O'Reilly, 2018</span>
+              <p class="r-note">Read chapters 6, 7 and 13 for transactions, contracts and the EVM — those parts aged well. Everything it says about consensus, mining and gas pricing predates the merge and EIP-1559 and is now wrong; treat the book as an EVM reference only, and get the consensus material from R-04.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">~420 pp</span>
+                <span class="tag">Partly outdated</span>
+              </div>
+              <span class="r-used">Used in <a href="#m7">M07</a></span>
+            </li>
+            <li class="resource" id="r-04">
+              <span class="r-code">R-04</span>
+              <span class="r-title"><a href="https://eth2book.info/latest/">Upgrading Ethereum: A Technical Handbook on Ethereum's Move to Proof of Stake and Beyond</a></span>
+              <span class="r-byline">— Ben Edgington, work in progress since 2021</span>
+              <p class="r-note">The only book-length technical treatment of the beacon chain, written by someone who worked on a client. Parts 2 and 3 annotate the consensus spec line by line, which is exactly what M06 needs. Still marked work-in-progress and some later sections trail the current spec, so check anything version-sensitive against R-33.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~400 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m6">M06</a></span>
+            </li>
+            <li class="resource" id="r-05">
+              <span class="r-code">R-05</span>
+              <span class="r-title"><a href="https://toc.cryptobook.us/">A Graduate Course in Applied Cryptography</a></span>
+              <span class="r-byline">— Dan Boneh &amp; Victor Shoup, draft, ongoing</span>
+              <p class="r-note">The standard free graduate text. Take chapter 8 for hash functions and 13 for signatures before M02; the proof-system chapters support M10. It is a cryptography book, not a blockchain book, which is precisely its value — you get the properties stated properly rather than as folklore.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~900 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#before-you-start">Prerequisites</a> <a href="#m2">M02</a> <a href="#m10">M10</a></span>
+            </li>
+            <li class="resource" id="r-06">
+              <span class="r-code">R-06</span>
+              <span class="r-title"><a href="https://programmingbitcoin.com/">Programming Bitcoin</a></span>
+              <span class="r-byline">— Jimmy Song, O'Reilly, 2019</span>
+              <p class="r-note">You build finite-field arithmetic, the secp256k1 curve, ECDSA, transaction parsing and SPV proofs from nothing, in Python, with exercises that fail until they are right. The most effective way to make M02 and M03 stick. It stops before SegWit-era material, so pair it with R-02.</p>
+              <div class="r-tags">
+                <span class="tag tag--paid">Paid</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">~320 pp</span>
+                <span class="tag">Hands-on</span>
+              </div>
+              <span class="r-used">Used in <a href="#m2">M02</a> <a href="#m3">M03</a></span>
+            </li>
+            <li class="resource" id="r-07">
+              <span class="r-code">R-07</span>
+              <span class="r-title"><a href="https://blog.bitmex.com/the-blocksize-war-chapter-1-first-strike/">The Blocksize War: The Battle Over Who Controls Bitcoin's Protocol Rules</a></span>
+              <span class="r-byline">— Jonathan Bier, self-published, 2021</span>
+              <p class="r-note">A close, sourced account of the 2015–2017 fight over Bitcoin's block size by the head of BitMEX Research, who followed it in real time. Read it for governance, not technology: it is the clearest demonstration anywhere of who actually sets a protocol's rules. The author serialised the complete book chapter by chapter on the BitMEX Research blog; the link is chapter 1.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Beginner</span>
+                <span class="tag">~230 pp</span>
+                <span class="tag">History</span>
+              </div>
+              <span class="r-used">Used in <a href="#m13">M13</a></span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Courses &amp; lecture series</h3>
+          <p>R-08 is the broadest; R-09 is the one that makes you build; R-10 is the practical Solidity and security path.</p>
+          <ol class="resource-list">
+            <li class="resource" id="r-08">
+              <span class="r-code">R-08</span>
+              <span class="r-title"><a href="https://cs251.stanford.edu/">CS251: Cryptocurrencies and Blockchain Technologies</a></span>
+              <span class="r-byline">— Dan Boneh, Stanford University, taught annually</span>
+              <p class="r-note">Slides, readings and problem sets are public even though the videos sit behind the university's LMS. The cryptography and SNARK lectures are unusually clear on arithmetisation, which is the part most introductions skip. Use the syllabus page as a reading list even if you never watch a lecture.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~10 weeks</span>
+              </div>
+              <span class="r-used">Used in <a href="#paths">Paths</a> <a href="#m2">M02</a> <a href="#m7">M07</a> <a href="#m10">M10</a></span>
+            </li>
+            <li class="resource" id="r-09">
+              <span class="r-code">R-09</span>
+              <span class="r-title"><a href="https://web3.princeton.edu/principles-of-blockchains/">Principles of Blockchains (COS/ECE 470)</a></span>
+              <span class="r-byline">— Pramod Viswanath, Princeton University</span>
+              <p class="r-note">The most rigorous freely available treatment of blockchain consensus: it formalises the security model instead of gesturing at it, and covers Nakamoto and BFT protocols in one framework. Lecture notes, slides and recordings are linked from the course page, and the eight Rust assignments build a real client. Prerequisite-heavy; expect probability and formal reasoning.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~12 weeks</span>
+              </div>
+              <span class="r-used">Used in <a href="#before-you-start">Prerequisites</a> <a href="#m4">M04</a> <a href="#m5">M05</a> <a href="#m11">M11</a></span>
+            </li>
+            <li class="resource" id="r-10">
+              <span class="r-code">R-10</span>
+              <span class="r-title"><a href="https://updraft.cyfrin.io/">Cyfrin Updraft</a></span>
+              <span class="r-byline">— Patrick Collins and the Cyfrin team, ongoing</span>
+              <p class="r-note">A free, long-form video curriculum from Solidity basics through assembly and a substantial security-and-auditing track built around Foundry. The security course is the closest thing to a structured audit apprenticeship that is publicly available. Skip the beginner sections if you already ship contracts and go straight to the auditing material.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Beginner → Advanced</span>
+                <span class="tag">50 h+</span>
+                <span class="tag">Hands-on</span>
+              </div>
+              <span class="r-used">Used in <a href="#before-you-start">Prerequisites</a> <a href="#m8">M08</a></span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Papers &amp; primary sources</h3>
+          <p>Read R-11 and R-12 for what the systems claim to be, and R-13 to R-19 for whether the claims hold.</p>
+          <ol class="resource-list">
+            <li class="resource" id="r-11">
+              <span class="r-code">R-11</span>
+              <span class="r-title"><a href="https://bitcoin.org/bitcoin.pdf">Bitcoin: A Peer-to-Peer Electronic Cash System</a></span>
+              <span class="r-byline">— Satoshi Nakamoto, 2008</span>
+              <p class="r-note">Nine pages, and worth reading three times. Note what it does not contain: no formal adversary model, no proof of the fork-choice rule's security, and a section-11 probability calculation that later work (R-15) had to redo properly. Reading it critically is more instructive than reading it reverently.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Beginner</span>
+                <span class="tag">9 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m1">M01</a> <a href="#m3">M03</a></span>
+            </li>
+            <li class="resource" id="r-12">
+              <span class="r-code">R-12</span>
+              <span class="r-title"><a href="https://ethereum.github.io/yellowpaper/paper.pdf">Ethereum: A Secure Decentralised Generalised Transaction Ledger (the Yellow Paper)</a></span>
+              <span class="r-byline">— Gavin Wood, 2014, continuously revised</span>
+              <p class="r-note">The formal specification of the EVM's state transition. Notation-dense and worth it: appendix H's gas table and section 6's execution model answer questions no tutorial will. The proof-of-work sections are historical now; for consensus use R-33. Skip the sections you do not currently need — nobody reads this linearly.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~40 pp</span>
+                <span class="tag">Reference</span>
+              </div>
+              <span class="r-used">Used in <a href="#m7">M07</a></span>
+            </li>
+            <li class="resource" id="r-13">
+              <span class="r-code">R-13</span>
+              <span class="r-title"><a href="https://doi.org/10.1145/3149.214121">Impossibility of Distributed Consensus with One Faulty Process</a></span>
+              <span class="r-byline">— Michael J. Fischer, Nancy A. Lynch &amp; Michael S. Paterson, Journal of the ACM, 1985</span>
+              <p class="r-note">The result every consensus protocol is built around. Read to the bivalent-configuration argument; the construction is short and the intuition — an adversarial scheduler can always keep the system undecided — is what you need to carry forward. (The ACM Digital Library returns 403 to automated link checks; the DOI resolves normally in a browser, and the paper is widely mirrored by universities.)</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--paid">Paywalled</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">9 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m5">M05</a></span>
+            </li>
+            <li class="resource" id="r-14">
+              <span class="r-code">R-14</span>
+              <span class="r-title"><a href="https://pmg.csail.mit.edu/papers/osdi99.pdf">Practical Byzantine Fault Tolerance</a></span>
+              <span class="r-byline">— Miguel Castro &amp; Barbara Liskov, OSDI, 1999</span>
+              <p class="r-note">The paper that made BFT deployable, and the ancestor of every committee-based chain. Sections 1–4 give the three-phase protocol and the quorum-intersection argument; trace a view change on paper before moving on. (The MIT PMG server refused automated checks from this environment; the same PDF is served from the USENIX OSDI'99 proceedings and from Microsoft Research's publication page.)</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">14 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m5">M05</a></span>
+            </li>
+            <li class="resource" id="r-15">
+              <span class="r-code">R-15</span>
+              <span class="r-title"><a href="https://eprint.iacr.org/2014/765">The Bitcoin Backbone Protocol: Analysis and Applications</a></span>
+              <span class="r-byline">— Juan Garay, Aggelos Kiayias &amp; Nikos Leonardos, 2014</span>
+              <p class="r-note">The first rigorous security analysis of Nakamoto consensus, and the source of the common-prefix, chain-quality and chain-growth vocabulary everyone now uses. Sections 1–4 are the payload; the full proofs can wait. Pay attention to the synchronous network assumption — it is what later work had to relax.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~40 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m4">M04</a></span>
+            </li>
+            <li class="resource" id="r-16">
+              <span class="r-code">R-16</span>
+              <span class="r-title"><a href="https://arxiv.org/abs/1311.0243">Majority is Not Enough: Bitcoin Mining is Vulnerable</a></span>
+              <span class="r-byline">— Ittay Eyal &amp; Emin Gün Sirer, 2013</span>
+              <p class="r-note">Demonstrated that honest mining is not a Nash equilibrium and that the safe threshold is well below 50%. Short, readable, and the state machine in section 4 is worth implementing. It reframed the field's security question from "can they get 51%" to "what is the profitable deviation".</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">18 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m4">M04</a></span>
+            </li>
+            <li class="resource" id="r-17">
+              <span class="r-code">R-17</span>
+              <span class="r-title"><a href="https://arxiv.org/abs/1710.09437">Casper the Friendly Finality Gadget</a></span>
+              <span class="r-byline">— Vitalik Buterin &amp; Virgil Griffith, 2017</span>
+              <p class="r-note">Where the two slashing conditions and accountable safety are defined. Short and unusually readable for a consensus paper. Read it for the theorem that either the chain is safe or at least a third of the stake is provably slashable — that single statement is the design's whole justification.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">10 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m6">M06</a></span>
+            </li>
+            <li class="resource" id="r-18">
+              <span class="r-code">R-18</span>
+              <span class="r-title"><a href="https://arxiv.org/abs/2003.03052">Combining GHOST and Casper</a></span>
+              <span class="r-byline">— Vitalik Buterin, Diego Hernandez, Thor Kamphefner, Khiem Pham et al., 2020</span>
+              <p class="r-note">The Gasper paper: how LMD-GHOST fork choice and Casper FFG finality compose into what Ethereum actually runs. Read the attacks section as carefully as the construction — the authors list the known weaknesses themselves, including balancing and bouncing attacks, which is rarer than it should be.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~30 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m6">M06</a></span>
+            </li>
+            <li class="resource" id="r-19">
+              <span class="r-code">R-19</span>
+              <span class="r-title"><a href="https://arxiv.org/abs/1803.05069">HotStuff: BFT Consensus in the Lens of Blockchain</a></span>
+              <span class="r-byline">— Maofan Yin, Dahlia Malkhi, Michael K. Reiter, Guy Golan Gueta &amp; Ittai Abraham, 2018</span>
+              <p class="r-note">Linear message complexity and responsiveness in a pipelined three-phase protocol; the direct ancestor of several production chains. Sections 1–5 are enough. Read it immediately after R-14 so the O(n²) → O(n) move is visible as a single design change.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~23 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m5">M05</a></span>
+            </li>
+            <li class="resource" id="r-20">
+              <span class="r-code">R-20</span>
+              <span class="r-title"><a href="https://eprint.iacr.org/2016/260">On the Size of Pairing-based Non-interactive Arguments</a></span>
+              <span class="r-byline">— Jens Groth, 2016</span>
+              <p class="r-note">"Groth16": three group elements, constant-size proofs, the cheapest verification in production use — at the cost of a trusted setup per circuit. Read it for the structure of the argument rather than every proof step; what matters downstream is exactly what the setup produces and why it must be destroyed.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~25 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m10">M10</a></span>
+            </li>
+            <li class="resource" id="r-21">
+              <span class="r-code">R-21</span>
+              <span class="r-title"><a href="https://eprint.iacr.org/2019/953">PLONK: Permutations over Lagrange-bases for Oecumenical Noninteractive Arguments of Knowledge</a></span>
+              <span class="r-byline">— Ariel Gabizon, Zachary J. Williamson &amp; Oana Ciobotaru, 2019</span>
+              <p class="r-note">Introduced the universal, updatable setup that removed the per-circuit ceremony, and the constraint system most modern proving stacks are variations on. Sections 1–4 give you the idea; the permutation argument is the part worth working through slowly.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~30 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m10">M10</a></span>
+            </li>
+            <li class="resource" id="r-22">
+              <span class="r-code">R-22</span>
+              <span class="r-title"><a href="https://lightning.network/lightning-network-paper.pdf">The Bitcoin Lightning Network: Scalable Off-Chain Instant Payments</a></span>
+              <span class="r-byline">— Joseph Poon &amp; Thaddeus Dryja, 2016</span>
+              <p class="r-note">The payment-channel design that predates rollups and takes the opposite approach: keep state entirely off chain between two parties, with the chain as a court of appeal. Sections 1–5 cover the construction and the revocation penalty. Read it to see that "layer 2" names at least two unrelated architectures.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">59 pp</span>
+              </div>
+              <span class="r-used">Used in <a href="#m9">M09</a></span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Talks &amp; video</h3>
+          <p>For the material that is easier watched than read — protocol roadmaps and the mathematics of proof systems.</p>
+          <ol class="resource-list">
+            <li class="resource" id="r-23">
+              <span class="r-code">R-23</span>
+              <span class="r-title"><a href="https://archive.devcon.org/">Devcon Archive</a></span>
+              <span class="r-byline">— Ethereum Foundation, 2014 to present</span>
+              <p class="r-note">Every Devcon talk, searchable and transcribed. The value is the protocol-roadmap and post-mortem talks, where client developers explain what broke and what they are building next — material that never reaches documentation. Filter by track rather than browsing; the archive is enormous and mostly not for you.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate → Advanced</span>
+                <span class="tag">Hundreds of talks</span>
+              </div>
+              <span class="r-used">Used in <a href="#m13">M13</a></span>
+            </li>
+            <li class="resource" id="r-24">
+              <span class="r-code">R-24</span>
+              <span class="r-title"><a href="https://zkhack.dev/whiteboard/">ZK Whiteboard Sessions</a></span>
+              <span class="r-byline">— ZK Hack, with Dan Boneh and others, 2022 onwards</span>
+              <p class="r-note">A structured video series that builds from interactive proofs to modern SNARKs at whiteboard pace, with Boneh delivering the foundational modules. Modules 1–4 are the ones M10 depends on. It is the gentlest route into arithmetisation that does not lie to you about what is happening.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate → Advanced</span>
+                <span class="tag">~8 h</span>
+              </div>
+              <span class="r-used">Used in <a href="#m10">M10</a></span>
+            </li>
+            <li class="resource" id="r-25">
+              <span class="r-code">R-25</span>
+              <span class="r-title"><a href="https://aantonop.com/">Andreas M. Antonopoulos: talks and Q&amp;A archive</a></span>
+              <span class="r-byline">— Andreas M. Antonopoulos, 2013 onwards</span>
+              <p class="r-note">Hundreds of conference talks and recorded Q&amp;A sessions, indexed by topic. Best used for conceptual framing — why permissionless systems trade away properties people assume are free — rather than for current technical detail, much of which predates the last several years of protocol change.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Beginner → Intermediate</span>
+                <span class="tag">Varies</span>
+              </div>
+              <span class="r-used">Used in <a href="#m1">M01</a> <a href="#m3">M03</a></span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Articles, essays &amp; blogs</h3>
+          <p>Where the design arguments happen before they reach specifications.</p>
+          <ol class="resource-list">
+            <li class="resource" id="r-26">
+              <span class="r-code">R-26</span>
+              <span class="r-title"><a href="https://vitalik.eth.limo/general/2021/01/05/rollup.html">An Incomplete Guide to Rollups</a></span>
+              <span class="r-byline">— Vitalik Buterin, 2021</span>
+              <p class="r-note">The clearest single explanation of why data availability, not execution, is the binding constraint, and of what separates optimistic from validity rollups. Written before blobs shipped, so its cost figures are historical — the reasoning is not. Read this before anything a rollup team publishes about itself.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">~30 min</span>
+              </div>
+              <span class="r-used">Used in <a href="#m9">M09</a></span>
+            </li>
+            <li class="resource" id="r-27">
+              <span class="r-code">R-27</span>
+              <span class="r-title"><a href="https://blog.ethereum.org/2025/07/31/lean-ethereum">lean Ethereum</a></span>
+              <span class="r-byline">— Justin Drake &amp; Ethereum Foundation research, 2025</span>
+              <p class="r-note">The statement of the simplification-and-post-quantum programme: hash-based signatures replacing BLS, a minimal SNARK-friendly execution layer, and post-quantum data availability. This is the roadmap document current protocol arguments refer back to, so read it before following any of them.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~25 min</span>
+                <span class="tag">Current</span>
+              </div>
+              <span class="r-used">Used in <a href="#m13">M13</a></span>
+            </li>
+            <li class="resource" id="r-28">
+              <span class="r-code">R-28</span>
+              <span class="r-title"><a href="https://www.paradigm.xyz/writing">Paradigm research and writing</a></span>
+              <span class="r-byline">— Paradigm research team, ongoing</span>
+              <p class="r-note">Consistently the strongest technical writing from an investment firm, on MEV, intents, proving systems and client engineering. It is not neutral — the authors hold positions — but the engineering content is rigorous and usually shipped alongside open-source code. Read the mechanism posts, discount the market framing.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">Ongoing</span>
+              </div>
+              <span class="r-used">Used in <a href="#m12">M12</a></span>
+            </li>
+            <li class="resource" id="r-29">
+              <span class="r-code">R-29</span>
+              <span class="r-title"><a href="https://rekt.news/">rekt.news</a></span>
+              <span class="r-byline">— pseudonymous, 2020 onwards</span>
+              <p class="r-note">The running record of exploits, with a leaderboard by loss size and post-mortems written within days. The tone is tabloid and the analysis is usually sound; use it as a primary index of incidents and then read the protocol's own post-mortem alongside. Reading ten entries teaches more about real failure modes than any security course.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">Ongoing</span>
+              </div>
+              <span class="r-used">Used in <a href="#m8">M08</a> <a href="#m12">M12</a> <a href="#capstone">Capstone</a></span>
+            </li>
+            <li class="resource" id="r-30">
+              <span class="r-code">R-30</span>
+              <span class="r-title"><a href="https://forum.l2beat.com/t/the-stages-framework/291">The Stages Framework</a></span>
+              <span class="r-byline">— Luca Donno &amp; L2BEAT, 2023, revised since</span>
+              <p class="r-note">The criteria that turn "is this rollup decentralised" into a checklist: proof system in production, permissionless challenges, exit without operator cooperation, Security Council composition and upgrade delays. Read the criteria before you read anyone's grade, then grade a rollup yourself and compare.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">~20 min</span>
+              </div>
+              <span class="r-used">Used in <a href="#m9">M09</a></span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Reference &amp; documentation</h3>
+          <p>The things to have open in a tab, not to read through.</p>
+          <ol class="resource-list">
+            <li class="resource" id="r-31">
+              <span class="r-code">R-31</span>
+              <span class="r-title"><a href="https://ethereum.org/en/developers/docs/">Ethereum developer documentation</a></span>
+              <span class="r-byline">— ethereum.org contributors, continuously updated</span>
+              <p class="r-note">The best-maintained conceptual documentation in the field, and unusually honest about open problems. The EVM, gas, nodes-and-clients and client-diversity pages are the ones this syllabus leans on. Community-edited, so occasionally a page trails a recent fork — check dates on anything version-sensitive.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Beginner → Advanced</span>
+                <span class="tag">Reference</span>
+              </div>
+              <span class="r-used">Used in <a href="#m7">M07</a> <a href="#m11">M11</a></span>
+            </li>
+            <li class="resource" id="r-32">
+              <span class="r-code">R-32</span>
+              <span class="r-title"><a href="https://ethereum.github.io/execution-specs/">Ethereum execution specifications</a></span>
+              <span class="r-byline">— Ethereum Foundation, continuously updated</span>
+              <p class="r-note">The state transition function as executable Python, fork by fork. When the Yellow Paper's notation stops helping, read the corresponding function here instead — it is the same specification in a language you can run and step through. Also the fastest way to see exactly what a fork changed.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">Reference</span>
+              </div>
+              <span class="r-used">Used in <a href="#m7">M07</a></span>
+            </li>
+            <li class="resource" id="r-33">
+              <span class="r-code">R-33</span>
+              <span class="r-title"><a href="https://github.com/ethereum/consensus-specs">Ethereum consensus specifications</a></span>
+              <span class="r-byline">— Ethereum Foundation, continuously updated</span>
+              <p class="r-note">The beacon chain's executable spec, including <code>process_attestation</code>, the slashing handlers and the fork-choice implementation. Shorter and more readable than its reputation. Pair it with R-04, which annotates the same code in prose, and use it as the authority whenever a secondary source disagrees.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">Reference</span>
+              </div>
+              <span class="r-used">Used in <a href="#m6">M06</a></span>
+            </li>
+            <li class="resource" id="r-34">
+              <span class="r-code">R-34</span>
+              <span class="r-title"><a href="https://eips.ethereum.org/">Ethereum Improvement Proposals</a></span>
+              <span class="r-byline">— EIP editors and authors, 2015 onwards</span>
+              <p class="r-note">Primary sources for every protocol and token-standard change, with the rationale sections that explain rejected alternatives — often the most valuable part. Start with EIP-1 (the process itself), then 1559, 4337, 4844 and 7702. Note the status field: draft, review and final mean very different things.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate → Advanced</span>
+                <span class="tag">Reference</span>
+              </div>
+              <span class="r-used">Used in <a href="#m7">M07</a> <a href="#m13">M13</a></span>
+            </li>
+            <li class="resource" id="r-35">
+              <span class="r-code">R-35</span>
+              <span class="r-title"><a href="https://docs.soliditylang.org/en/latest/">Solidity documentation</a></span>
+              <span class="r-byline">— Solidity team, continuously updated</span>
+              <p class="r-note">Read the "Security Considerations" page in full — it is short and it names most of the bug classes in M08. The storage-layout and inline-assembly sections are the ones that connect Solidity to the EVM semantics from M07. Always check the version selector; behaviour changed materially at 0.8.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">Reference</span>
+              </div>
+              <span class="r-used">Used in <a href="#m8">M08</a></span>
+            </li>
+            <li class="resource" id="r-36">
+              <span class="r-code">R-36</span>
+              <span class="r-title"><a href="https://ethereum.org/en/roadmap/">The Ethereum roadmap</a></span>
+              <span class="r-byline">— ethereum.org, continuously updated</span>
+              <p class="r-note">What has shipped, what is scheduled and what is research, kept current — the PeerDAS, scaling and quantum-resistance pages are the ones referenced here. Use it as the dateline for anything in M09 and M13, because secondary coverage of upgrades goes stale within months.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Beginner → Intermediate</span>
+                <span class="tag">Reference</span>
+              </div>
+              <span class="r-used">Used in <a href="#m9">M09</a> <a href="#m13">M13</a></span>
+            </li>
+            <li class="resource" id="r-37">
+              <span class="r-code">R-37</span>
+              <span class="r-title"><a href="https://zips.z.cash/protocol/protocol.pdf">Zcash Protocol Specification</a></span>
+              <span class="r-byline">— Daira-Emma Hopwood, Sean Bowe, Taylor Hornby &amp; Nathan Wilcox, continuously revised</span>
+              <p class="r-note">A deployed shielded-payment system specified to a level of precision almost nothing else in this field reaches. Read the note-commitment and nullifier sections for M10; the rest is a reference. It is also a model of how to write a protocol specification, independent of the subject.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">Reference</span>
+              </div>
+              <span class="r-used">Used in <a href="#m10">M10</a></span>
+            </li>
+            <li class="resource" id="r-38">
+              <span class="r-code">R-38</span>
+              <span class="r-title"><a href="https://solana.com/docs">Solana documentation</a></span>
+              <span class="r-byline">— Solana Foundation and contributors, continuously updated</span>
+              <p class="r-note">Here as the contrasting architecture: transactions declare the accounts they touch so execution can be parallelised, and fee markets are local to accounts rather than global. Read the transaction, fee and account-model pages to see which of Ethereum's constraints are fundamental and which are choices.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">Reference</span>
+              </div>
+              <span class="r-used">Used in <a href="#m9">M09</a></span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Tools, datasets &amp; playgrounds</h3>
+          <p>Everything here is free and most of it runs in a browser; R-39 is the one you will use daily.</p>
+          <ol class="resource-list">
+            <li class="resource" id="r-39">
+              <span class="r-code">R-39</span>
+              <span class="r-title"><a href="https://book.getfoundry.sh/">Foundry Book</a></span>
+              <span class="r-byline">— Foundry contributors, continuously updated</span>
+              <p class="r-note">The toolchain and its manual: tests in Solidity, mainnet forking, fuzzing and — the section most people skip — stateful invariant testing, which is what actually finds protocol-level bugs. Work the fuzzing and invariant chapters properly; the rest can be skimmed as needed.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">Hands-on</span>
+              </div>
+              <span class="r-used">Used in <a href="#m8">M08</a></span>
+            </li>
+            <li class="resource" id="r-40">
+              <span class="r-code">R-40</span>
+              <span class="r-title"><a href="https://www.evm.codes/">evm.codes</a></span>
+              <span class="r-byline">— Paradigm, continuously updated</span>
+              <p class="r-note">An interactive opcode reference with a stepping playground: gas costs, stack effects and a runnable example per opcode. The fastest way to build an accurate mental model of the machine in M07, and the right place to check what a fork changed about gas pricing.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">Interactive</span>
+              </div>
+              <span class="r-used">Used in <a href="#m7">M07</a></span>
+            </li>
+            <li class="resource" id="r-41">
+              <span class="r-code">R-41</span>
+              <span class="r-title"><a href="https://etherscan.io/">Etherscan</a></span>
+              <span class="r-byline">— Etherscan, 2015 onwards</span>
+              <p class="r-note">The default block explorer, and useful here for reading transaction traces and verified contract source. Treat it as a convenience over an RPC node, not as ground truth: it decodes, labels and interprets, and M11's practice is specifically about reproducing its answers yourself. (Cloudflare returns 403 to automated checks; the site opens normally in a browser.)</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Beginner</span>
+                <span class="tag">Interactive</span>
+              </div>
+              <span class="r-used">Used in <a href="#m11">M11</a></span>
+            </li>
+            <li class="resource" id="r-42">
+              <span class="r-code">R-42</span>
+              <span class="r-title"><a href="https://mempool.space/">mempool.space</a></span>
+              <span class="r-byline">— Mempool Space K.K., open source</span>
+              <p class="r-note">A live view of Bitcoin's fee market with mempool depth by fee rate, replacement tracking and block-template projection. Watching it for an hour teaches more about fee estimation than any explanation, and it makes the policy-versus-consensus distinction in M03 concrete. Self-hostable, which is the point.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Beginner</span>
+                <span class="tag">Live data</span>
+              </div>
+              <span class="r-used">Used in <a href="#m3">M03</a></span>
+            </li>
+            <li class="resource" id="r-43">
+              <span class="r-code">R-43</span>
+              <span class="r-title"><a href="https://l2beat.com/scaling/summary">L2BEAT</a></span>
+              <span class="r-byline">— L2BEAT team, 2021 onwards</span>
+              <p class="r-note">The independent risk register for rollups and bridges: proof systems, sequencer arrangements, upgrade keys and delays, all sourced to on-chain contracts. Read the risk rows and the "technology" tab, not the value-locked ranking. The most useful single site for M09 and M12.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">Live data</span>
+              </div>
+              <span class="r-used">Used in <a href="#m9">M09</a> <a href="#m12">M12</a></span>
+            </li>
+            <li class="resource" id="r-44">
+              <span class="r-code">R-44</span>
+              <span class="r-title"><a href="https://clientdiversity.org/">Client Diversity</a></span>
+              <span class="r-byline">— Ethereum community contributors, ongoing</span>
+              <p class="r-note">Live execution- and consensus-client distribution with the thresholds marked, plus switching guides. The data is sampled and the site says so — treat the shares as indicative. Check it before and after M11 so the abstract risk becomes a number you have watched move.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Beginner</span>
+                <span class="tag">Live data</span>
+              </div>
+              <span class="r-used">Used in <a href="#m11">M11</a></span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Practice: problem sets &amp; project ideas</h3>
+          <p>Do R-45 before R-46; R-47 is the multi-week build that the capstone assumes.</p>
+          <ol class="resource-list">
+            <li class="resource" id="r-45">
+              <span class="r-code">R-45</span>
+              <span class="r-title"><a href="https://ethernaut.openzeppelin.com/">The Ethernaut</a></span>
+              <span class="r-byline">— OpenZeppelin, 2018 onwards</span>
+              <p class="r-note">Wargame-style contract-exploitation levels, each a single vulnerability class: reentrancy, delegatecall, storage collision, bad randomness, gas griefing. Solve them locally with Foundry rather than the browser console — you learn the tooling and the bug at once. Levels 1–15 map directly onto M08.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">~15 h</span>
+              </div>
+              <span class="r-used">Used in <a href="#m8">M08</a></span>
+            </li>
+            <li class="resource" id="r-46">
+              <span class="r-code">R-46</span>
+              <span class="r-title"><a href="https://github.com/theredguild/damn-vulnerable-defi">Damn Vulnerable DeFi</a></span>
+              <span class="r-byline">— Damian Rusinek, Tincho Abbate and contributors, v4</span>
+              <p class="r-note">Harder than Ethernaut and much closer to real incidents: flash-loan abuse, oracle manipulation, broken access control in realistic multi-contract systems. Version 4 is Foundry-native. The first six challenges are enough for M08; the rest pair well with the sibling economics course.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~20 h</span>
+              </div>
+              <span class="r-used">Used in <a href="#m8">M08</a></span>
+            </li>
+            <li class="resource" id="r-47">
+              <span class="r-code">R-47</span>
+              <span class="r-title"><a href="https://github.com/Blockchains-Princeton/COS-ECE470-fa2024">COS/ECE 470 programming assignments</a></span>
+              <span class="r-byline">— Blockchains at Princeton, Fall 2024 edition</span>
+              <p class="r-note">Eight staged assignments that build a working Bitcoin-like client in Rust: cryptography, block structures, mining, gossip, transaction handling, state validation. Each part has tests, so you know when you are done. This is the scaffold the first capstone assumes; doing it in another language is fine and slower.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~40 h</span>
+              </div>
+              <span class="r-used">Used in <a href="#m3">M03</a> <a href="#m4">M04</a></span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="resource-group">
+          <h3>Communities &amp; staying current</h3>
+          <p>This field's real documentation is its forums; these three are where changes are argued before they ship.</p>
+          <ol class="resource-list">
+            <li class="resource" id="r-48">
+              <span class="r-code">R-48</span>
+              <span class="r-title"><a href="https://ethereum-magicians.org/">Fellowship of Ethereum Magicians</a></span>
+              <span class="r-byline">— Ethereum community, 2018 onwards</span>
+              <p class="r-note">Where EIPs are debated before and during the formal process, including the objections that kill them. Reading one contentious thread end to end is the fastest way to understand how base-layer governance actually works — and who, in practice, can say no.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">Ongoing</span>
+              </div>
+              <span class="r-used">Used in <a href="#m13">M13</a></span>
+            </li>
+            <li class="resource" id="r-49">
+              <span class="r-code">R-49</span>
+              <span class="r-title"><a href="https://ethresear.ch/">ethresear.ch</a></span>
+              <span class="r-byline">— Ethereum Foundation research community, 2017 onwards</span>
+              <p class="r-note">The research forum where proposals appear years before implementation — data availability sampling, PBS, single-slot finality and restaking all started as threads here. Quality varies and half of it never ships; read the replies, which are where the holes get found.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">Ongoing</span>
+              </div>
+              <span class="r-used">Used in <a href="#m12">M12</a></span>
+            </li>
+            <li class="resource" id="r-50">
+              <span class="r-code">R-50</span>
+              <span class="r-title"><a href="https://bitcoinops.org/en/newsletters/">Bitcoin Optech Newsletter</a></span>
+              <span class="r-byline">— Bitcoin Optech, weekly since 2018</span>
+              <p class="r-note">Weekly technical summaries of Bitcoin development, plus topic pages that are the best short references anywhere on RBF, package relay, fee estimation and covenant proposals. Written for engineers at businesses running Bitcoin infrastructure, so it is specific and free of price talk.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate → Advanced</span>
+                <span class="tag">Weekly</span>
+              </div>
+              <span class="r-used">Used in <a href="#m3">M03</a> <a href="#m13">M13</a></span>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <span><a href="../">← All topics</a></span>
+    <span>Updated 2026-08-05 · 13 modules · 50 resources</span>
+  </footer>
+
+</div>
+
+<script src="../assets/site.js" defer></script>
+</body>
+</html>
