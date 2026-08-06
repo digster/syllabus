@@ -35,10 +35,10 @@ mangled and folders beginning with `_` would still be served. Keep it.
 In a Claude session with this repo open:
 
 ```
-Add a syllabus for: information theory
+Add a syllabus for: kalman filters
 ```
 
-Claude reads `CLAUDE.md`, researches, writes `docs/information-theory/index.html`,
+Claude reads `CLAUDE.md`, researches, writes `docs/kalman-filters/index.html`,
 and adds the card to `docs/index.html`. Append what you asked to `PROMPT.md`, and
 write the session up in `memory/YYYY-MM-DD.md`.
 
