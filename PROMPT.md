@@ -102,3 +102,40 @@ become a 404 nothing on that page could reveal.
 Mathematics &amp; statistics group, demoted the inbound `next` link to plain text,
 and moved the `README.md` "Adding a topic" example off the removed slug. The
 historical record — `PROMPT.md`, `LEARNINGS.md`, `memory/` — is left intact.
+
+---
+
+## 2026-08-06 — crypto coverage gaps, then removing the size ceilings
+
+> between the two crypto related syllabus in the repo, what important topics
+> might be missing? Only mention them, do not change anything in the repo yet.
+
+Read both pages and keyword-swept them. Answered in chat only: ten subjects big
+enough to be their own pages (applied cryptography, on-chain privacy, wallets and
+custody, contract-security practice, derivatives, non-EVM execution, Bitcoin's
+script and channel layer, mining as an industry, monetary economics and CBDCs, ZK
+engineering) plus the gaps inside the existing thirteen modules each.
+
+> suggest topics which can be added in the current 2 pages.
+
+Same material re-cut as per-page additions: which need a module slot, which fit as
+concept blocks inside a named existing module. Noted that both pages sat at 13
+modules and exactly 50 resources — the stated ceilings — so any addition would
+have to displace something.
+
+> why is there is a contract band of 14 and 50? how were these arbitrary no
+> selected? quality coverage should not be based on an arbitrary no but on the
+> rightful coverage needed. there can be a floor but not a ceiling. update the
+> instructions with the right language.
+
+The ceilings had been failing quietly for three pages: every page written to the
+depth bar overshot the word range, and both crypto pages stopped at exactly 50
+resources.
+
+→ Replaced the bands in `CLAUDE.md` with a "Size: floors, not ceilings" section —
+floors kept (8 modules, ~2,500 words, 25 resources), maxima removed, bloat now
+caught by four quality tests instead of a number. Resources become "at least 25,
+no upper limit". Added guidance that growing an existing page is a normal update,
+two anti-patterns about stopping short of a field's real extent, and a pre-flight
+item on naming deliberate omissions. `LEARNINGS.md`'s open "page-length guidance
+is loose" note is now marked resolved with the evidence.

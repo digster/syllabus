@@ -91,13 +91,23 @@ Expect two harmless console errors on every local page load: a favicon 404, and
 the sandbox. Neither indicates a page defect — but it does mean local screenshots
 show fallback fonts, not the real ones.
 
-## Page-length guidance is loose
+## Page size has floors and no ceilings — resolved 2026-08-06
 
-`CLAUDE.md` suggests 2,500–5,000 words of syllabus body for 8–14 modules. A
-13-module page written to the stated depth bar came out at ~9,100 words, of which
-~1,760 were `Work through` citation lists rather than prose. The depth bar and
-the word range are in tension; the depth bar is the one the brief actually
-argues for. Flag the count in the report and let the reviewer decide.
+`CLAUDE.md` used to give 2,500–5,000 words for 8–14 modules, and 25–50 resources.
+Every page written to the depth bar broke the word ceiling — information-theory at
+~9,160 before it was removed, blockchain-systems at 8,510,
+defi-and-onchain-economics at 9,188 — and the
+two crypto pages landed on exactly 50 resources each, which is what a binding cap
+looks like rather than a coincidence. Two sessions logged the tension and neither
+resolved it.
+
+Resolved by removing the ceilings. The floors (8 modules, ~2,500 words, 25
+resources) stay, because thinness is a real failure; the maximum is now whatever
+the topic needs. Bloat is caught by four quality tests in `CLAUDE.md` — every
+module passes the dependency test, no two modules overlap, nothing is inflated to
+look thorough, the rail stays navigable — not by a number. If you find yourself
+deciding what to leave out of a page because of its length, that is the bug the
+old band caused; leave it in and report the size.
 
 ## `overflow-wrap: break-word` does not fix flex-line overflow
 
