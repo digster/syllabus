@@ -27,7 +27,7 @@ of your reply, and build.
 ```
 CLAUDE.md                     ← you are here
 ARCHITECTURE.md               ← how the site is wired; read it before your first edit
-PROMPT.md                     ← the same brief, standalone, for use outside this repo
+PROMPT.md                     ← log of what was asked for; append an entry each session
 LEARNINGS.md                  ← accumulated gotchas; read before starting a page
 README.md
 templates/topic-template.html ← copy this to start a page (never published)
@@ -66,6 +66,9 @@ docs/                         ← the entire published site
    deliberately left out, any resource you kept but could not reach, and any
    resource you could not confirm at all. The last two are different — keep them
    separate.
+8. **Log it.** Append an entry to `PROMPT.md` — what I asked, verbatim, and one
+   line on what it produced — and write the session up in `memory/YYYY-MM-DD.md`.
+   `PROMPT.md` is a record, never a restatement of anything in this file.
 
 ## Sequencing: the dependency test
 

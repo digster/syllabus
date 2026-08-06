@@ -19,7 +19,7 @@ enforced by review, not by a compiler — which is why the pre-flight checklist 
 
 ```
 CLAUDE.md                       the editorial brief and the page contract
-PROMPT.md                       the same brief, standalone, for use outside this repo
+PROMPT.md                       log of what was asked for, one entry per session
 ARCHITECTURE.md                 this file
 LEARNINGS.md                    accumulated gotchas; read before starting a page
 README.md                       orientation and publishing notes
@@ -134,6 +134,7 @@ the sandbox — local screenshots therefore show fallback fonts.
   hyphenated, no stop-words.
 - **Relative links only**, so the site works at `user.github.io/repo/` and on a
   custom domain without changes.
-- **`PROMPT.md` is not a prompt log.** It is the standalone copy of the brief for
-  use in an assistant with no access to this repo. Keep it in sync with
-  `CLAUDE.md` when the brief changes; do not append to it.
+- **`PROMPT.md` is a prompt log**, not a brief. Append one entry per session —
+  what was asked, verbatim, and a line on what it produced. It must not restate
+  anything from `CLAUDE.md`; a second copy of the instructions is a second thing
+  to keep in sync, which is exactly how the file went wrong the first time.
