@@ -139,3 +139,24 @@ no upper limit". Added guidance that growing an existing page is a normal update
 two anti-patterns about stopping short of a field's real extent, and a pre-flight
 item on naming deliberate omissions. `LEARNINGS.md`'s open "page-length guidance
 is loose" note is now marked resolved with the evidence.
+
+---
+
+## 2026-08-06 — information theory, rebuilt
+
+> add a syllabus for information theory.
+
+Then, during planning:
+
+> Instead of next, give quantum information an additional module.
+
+The slug had been deleted four commits earlier as a deliberate exercise in
+walking the removal path, and the size ceilings had been removed two commits
+after that — so this was a fresh build to the current brief rather than a revert
+of `0f7e79b`. The quantum follow-up turned a `next` pointer into M20, placed
+after the whole classical arc because the module only teaches by contrast.
+
+→ Added `docs/information-theory/` (MA-01, 21 modules, 94 resources, ~16,800
+words of syllabus body), re-created the Mathematics &amp; statistics catalog group,
+and restored the inbound `next` link on `blockchain-systems` that the removal had
+demoted to plain text.

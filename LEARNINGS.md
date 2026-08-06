@@ -195,3 +195,48 @@ a category heading with no cards under it reads as a rendering bug.
 
 Leave the history alone. `PROMPT.md`, `memory/` and this file record what was
 done and why; editing a removed topic out of them turns a log into fiction.
+
+## `.assigned li` is a flex row, so one work-through item takes one citation
+
+`.assigned li { display: flex }` makes every inline child a flex item, and
+contiguous text runs become anonymous flex items between them. Items on a flex
+line do not wrap, and each shrinks only to its own min-content, so the line's
+minimum width is the *sum* of those min-contents. One citation plus its
+description is three items and fits at 380 px. Two citations in one `<li>` is
+five, and it pushed `information-theory` into 14 px of horizontal scroll:
+
+```html
+<!-- overflows at 380 px -->
+<li><a class="cite" …>Paper A</a> and <a class="cite" …>Paper B</a> — read as a pair.</li>
+<!-- fits -->
+<li><a class="cite" …>Paper A</a> — the claim.</li>
+<li><a class="cite" …>Paper B</a> — the rebuttal, immediately afterwards.</li>
+```
+
+This is not a stylesheet bug and the fix is not a stylesheet change: every
+`.assigned li` on the existing pages already carries exactly one citation, so
+splitting the item restores the house pattern. When you want to tell the reader
+to read two things together, say so in the second item's note.
+
+The detector is the same one from the earlier overflow bugs — the last element in
+the `scrollWidth > clientWidth` list is the real source. Here it reported an
+unclassed `LI` at 374 > 340, which reads as a mystery until you notice its parent
+is `ul.assigned`.
+
+## The audit script, reimplemented
+
+`memory/2026-08-05.md` recorded an `audit.py` kept only in a session scratchpad
+and flagged it as worth reimplementing. It was, and the same note applies again:
+it lives in the scratchpad, not the repo. It checks module ids and the six
+required parts, rail-to-module correspondence, gapless resource ids, `data-code`
+against the visible `R-NN`, the citation graph in both directions, that every
+`#…` anchor on the page resolves, all seven count sites plus the catalog card,
+and the no-`<style>`/no-inline-style/no-absolute-link rules.
+
+Two checks earned their place beyond the obvious ones. First, comparing the count
+of `<a class="cite"` occurrences against the count matching the full
+`href="#r-NN" data-code="R-NN"` pattern — a malformed citation otherwise passes
+by simply not being seen. Second, requiring `r-used` to match the set of citing
+modules *exactly* in both directions, not merely to be non-empty; on a 21-module
+page the back-references drift as modules get edited, and "cited by M06 but
+`r-used` omits it" is invisible to any grep.
