@@ -160,3 +160,14 @@ after the whole classical arc because the module only teaches by contrast.
 words of syllabus body), re-created the Mathematics &amp; statistics catalog group,
 and restored the inbound `next` link on `blockchain-systems` that the removal had
 demoted to plain text.
+
+---
+
+## 2026-08-06 — remove the blockchain topics
+
+> remove the two blockchain related topics.
+
+→ Deleted `docs/blockchain-systems/` (CS-01) and `docs/defi-and-onchain-economics/`
+(EF-01), their catalog cards, and the now-empty `Computer science` and
+`Economics & finance` groups. The inbound `next` link from
+`information-theory` was demoted to plain text. Catalog is MA-01 only.
