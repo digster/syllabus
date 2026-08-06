@@ -124,9 +124,48 @@ Calibration:
 > election through a partition on paper. Checkpoint: you can say what a system
 > gives up when it claims 'strong consistency and high availability'."
 
-Length is a symptom, not a target, but a page that clears the bar generally lands
-around **8–14 modules** and **2,500–5,000 words** of syllabus body. If you're
-under that, you're probably listing topics instead of teaching them.
+## Size: floors, not ceilings
+
+**There is no maximum number of modules, words or resources.** The right size is
+whatever the topic's actual structure requires. Fields are not the same size as
+each other, and capping a big one just means teaching less of it and calling the
+page finished.
+
+**The floors are real**, because thinness is a genuine failure mode. A page that
+clears the depth bar does not come in under **8 modules** or **~2,500 words** of
+syllabus body. Under either, you are listing topics instead of teaching them —
+and the fix is deeper module bodies, not more module headings.
+
+Above the floor, size is not evidence of anything, good or bad. A page is too
+long only when it fails one of the tests below — and each failure has a fix that
+is never "cut until the count looks conventional":
+
+- **Every module earns its slot by the dependency test.** If nothing later needs
+  it and no reader would miss it, it is filler at any page length. Cut it or fold
+  it into its neighbour.
+- **No two modules teach the same thing.** Overlap means the arc is wrong. Merge
+  them and re-sequence; don't delete the better one to save space.
+- **Nothing is inflated to look thorough.** Restating a concept in three bullets,
+  or listing named systems without saying what each one decided differently, is
+  padding. Padding is a quality failure whether the page has 9 modules or 25.
+- **The page stays navigable.** The rail is the test: a reader scanning it should
+  be able to find the module they want and see why it sits where it does. If the
+  rail has become an undifferentiated wall, the problem is grouping and titling,
+  not length.
+
+If a topic turns out to be two subjects wearing one name, split it into two slugs
+that link each other from `next` — that is a structural judgement, not a length
+one. Say so in the report and let me decide.
+
+Report the counts you landed on and why the page needed them. Never trim
+coverage to hit a number, and never inflate to reach one either.
+
+> A note for future sessions, so this doesn't get reintroduced: this file used to
+> give "8–14 modules and 2,500–5,000 words" as a band. Every page built to the
+> depth bar broke the ceiling — 9,160, 8,510 and 9,188 words — and two separate
+> sessions logged the tension rather than resolving it. A ceiling that every
+> honest page violates is measuring the wrong thing. The guards against bloat are
+> the four tests above, which are about quality; a word count is not one of them.
 
 ## Page contract
 
@@ -170,7 +209,13 @@ This is the mechanical rule the whole page hangs on.
 
 ## Resource rules
 
-- **25–50 entries** for a normal topic. Fewer means thin; more means unfiltered.
+- **At least 25 entries. No upper limit.** A topic gets as many resources as it
+  takes to cover the material and the range of ways people learn it. The guard
+  against an unfiltered dump is not a cap — it is that every entry carries a real
+  note, at least one module cites it, and it is the best available thing for the
+  job it does. A page with 22 modules needs the resources those 22 modules cite;
+  that is a well-covered page, not a bloated list. Stop adding when the next
+  entry would not change what any reader does.
 - **Groups, in the template's order:** Books · Courses & lecture series · Papers &
   primary sources · Talks & video · Articles, essays & blogs · Reference &
   documentation · Tools, datasets & playgrounds · Practice: problem sets & project
@@ -204,9 +249,11 @@ This is the mechanical rule the whole page hangs on.
   year, edition, or a URL you are not sure points at the right thing. A confirmed
   work behind an unreachable link gets the bracketed note and **no** tag; adding
   the tag there tells the reader something false about the resource.
-- **Don't pad.** Ten excellent resources beat forty with thirty seat-fillers. But
-  do cover the range: something for the reader who learns by video, something for
-  the one who wants the original paper.
+- **Don't pad, and don't ration either.** Ten excellent resources beat forty with
+  thirty seat-fillers — but forty excellent resources also beat ten, and dropping
+  a genuinely load-bearing text because the list already looks long is the same
+  error in the other direction. Cover the range: something for the reader who
+  learns by video, something for the one who wants the original paper.
 - **Never invent** a title, author, year, ISBN or URL. If you're unsure a thing
   exists, search. If you still can't confirm it exists at all, cut it — this is
   the one case where cutting is right, and it is not the same as a link that
@@ -251,6 +298,15 @@ half-renumbered page. If I ask for a genuinely different treatment of the same
 topic rather than an update, make a new slug (`statistics-graduate`) and link the
 two from each other's `next` section.
 
+**Growing a page is a normal update, not a special case.** New modules append as
+`mN+1…` and new resources as `r-NN+1…`, and neither has to displace anything that
+already exists — a page gaining six modules because the field moved or because
+the first pass under-covered it is the system working. Re-sequence if a new module
+belongs earlier: module ids follow page order, so inserting one means renumbering
+the modules after it and fixing every `#mN` link and `r-used` back-reference. That
+is tedious but mechanical, and it is the correct move — never park a module out of
+dependency order just to avoid the renumber.
+
 ## Pre-flight checklist
 
 Run this before you tell me it's done.
@@ -260,6 +316,8 @@ Run this before you tell me it's done.
 - [ ] Every resource has at least one back-reference in `r-used`, and those
       `#mN` links all exist.
 - [ ] Every module has: why, concepts, work-through, practice, trap, checkpoint.
+- [ ] No load-bearing part of the field is missing. Anything left out on purpose
+      is named in the report, with the reason — never omitted for page length.
 - [ ] The rail lists every module, in order, with matching ids.
 - [ ] `meta` counts, the meta-row counts and the footer counts all agree with reality.
 - [ ] Every external URL was actually fetched or searched — no remembered links.
@@ -294,3 +352,8 @@ Things that will make me ask for a rewrite:
 - Emoji, badge rows, "🚀 Let's dive in!", or any other README-voice.
 - Inventing a URL because a plausible one should exist.
 - Softening the depth because the topic is hard. If it's hard, say so and sequence it better.
+- Stopping short of the topic's real extent because the page already "feels long".
+  Coverage is decided by the subject, not by the scroll bar.
+- Reporting a page as complete while knowing a load-bearing part of the field is
+  missing from it. Say what you left out and why — that belongs in the report
+  every time, not only when I ask.
