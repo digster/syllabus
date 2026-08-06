@@ -86,3 +86,19 @@ tech-plus-economics blend.
 → Replaced with this log. Updated the four places that described `PROMPT.md` as
 the standalone brief: `CLAUDE.md`'s repo map, `README.md`'s layout block and
 "Adding a topic" section, and `ARCHITECTURE.md`'s repo map and conventions.
+
+---
+
+## 2026-08-06 — removing a topic
+
+> remove the information theory topic.
+
+The first removal in this repo, so the exit path had never been walked. Deleting
+the folder and the catalog card is the visible half; the other half is the
+inbound cross-link from `blockchain-systems`'s `next` section, which would have
+become a 404 nothing on that page could reveal.
+
+→ Deleted `docs/information-theory/`, dropped the MA-01 card and the now-empty
+Mathematics &amp; statistics group, demoted the inbound `next` link to plain text,
+and moved the `README.md` "Adding a topic" example off the removed slug. The
+historical record — `PROMPT.md`, `LEARNINGS.md`, `memory/` — is left intact.

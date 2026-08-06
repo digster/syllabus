@@ -166,3 +166,22 @@ before being trusted on the new pages. It caught two real problems in the new
 pages and passed cleanly on the old one — which is what makes a green result
 meaningful. A checker that has never been shown to pass on known-good input is
 just an assertion.
+
+## Removing a topic breaks pages that are not the topic
+
+The citation contract is intra-page, so nothing on a topic page can dangle when a
+*different* topic goes away. The `next` section is the exception — it is the one
+place pages link to each other, and those links are invisible to the per-page
+audit greps. Removing `information-theory` left a live `../information-theory/`
+link in `blockchain-systems`. Before deleting a slug:
+
+```bash
+grep -rn "<slug>/" docs/ --include=index.html
+```
+
+Anything outside `docs/<slug>/` and the catalog card is an inbound link that has
+to be demoted to plain text or repointed. An emptied `.cat-group` should go too —
+a category heading with no cards under it reads as a rendering bug.
+
+Leave the history alone. `PROMPT.md`, `memory/` and this file record what was
+done and why; editing a removed topic out of them turns a log into fiction.
