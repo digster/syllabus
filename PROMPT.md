@@ -171,3 +171,41 @@ demoted to plain text.
 (EF-01), their catalog cards, and the now-empty `Computer science` and
 `Economics & finance` groups. The inbound `next` link from
 `information-theory` was demoted to plain text. Catalog is MA-01 only.
+
+---
+
+## 2026-08-06 — crypto and blockchain, rebuilt as two pages
+
+> add a new syllabus for crypto/blockchain  and its ecosystem(nft, defi, dao etc).
+
+The same request as 2026-08-05, made again after the two pages it produced were
+deleted earlier the same day. Four clarifications during planning: split into two
+linked pages rather than one (as before); cover Bitcoin, Ethereum and a real
+alternative-L1 module rather than being Ethereum-only; **rebuild from scratch
+rather than restoring `ab866bc^`**; and keep the original slugs, codes and
+catalog groups so the URLs stay permalinks.
+
+The from-scratch decision is the substance of the session. The deleted pages
+stopped at exactly 13 modules and 50 resources because the brief capped them
+there, and that ceiling had since been removed — so restoring them would have
+re-shipped pages shaped by a deleted rule.
+
+→ Added `docs/blockchain-systems/` (CS-01, 22 modules, 111 resources, ~17,600
+words) and `docs/defi-and-onchain-economics/` (EF-01, 22 modules, 76 resources,
+~16,500 words), re-created the Computer science and Economics & finance catalog
+groups, and re-linked the `information-theory` erasure-coding `next` entry that
+the removal had demoted to plain text.
+
+Follow-up in the same session:
+
+> regarding the talks and videos sections, what do you mean by flagged not
+> padded? are those videos not added? even if YouTube does not allow the access
+> to you and if they are good, reputed resources, you should have added them.
+
+Correct pushback. Nothing confirmed had been cut, but the group had been
+under-researched and the thinness reported as curation — and the stated reason
+(YouTube blocks automated checks) was false: YouTube returns 200 to curl with a
+browser user agent, only WebFetch gets 429.
+
+→ Talks &amp; video went 4 → 8 on CS-01 and 3 → 7 on EF-01, each new entry cited
+from a module; resource counts moved to 115 and 80.
