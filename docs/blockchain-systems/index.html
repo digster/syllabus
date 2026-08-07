@@ -6,7 +6,7 @@
 <title>Blockchain Systems — Syllabus Library</title>
 <meta name="description" content="A sequenced study plan for the engineering of permissionless blockchains: cryptographic primitives, Nakamoto and Byzantine consensus, the EVM, contract security, rollups and data availability, zero-knowledge proofs, alternative L1 architectures, and the governance process that ships all of it.">
 <meta name="syllabus:modules" content="22">
-<meta name="syllabus:resources" content="111">
+<meta name="syllabus:resources" content="115">
 <meta name="syllabus:updated" content="2026-08-06">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
     <p class="lede">How to build a ledger that strangers maintain together without trusting each other, and what that costs. The syllabus runs from hash functions and the double-spend problem through Nakamoto consensus, Byzantine agreement, the EVM, rollups and zero-knowledge proofs, to the parts that are still unsolved. It treats the chain as a distributed system with an adversary who is paid to break it — because that is what it is.</p>
     <div class="meta-row">
       <span class="meta">22 modules</span>
-      <span class="meta">111 resources</span>
+      <span class="meta">115 resources</span>
       <span class="meta">≈205 hours</span>
       <span class="meta">Intermediate → Advanced</span>
       <span class="meta">Updated 2026-08-06</span>
@@ -237,11 +237,11 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-09" data-code="R-09">A Graduate Course in Applied Cryptography</a> — chapters 8 (hashes), 13 (signatures) and 15 (elliptic curves). Skip the security proofs on a first pass; read the definitions carefully.</li>
-            <li><a class="cite" href="#r-105" data-code="R-105">The Cryptopals Crypto Challenges</a> — sets 1–2 now, and set 8 once you have implemented ECDSA. Breaking a primitive teaches its guarantee better than reading the definition does.</li>
+            <li><a class="cite" href="#r-109" data-code="R-109">The Cryptopals Crypto Challenges</a> — sets 1–2 now, and set 8 once you have implemented ECDSA. Breaking a primitive teaches its guarantee better than reading the definition does.</li>
             <li><a class="cite" href="#r-11" data-code="R-11">CS251: Cryptocurrencies and Blockchain Technologies</a> — the cryptographic-background lectures, if you would rather have this material presented than look it up.</li>
             <li><a class="cite" href="#r-01" data-code="R-01">Bitcoin and Cryptocurrency Technologies</a> — chapter 1 in full. It is the tightest treatment of exactly the subset a chain needs.</li>
             <li><a class="cite" href="#r-04" data-code="R-04">Programming Bitcoin</a> — chapters 1–4. Song makes you implement finite field arithmetic and secp256k1 from scratch, which is the only way this becomes concrete.</li>
-            <li><a class="cite" href="#r-79" data-code="R-79">Bitcoin Improvement Proposals</a> — BIP-32, BIP-39 and BIP-340 (Schnorr). Read BIP-340's design rationale section especially.</li>
+            <li><a class="cite" href="#r-83" data-code="R-83">Bitcoin Improvement Proposals</a> — BIP-32, BIP-39 and BIP-340 (Schnorr). Read BIP-340's design rationale section especially.</li>
             <li><a class="cite" href="#r-07" data-code="R-07">Upgrading Ethereum</a> — the BLS signatures section of part 2, for why the beacon chain made a different choice from Bitcoin.</li>
           </ul>
 
@@ -304,8 +304,9 @@
             <li><a class="cite" href="#r-19" data-code="R-19">Bitcoin: A Peer-to-Peer Electronic Cash System</a> — all nine pages, twice. Once for the idea, once noticing what it does not specify.</li>
             <li><a class="cite" href="#r-02" data-code="R-02">Mastering Bitcoin</a> — chapters 6 (transactions), 7 (authorization and authentication) and 8. This is the current third edition and covers Taproot; older copies do not.</li>
             <li><a class="cite" href="#r-05" data-code="R-05">Grokking Bitcoin</a> — chapters 2–5 if the material is new. Rosenbaum builds the system incrementally and the diagrams are unusually good.</li>
-            <li><a class="cite" href="#r-80" data-code="R-80">Bitcoin developer documentation</a> — the transaction and script reference sections, used as a lookup rather than read straight through.</li>
-            <li><a class="cite" href="#r-110" data-code="R-110">Bitcoin Optech</a> — the Topics index, particularly "Transaction relay policy" and "Package relay".</li>
+            <li><a class="cite" href="#r-84" data-code="R-84">Bitcoin developer documentation</a> — the transaction and script reference sections, used as a lookup rather than read straight through.</li>
+            <li><a class="cite" href="#r-114" data-code="R-114">Bitcoin Optech</a> — the Topics index, particularly "Transaction relay policy" and "Package relay".</li>
+            <li><a class="cite" href="#r-64" data-code="R-64">aantonop educational videos</a> — the security-model and fork talks, for the same material explained without a book's pacing.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -437,9 +438,9 @@
           <ul class="assigned">
             <li><a class="cite" href="#r-40" data-code="R-40">Eclipse Attacks on Bitcoin's Peer-to-Peer Network</a> — the whole paper, including the countermeasures section.</li>
             <li><a class="cite" href="#r-41" data-code="R-41">Bandwidth-Efficient Transaction Relay for Bitcoin</a> — sections 1–4, for what flooding actually costs and how reconciliation fixes it.</li>
-            <li><a class="cite" href="#r-110" data-code="R-110">Bitcoin Optech</a> — the "Compact block relay", "Erlay" and "Package relay" topic pages.</li>
+            <li><a class="cite" href="#r-114" data-code="R-114">Bitcoin Optech</a> — the "Compact block relay", "Erlay" and "Package relay" topic pages.</li>
             <li><a class="cite" href="#r-02" data-code="R-02">Mastering Bitcoin</a> — chapter 8 on the network, for the concrete message types.</li>
-            <li><a class="cite" href="#r-74" data-code="R-74">Ethereum developer documentation</a> — the networking-layer pages on discv5 and devp2p, to see the same problems solved differently.</li>
+            <li><a class="cite" href="#r-78" data-code="R-78">Ethereum developer documentation</a> — the networking-layer pages on discv5 and devp2p, to see the same problems solved differently.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -514,6 +515,7 @@
             <li><a class="cite" href="#r-32" data-code="R-32">HotStuff: BFT Consensus in the Lens of Blockchain</a> — sections 1–5, for how linear view change is bought.</li>
             <li><a class="cite" href="#r-10" data-code="R-10">Introduction to Reliable and Secure Distributed Programming</a> — chapters 2 and 5, for abstractions and consensus done rigorously.</li>
             <li><a class="cite" href="#r-53" data-code="R-53">Do you need a Blockchain?</a> — the whole paper; it is short and it is the antidote to a lot of enterprise nonsense.</li>
+            <li><a class="cite" href="#r-62" data-code="R-62">Foundations of Blockchains lecture videos</a> — lectures 2–7, a self-contained bootcamp on Dolev–Strong, FLP and Tendermint. Watch these if the papers above are heavy going.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -656,9 +658,9 @@
           <ul class="assigned">
             <li><a class="cite" href="#r-07" data-code="R-07">Upgrading Ethereum</a> — the incentives and rewards sections of part 2, for exactly how each reward is computed.</li>
             <li><a class="cite" href="#r-39" data-code="R-39">Time is Money: Strategic Timing Games in Proof-of-Stake Protocols</a> — the whole paper; it is the cleanest demonstration that reward structure drives protocol-adjacent behaviour.</li>
-            <li><a class="cite" href="#r-69" data-code="R-69">Protocol Priorities Update for 2026</a> — for where the Foundation currently places staking centralisation among its concerns.</li>
-            <li><a class="cite" href="#r-108" data-code="R-108">ethresear.ch</a> — the issuance-curve and MEV-burn threads. Read the disagreements, not the summaries.</li>
-            <li><a class="cite" href="#r-99" data-code="R-99">clientdiversity.org</a> — for the current operator and client distribution, which is the empirical input to all of this.</li>
+            <li><a class="cite" href="#r-73" data-code="R-73">Protocol Priorities Update for 2026</a> — for where the Foundation currently places staking centralisation among its concerns.</li>
+            <li><a class="cite" href="#r-112" data-code="R-112">ethresear.ch</a> — the issuance-curve and MEV-burn threads. Read the disagreements, not the summaries.</li>
+            <li><a class="cite" href="#r-103" data-code="R-103">clientdiversity.org</a> — for the current operator and client distribution, which is the empirical input to all of this.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -727,11 +729,11 @@
             <li><a class="cite" href="#r-20" data-code="R-20">Ethereum Yellow Paper</a> — sections 2–4 and 9, plus appendix H. Dense and worth it; it is the actual definition.</li>
             <li><a class="cite" href="#r-21" data-code="R-21">Ethereum Whitepaper</a> — the sections arguing for Turing-completeness and for gas, to see which constraints were chosen deliberately and which were discovered later.</li>
             <li><a class="cite" href="#r-03" data-code="R-03">Mastering Ethereum</a> — chapters 6, 7 and 13. Pre-Merge, so treat all consensus content as historical, but the EVM and account-model chapters remain the best prose explanation.</li>
-            <li><a class="cite" href="#r-94" data-code="R-94">evm.codes</a> — work through the opcode reference and run the interactive playground on a small program.</li>
-            <li><a class="cite" href="#r-95" data-code="R-95">Remix IDE</a> — deploy a five-line contract and step its execution in the debugger, watching the stack and storage change per opcode.</li>
-            <li><a class="cite" href="#r-76" data-code="R-76">Ethereum Improvement Proposals</a> — EIP-1559 and EIP-2929 in full, including rationale.</li>
+            <li><a class="cite" href="#r-98" data-code="R-98">evm.codes</a> — work through the opcode reference and run the interactive playground on a small program.</li>
+            <li><a class="cite" href="#r-99" data-code="R-99">Remix IDE</a> — deploy a five-line contract and step its execution in the debugger, watching the stack and storage change per opcode.</li>
+            <li><a class="cite" href="#r-80" data-code="R-80">Ethereum Improvement Proposals</a> — EIP-1559 and EIP-2929 in full, including rationale.</li>
             <li><a class="cite" href="#r-55" data-code="R-55">Empirical Analysis of EIP-1559</a> — for what actually changed after deployment versus what was predicted.</li>
-            <li><a class="cite" href="#r-77" data-code="R-77">Ethereum execution specs</a> — the state transition function in Python, which is more readable than the Yellow Paper for implementation questions.</li>
+            <li><a class="cite" href="#r-81" data-code="R-81">Ethereum execution specs</a> — the state transition function in Python, which is more readable than the Yellow Paper for implementation questions.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -797,11 +799,11 @@
 
           <h4>Work through</h4>
           <ul class="assigned">
-            <li><a class="cite" href="#r-81" data-code="R-81">Solidity documentation</a> — the language reference plus the "Security Considerations" page, which is short and dense.</li>
-            <li><a class="cite" href="#r-93" data-code="R-93">Foundry</a> — the Foundry Book front to back on testing, fuzzing and forking. This is the toolchain the rest of the page assumes.</li>
+            <li><a class="cite" href="#r-85" data-code="R-85">Solidity documentation</a> — the language reference plus the "Security Considerations" page, which is short and dense.</li>
+            <li><a class="cite" href="#r-97" data-code="R-97">Foundry</a> — the Foundry Book front to back on testing, fuzzing and forking. This is the toolchain the rest of the page assumes.</li>
             <li><a class="cite" href="#r-16" data-code="R-16">Cyfrin Updraft</a> — the Solidity and Foundry tracks, if you have not written contracts before.</li>
-            <li><a class="cite" href="#r-83" data-code="R-83">OpenZeppelin Contracts documentation</a> — read the proxy and access-control implementations as reference code, not as a dependency to import blindly.</li>
-            <li><a class="cite" href="#r-84" data-code="R-84">Solidity by Example</a> — for quick, correct patterns when you need one.</li>
+            <li><a class="cite" href="#r-87" data-code="R-87">OpenZeppelin Contracts documentation</a> — read the proxy and access-control implementations as reference code, not as a dependency to import blindly.</li>
+            <li><a class="cite" href="#r-88" data-code="R-88">Solidity by Example</a> — for quick, correct patterns when you need one.</li>
             <li><a class="cite" href="#r-17" data-code="R-17">Speedrun Ethereum</a> — the first three challenges, as the build-something counterweight to reading a language reference.</li>
             <li><a class="cite" href="#r-03" data-code="R-03">Mastering Ethereum</a> — chapters 7 and 9 for the conceptual framing, allowing for its age.</li>
           </ul>
@@ -865,10 +867,10 @@
 
           <h4>Work through</h4>
           <ul class="assigned">
-            <li><a class="cite" href="#r-76" data-code="R-76">Ethereum Improvement Proposals</a> — ERC-4337 and EIP-7702 in full, rationale and security considerations included.</li>
-            <li><a class="cite" href="#r-74" data-code="R-74">Ethereum developer documentation</a> — the account abstraction pages, for the current shipped state rather than the proposal state.</li>
-            <li><a class="cite" href="#r-71" data-code="R-71">Building on Ethereum in 2026</a> — for what has actually been adopted, which lags the specifications considerably.</li>
-            <li><a class="cite" href="#r-93" data-code="R-93">Foundry</a> — used here to write and test a minimal account contract against a local EntryPoint.</li>
+            <li><a class="cite" href="#r-80" data-code="R-80">Ethereum Improvement Proposals</a> — ERC-4337 and EIP-7702 in full, rationale and security considerations included.</li>
+            <li><a class="cite" href="#r-78" data-code="R-78">Ethereum developer documentation</a> — the account abstraction pages, for the current shipped state rather than the proposal state.</li>
+            <li><a class="cite" href="#r-75" data-code="R-75">Building on Ethereum in 2026</a> — for what has actually been adopted, which lags the specifications considerably.</li>
+            <li><a class="cite" href="#r-97" data-code="R-97">Foundry</a> — used here to write and test a minimal account contract against a local EntryPoint.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -937,14 +939,14 @@
 
           <h4>Work through</h4>
           <ul class="assigned">
-            <li><a class="cite" href="#r-102" data-code="R-102">Ethernaut</a> — every level. It is the fastest route from "I know what re-entrancy is" to "I can find it".</li>
-            <li><a class="cite" href="#r-103" data-code="R-103">Damn Vulnerable DeFi</a> — all challenges. These are protocol-logic bugs rather than syntax bugs, which is the harder and more realistic class.</li>
-            <li><a class="cite" href="#r-82" data-code="R-82">Smart contract security (ethereum.org)</a> — the whole page as an index into the primary sources.</li>
-            <li><a class="cite" href="#r-85" data-code="R-85">OWASP Smart Contract Top 10</a> — the current list, used as a coverage check on your own review process.</li>
-            <li><a class="cite" href="#r-96" data-code="R-96">Slither</a> — run it on your own M10 vault and read every finding, including the false positives.</li>
-            <li><a class="cite" href="#r-93" data-code="R-93">Foundry</a> — the invariant-testing chapter, which is the highest-leverage part of the book.</li>
-            <li><a class="cite" href="#r-107" data-code="R-107">Secureum</a> — the Epoch 0 slides and the RACE quizzes; the quizzes are calibrated harder than most audits.</li>
-            <li><a class="cite" href="#r-101" data-code="R-101">Etherscan</a> — take one exploit transaction from a post-mortem and read it in the state-diff and internal-trace views until you can narrate what happened.</li>
+            <li><a class="cite" href="#r-106" data-code="R-106">Ethernaut</a> — every level. It is the fastest route from "I know what re-entrancy is" to "I can find it".</li>
+            <li><a class="cite" href="#r-107" data-code="R-107">Damn Vulnerable DeFi</a> — all challenges. These are protocol-logic bugs rather than syntax bugs, which is the harder and more realistic class.</li>
+            <li><a class="cite" href="#r-86" data-code="R-86">Smart contract security (ethereum.org)</a> — the whole page as an index into the primary sources.</li>
+            <li><a class="cite" href="#r-89" data-code="R-89">OWASP Smart Contract Top 10</a> — the current list, used as a coverage check on your own review process.</li>
+            <li><a class="cite" href="#r-100" data-code="R-100">Slither</a> — run it on your own M10 vault and read every finding, including the false positives.</li>
+            <li><a class="cite" href="#r-97" data-code="R-97">Foundry</a> — the invariant-testing chapter, which is the highest-leverage part of the book.</li>
+            <li><a class="cite" href="#r-111" data-code="R-111">Secureum</a> — the Epoch 0 slides and the RACE quizzes; the quizzes are calibrated harder than most audits.</li>
+            <li><a class="cite" href="#r-105" data-code="R-105">Etherscan</a> — take one exploit transaction from a post-mortem and read it in the state-diff and internal-trace views until you can narrate what happened.</li>
             <li><a class="cite" href="#r-56" data-code="R-56">Flash Boys 2.0</a> — for why the mempool is an adversary, not just a queue.</li>
           </ul>
 
@@ -1009,12 +1011,12 @@
 
           <h4>Work through</h4>
           <ul class="assigned">
-            <li><a class="cite" href="#r-62" data-code="R-62">An Incomplete Guide to Rollups</a> — the whole post. It remains the clearest single explanation of the design space.</li>
+            <li><a class="cite" href="#r-66" data-code="R-66">An Incomplete Guide to Rollups</a> — the whole post. It remains the clearest single explanation of the design space.</li>
             <li><a class="cite" href="#r-42" data-code="R-42">Fraud and Data Availability Proofs</a> — sections 1–4, for why fraud proofs need data and what happens when they do not get it.</li>
-            <li><a class="cite" href="#r-98" data-code="R-98">L2Beat</a> — the Stages page and then two individual rollup risk pages read in full. This is the best-maintained empirical source in the ecosystem.</li>
-            <li><a class="cite" href="#r-86" data-code="R-86">Arbitrum documentation</a> — the "Inside Arbitrum" section on the fraud-proof protocol and the delayed inbox.</li>
-            <li><a class="cite" href="#r-87" data-code="R-87">OP Stack documentation</a> — the fault-proof and derivation-pipeline pages, for the contrasting implementation.</li>
-            <li><a class="cite" href="#r-64" data-code="R-64">Endgame</a> — for why the roadmap concluded that block production centralises and validation must not.</li>
+            <li><a class="cite" href="#r-102" data-code="R-102">L2Beat</a> — the Stages page and then two individual rollup risk pages read in full. This is the best-maintained empirical source in the ecosystem.</li>
+            <li><a class="cite" href="#r-90" data-code="R-90">Arbitrum documentation</a> — the "Inside Arbitrum" section on the fraud-proof protocol and the delayed inbox.</li>
+            <li><a class="cite" href="#r-91" data-code="R-91">OP Stack documentation</a> — the fault-proof and derivation-pipeline pages, for the contrasting implementation.</li>
+            <li><a class="cite" href="#r-68" data-code="R-68">Endgame</a> — for why the roadmap concluded that block production centralises and validation must not.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -1079,9 +1081,9 @@
           <ul class="assigned">
             <li><a class="cite" href="#r-42" data-code="R-42">Fraud and Data Availability Proofs</a> — the whole paper this time, including the 2D construction.</li>
             <li><a class="cite" href="#r-43" data-code="R-43">Constant-Size Commitments to Polynomials and Their Applications</a> — sections 1–3, for the KZG scheme itself.</li>
-            <li><a class="cite" href="#r-67" data-code="R-67">Proto-Danksharding FAQ</a> — the whole document; it is the clearest account of why blobs are shaped the way they are.</li>
-            <li><a class="cite" href="#r-70" data-code="R-70">PeerDAS on ethereum.org</a> — for what actually shipped in Fusaka and what the ramp schedule is.</li>
-            <li><a class="cite" href="#r-68" data-code="R-68">Danksharding on ethereum.org</a> — for the destination architecture.</li>
+            <li><a class="cite" href="#r-71" data-code="R-71">Proto-Danksharding FAQ</a> — the whole document; it is the clearest account of why blobs are shaped the way they are.</li>
+            <li><a class="cite" href="#r-74" data-code="R-74">PeerDAS on ethereum.org</a> — for what actually shipped in Fusaka and what the ramp schedule is.</li>
+            <li><a class="cite" href="#r-72" data-code="R-72">Danksharding on ethereum.org</a> — for the destination architecture.</li>
             <li><a class="cite" href="#r-58" data-code="R-58">Danksharding Workshop (Devcon VI)</a> — the workshop session, which covers the sampling argument at whiteboard level.</li>
           </ul>
 
@@ -1155,13 +1157,14 @@
             <li><a class="cite" href="#r-08" data-code="R-08">Proofs, Arguments, and Zero-Knowledge</a> — chapters 1–5 and 8–10. This is the reference; work the exercises in chapter 4.</li>
             <li><a class="cite" href="#r-14" data-code="R-14">Zero Knowledge Proofs MOOC</a> — the whole lecture series. It is taught by the people who built these systems.</li>
             <li><a class="cite" href="#r-15" data-code="R-15">ZK Whiteboard Sessions</a> — the first five sessions, as the gentler parallel track to Thaler.</li>
+            <li><a class="cite" href="#r-65" data-code="R-65">Zero Knowledge Proofs Explained</a> — watch this first if the paper stack looks forbidding; it establishes the pipeline shape without the algebra.</li>
             <li><a class="cite" href="#r-45" data-code="R-45">PLONK</a> — sections 1–4. Read it after Thaler's chapter on polynomial IOPs, not before.</li>
             <li><a class="cite" href="#r-46" data-code="R-46">Scalable, Transparent, and Post-Quantum Secure Computational Integrity</a> — sections 1–3 for the STARK design goals.</li>
             <li><a class="cite" href="#r-44" data-code="R-44">On the Size of Pairing-Based Non-Interactive Arguments</a> — for Groth16, once the pipeline is familiar.</li>
-            <li><a class="cite" href="#r-65" data-code="R-65">How trusted setups work</a> — the clearest plain-language account of what the ceremony assumes.</li>
-            <li><a class="cite" href="#r-66" data-code="R-66">Zero Knowledge Canon</a> — as the curated index for going deeper on any one branch.</li>
-            <li><a class="cite" href="#r-97" data-code="R-97">Circom</a> — the documentation, used as the practical on-ramp to writing a circuit.</li>
-            <li><a class="cite" href="#r-106" data-code="R-106">ZK Hack</a> — the under-constrained-circuit puzzles, which teach the bug class that ordinary testing cannot see.</li>
+            <li><a class="cite" href="#r-69" data-code="R-69">How trusted setups work</a> — the clearest plain-language account of what the ceremony assumes.</li>
+            <li><a class="cite" href="#r-70" data-code="R-70">Zero Knowledge Canon</a> — as the curated index for going deeper on any one branch.</li>
+            <li><a class="cite" href="#r-101" data-code="R-101">Circom</a> — the documentation, used as the practical on-ramp to writing a circuit.</li>
+            <li><a class="cite" href="#r-110" data-code="R-110">ZK Hack</a> — the under-constrained-circuit puzzles, which teach the bug class that ordinary testing cannot see.</li>
             <li><a class="cite" href="#r-61" data-code="R-61">Zero Knowledge Podcast</a> — the Boneh and Thaler episodes, for how practitioners talk about these trade-offs when not writing a paper.</li>
           </ul>
 
@@ -1225,10 +1228,10 @@
           <ul class="assigned">
             <li><a class="cite" href="#r-56" data-code="R-56">Flash Boys 2.0</a> — the whole paper; it is the founding document and its consensus-instability argument is the part most often skipped.</li>
             <li><a class="cite" href="#r-57" data-code="R-57">Quantifying Blockchain Extractable Value</a> — for the measurement methodology and magnitudes.</li>
-            <li><a class="cite" href="#r-63" data-code="R-63">Flashbots Writings</a> — the PBS and relay posts, read as primary sources from the people running the infrastructure.</li>
-            <li><a class="cite" href="#r-100" data-code="R-100">mevboost.pics</a> — current builder and relay market share. Look at it before forming any view.</li>
-            <li><a class="cite" href="#r-76" data-code="R-76">Ethereum Improvement Proposals</a> — EIP-7732 (ePBS) and EIP-7805 (FOCIL).</li>
-            <li><a class="cite" href="#r-108" data-code="R-108">ethresear.ch</a> — the ePBS and inclusion-list threads, for the disagreements that the EIPs summarise away.</li>
+            <li><a class="cite" href="#r-67" data-code="R-67">Flashbots Writings</a> — the PBS and relay posts, read as primary sources from the people running the infrastructure.</li>
+            <li><a class="cite" href="#r-104" data-code="R-104">mevboost.pics</a> — current builder and relay market share. Look at it before forming any view.</li>
+            <li><a class="cite" href="#r-80" data-code="R-80">Ethereum Improvement Proposals</a> — EIP-7732 (ePBS) and EIP-7805 (FOCIL).</li>
+            <li><a class="cite" href="#r-112" data-code="R-112">ethresear.ch</a> — the ePBS and inclusion-list threads, for the disagreements that the EIPs summarise away.</li>
             <li><a class="cite" href="#r-39" data-code="R-39">Time is Money: Strategic Timing Games in Proof-of-Stake Protocols</a> — re-read here in its MEV framing.</li>
           </ul>
 
@@ -1295,14 +1298,14 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-51" data-code="R-51">Solana: A New Architecture for a High Performance Blockchain</a> — for Proof of History as originally argued, allowing for its age.</li>
-            <li><a class="cite" href="#r-88" data-code="R-88">Solana documentation</a> — the accounts model and transaction-processing pages, which are where Sealevel becomes concrete.</li>
+            <li><a class="cite" href="#r-92" data-code="R-92">Solana documentation</a> — the accounts model and transaction-processing pages, which are where Sealevel becomes concrete.</li>
             <li><a class="cite" href="#r-50" data-code="R-50">Block-STM</a> — the whole paper. The evaluation section's contention analysis is the honest part.</li>
             <li><a class="cite" href="#r-48" data-code="R-48">Narwhal and Tusk</a> — sections 1–4, for the mempool/ordering split.</li>
             <li><a class="cite" href="#r-49" data-code="R-49">Bullshark: DAG BFT Protocols Made Practical</a> — for the zero-message-overhead ordering rule.</li>
-            <li><a class="cite" href="#r-91" data-code="R-91">The Move Book</a> — the resources and abilities chapters, which are the point of the language.</li>
-            <li><a class="cite" href="#r-92" data-code="R-92">Sui documentation</a> — the object model and consensus pages, for the owned-versus-shared distinction.</li>
-            <li><a class="cite" href="#r-89" data-code="R-89">Cosmos SDK documentation</a> — the architecture overview and module system.</li>
-            <li><a class="cite" href="#r-90" data-code="R-90">IBC Protocol</a> — the light-client and packet-lifecycle specifications.</li>
+            <li><a class="cite" href="#r-95" data-code="R-95">The Move Book</a> — the resources and abilities chapters, which are the point of the language.</li>
+            <li><a class="cite" href="#r-96" data-code="R-96">Sui documentation</a> — the object model and consensus pages, for the owned-versus-shared distinction.</li>
+            <li><a class="cite" href="#r-93" data-code="R-93">Cosmos SDK documentation</a> — the architecture overview and module system.</li>
+            <li><a class="cite" href="#r-94" data-code="R-94">IBC Protocol</a> — the light-client and packet-lifecycle specifications.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -1366,10 +1369,10 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-52" data-code="R-52">SoK: Communication Across Distributed Ledgers</a> — the whole paper; it is the taxonomy the rest of the literature uses.</li>
-            <li><a class="cite" href="#r-90" data-code="R-90">IBC Protocol</a> — the light-client specification, as the trust-minimised reference point.</li>
-            <li><a class="cite" href="#r-86" data-code="R-86">Arbitrum documentation</a> — the bridging section, to see how a canonical rollup bridge differs from an external one.</li>
-            <li><a class="cite" href="#r-104" data-code="R-104">rekt.news</a> — the bridge entries on the leaderboard. Read four post-mortems and classify each failure as code, key management or operational.</li>
-            <li><a class="cite" href="#r-72" data-code="R-72">Possible futures of the Ethereum protocol</a> — the sections on interoperability and chain abstraction.</li>
+            <li><a class="cite" href="#r-94" data-code="R-94">IBC Protocol</a> — the light-client specification, as the trust-minimised reference point.</li>
+            <li><a class="cite" href="#r-90" data-code="R-90">Arbitrum documentation</a> — the bridging section, to see how a canonical rollup bridge differs from an external one.</li>
+            <li><a class="cite" href="#r-108" data-code="R-108">rekt.news</a> — the bridge entries on the leaderboard. Read four post-mortems and classify each failure as code, key management or operational.</li>
+            <li><a class="cite" href="#r-76" data-code="R-76">Possible futures of the Ethereum protocol</a> — the sections on interoperability and chain abstraction.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -1435,8 +1438,8 @@
             <li><a class="cite" href="#r-47" data-code="R-47">Zerocash: Decentralized Anonymous Payments from Bitcoin</a> — sections 1–4, for the commitment/nullifier construction that everything else copies.</li>
             <li><a class="cite" href="#r-08" data-code="R-08">Proofs, Arguments, and Zero-Knowledge</a> — the zero-knowledge chapters specifically, now read for privacy rather than succinctness.</li>
             <li><a class="cite" href="#r-01" data-code="R-01">Bitcoin and Cryptocurrency Technologies</a> — chapter 6 on anonymity, which is still the clearest account of the deanonymisation heuristics.</li>
-            <li><a class="cite" href="#r-76" data-code="R-76">Ethereum Improvement Proposals</a> — ERC-5564 stealth addresses, as the minimal-privacy-on-Ethereum proposal.</li>
-            <li><a class="cite" href="#r-72" data-code="R-72">Possible futures of the Ethereum protocol</a> — the privacy sections, for where the roadmap places this.</li>
+            <li><a class="cite" href="#r-80" data-code="R-80">Ethereum Improvement Proposals</a> — ERC-5564 stealth addresses, as the minimal-privacy-on-Ethereum proposal.</li>
+            <li><a class="cite" href="#r-76" data-code="R-76">Possible futures of the Ethereum protocol</a> — the privacy sections, for where the roadmap places this.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -1498,12 +1501,12 @@
 
           <h4>Work through</h4>
           <ul class="assigned">
-            <li><a class="cite" href="#r-99" data-code="R-99">clientdiversity.org</a> — current distribution, then the "why it matters" material.</li>
-            <li><a class="cite" href="#r-73" data-code="R-73">Verkle trees</a> — Buterin's explainer, for why witness size is the metric.</li>
-            <li><a class="cite" href="#r-75" data-code="R-75">Ethereum roadmap</a> — the statelessness and Verge sections.</li>
-            <li><a class="cite" href="#r-72" data-code="R-72">Possible futures of the Ethereum protocol</a> — The Verge and The Purge sections in full.</li>
-            <li><a class="cite" href="#r-78" data-code="R-78">Ethereum consensus specs</a> — the light-client specification, for what a sync committee actually proves.</li>
-            <li><a class="cite" href="#r-74" data-code="R-74">Ethereum developer documentation</a> — the node and client architecture pages, for the execution/consensus client split in practice.</li>
+            <li><a class="cite" href="#r-103" data-code="R-103">clientdiversity.org</a> — current distribution, then the "why it matters" material.</li>
+            <li><a class="cite" href="#r-77" data-code="R-77">Verkle trees</a> — Buterin's explainer, for why witness size is the metric.</li>
+            <li><a class="cite" href="#r-79" data-code="R-79">Ethereum roadmap</a> — the statelessness and Verge sections.</li>
+            <li><a class="cite" href="#r-76" data-code="R-76">Possible futures of the Ethereum protocol</a> — The Verge and The Purge sections in full.</li>
+            <li><a class="cite" href="#r-82" data-code="R-82">Ethereum consensus specs</a> — the light-client specification, for what a sync committee actually proves.</li>
+            <li><a class="cite" href="#r-78" data-code="R-78">Ethereum developer documentation</a> — the node and client architecture pages, for the execution/consensus client split in practice.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -1568,12 +1571,12 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-06" data-code="R-06">The Blocksize War</a> — the whole book. Bier serialised it free; it is the best-documented account of a governance crisis in this field.</li>
-            <li><a class="cite" href="#r-76" data-code="R-76">Ethereum Improvement Proposals</a> — EIP-1 (the process itself), then follow one recent EIP through its whole history.</li>
-            <li><a class="cite" href="#r-109" data-code="R-109">Ethereum Magicians</a> — pick a contentious EIP thread and read it end to end.</li>
+            <li><a class="cite" href="#r-80" data-code="R-80">Ethereum Improvement Proposals</a> — EIP-1 (the process itself), then follow one recent EIP through its whole history.</li>
+            <li><a class="cite" href="#r-113" data-code="R-113">Ethereum Magicians</a> — pick a contentious EIP thread and read it end to end.</li>
             <li><a class="cite" href="#r-60" data-code="R-60">Ethereum Protocol on YouTube</a> — one All Core Devs call in full. It is less formal than you expect, and that is the point.</li>
-            <li><a class="cite" href="#r-110" data-code="R-110">Bitcoin Optech</a> — the newsletter archive across a soft-fork activation period, for the contrasting culture.</li>
-            <li><a class="cite" href="#r-111" data-code="R-111">Ethereum Foundation Blog</a> — the upgrade announcement posts for Dencun, Pectra and Fusaka, read as the official record of what each bundle actually contained.</li>
-            <li><a class="cite" href="#r-69" data-code="R-69">Protocol Priorities Update for 2026</a> — for how priorities are currently being set and communicated.</li>
+            <li><a class="cite" href="#r-114" data-code="R-114">Bitcoin Optech</a> — the newsletter archive across a soft-fork activation period, for the contrasting culture.</li>
+            <li><a class="cite" href="#r-115" data-code="R-115">Ethereum Foundation Blog</a> — the upgrade announcement posts for Dencun, Pectra and Fusaka, read as the official record of what each bundle actually contained.</li>
+            <li><a class="cite" href="#r-73" data-code="R-73">Protocol Priorities Update for 2026</a> — for how priorities are currently being set and communicated.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -1640,13 +1643,14 @@
 
           <h4>Work through</h4>
           <ul class="assigned">
-            <li><a class="cite" href="#r-72" data-code="R-72">Possible futures of the Ethereum protocol</a> — the whole series. It is the most structured statement of what remains open.</li>
-            <li><a class="cite" href="#r-69" data-code="R-69">Protocol Priorities Update for 2026</a> — current priorities, which differ from the 2022 roadmap in instructive ways.</li>
-            <li><a class="cite" href="#r-75" data-code="R-75">Ethereum roadmap</a> — including the single-slot-finality and statelessness pages.</li>
+            <li><a class="cite" href="#r-76" data-code="R-76">Possible futures of the Ethereum protocol</a> — the whole series. It is the most structured statement of what remains open.</li>
+            <li><a class="cite" href="#r-73" data-code="R-73">Protocol Priorities Update for 2026</a> — current priorities, which differ from the 2022 roadmap in instructive ways.</li>
+            <li><a class="cite" href="#r-79" data-code="R-79">Ethereum roadmap</a> — including the single-slot-finality and statelessness pages.</li>
             <li><a class="cite" href="#r-54" data-code="R-54">Verifiable Delay Functions</a> — for the randomness problem that SSF and leader election keep running into.</li>
-            <li><a class="cite" href="#r-108" data-code="R-108">ethresear.ch</a> — the current front page. Whatever is being argued there is more current than this page.</li>
+            <li><a class="cite" href="#r-112" data-code="R-112">ethresear.ch</a> — the current front page. Whatever is being argued there is more current than this page.</li>
             <li><a class="cite" href="#r-18" data-code="R-18">Ethereum Protocol Fellowship wiki</a> — the study-group material, which is the best-organised map of open protocol work.</li>
             <li><a class="cite" href="#r-59" data-code="R-59">Devcon Archive</a> — the most recent research talks, which run about a year ahead of written material.</li>
+            <li><a class="cite" href="#r-63" data-code="R-63">Beam Chain keynote, Devcon SEA</a> — a live example of a roadmap item entering the discourse. Note how much of it is provisional.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -2494,6 +2498,55 @@
               </div>
               <span class="r-used">Used in <a href="#m15">M15</a></span>
             </li>
+            <li class="resource" id="r-62">
+              <span class="r-code">R-62</span>
+              <span class="r-title"><a href="https://timroughgarden.org/videos.html">Foundations of Blockchains lecture videos</a></span>
+              <span class="r-byline">— Tim Roughgarden, 2022</span>
+              <p class="r-note">The full video series behind R-12, indexed on the author's own page rather than only as a playlist. Lectures 2–7 are a self-contained bootcamp on classical consensus — Dolev–Strong, FLP, Tendermint — and are the best spoken treatment of M06's material anywhere. His later Columbia course, <em>The Science of Blockchains</em>, is linked from the same page and covers transaction-fee mechanism design in more depth.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~30 h</span>
+              </div>
+              <span class="r-used">Used in <a href="#m6">M06</a></span>
+            </li>
+            <li class="resource" id="r-63">
+              <span class="r-code">R-63</span>
+              <span class="r-title"><a href="https://app.devcon.org/speakers/3SWDYT">Beam Chain keynote, Devcon SEA</a></span>
+              <span class="r-byline">— Justin Drake, Ethereum Foundation, November 2024</span>
+              <p class="r-note">The proposal to rebuild the consensus layer around SNARKs, with four-second slots and a smaller minimum stake. Worth watching precisely because it is a proposal rather than a plan — it shows how a roadmap item enters the discourse, which is what M22 is about. Treat every number in it as provisional.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Advanced</span>
+                <span class="tag">~25 min</span>
+              </div>
+              <span class="r-used">Used in <a href="#m22">M22</a></span>
+            </li>
+            <li class="resource" id="r-64">
+              <span class="r-code">R-64</span>
+              <span class="r-title"><a href="https://aantonop.com/educational-videos/">aantonop educational videos</a></span>
+              <span class="r-byline">— Andreas M. Antonopoulos, 2013–</span>
+              <p class="r-note">Several hundred short, ad-free talks and Q&amp;A answers on Bitcoin's security model, key management, forks and the Lightning Network, indexed by topic on the author's own site. The security-model and "what is a fork" talks are the ones that pair with M03 and M21; the explanations are unusually careful about what is and is not guaranteed.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Beginner → Intermediate</span>
+                <span class="tag">Archive</span>
+              </div>
+              <span class="r-used">Used in <a href="#m3">M03</a></span>
+            </li>
+            <li class="resource" id="r-65">
+              <span class="r-code">R-65</span>
+              <span class="r-title"><a href="https://online.stanford.edu/events/202310/cybersecurity-modern-era-zero-knowledge-proofs-explained">Zero Knowledge Proofs Explained</a></span>
+              <span class="r-byline">— Dan Boneh, Stanford Online webinar, 2023</span>
+              <p class="r-note">An hour-long overview of what a succinct proof is, what it costs and where the applications actually are, from the cryptographer who co-taught R-14. The right thing to watch before starting M15 if the paper stack looks forbidding — it establishes the pipeline shape without any of the algebra.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">~60 min</span>
+              </div>
+              <span class="r-used">Used in <a href="#m15">M15</a></span>
+            </li>
           </ol>
         </div>
 
@@ -2501,8 +2554,8 @@
           <h3>Articles, essays &amp; blogs</h3>
           <p>An unusual amount of this field's design reasoning lives in blog posts rather than papers, because the decisions are made faster than publication cycles. Buterin's posts in particular function as de-facto design documents.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-62">
-              <span class="r-code">R-62</span>
+            <li class="resource" id="r-66">
+              <span class="r-code">R-66</span>
               <span class="r-title"><a href="https://vitalik.eth.limo/general/2021/01/05/rollup.html">An Incomplete Guide to Rollups</a></span>
               <span class="r-byline">— Vitalik Buterin, 2021</span>
               <p class="r-note">Still the clearest single explanation of the rollup design space: what goes on-chain, what the proof system is for, and where optimistic and validity approaches diverge. Some numbers are stale post-4844; the reasoning is not.</p>
@@ -2514,8 +2567,8 @@
               </div>
               <span class="r-used">Used in <a href="#m13">M13</a></span>
             </li>
-            <li class="resource" id="r-63">
-              <span class="r-code">R-63</span>
+            <li class="resource" id="r-67">
+              <span class="r-code">R-67</span>
               <span class="r-title"><a href="https://writings.flashbots.net/">Flashbots Writings</a></span>
               <span class="r-byline">— Flashbots, 2020–</span>
               <p class="r-note">Primary sources on MEV from the organisation that built most of the infrastructure, including the mev-boost design rationale and the relay trust model. Read with the awareness that they are describing a system they operate and benefit from — which is exactly why it is worth reading.</p>
@@ -2526,8 +2579,8 @@
               </div>
               <span class="r-used">Used in <a href="#m16">M16</a></span>
             </li>
-            <li class="resource" id="r-64">
-              <span class="r-code">R-64</span>
+            <li class="resource" id="r-68">
+              <span class="r-code">R-68</span>
               <span class="r-title"><a href="https://vitalik.eth.limo/general/2021/12/06/endgame.html">Endgame</a></span>
               <span class="r-byline">— Vitalik Buterin, 2021</span>
               <p class="r-note">The argument that block production centralises regardless of architecture, so the design goal must be cheap and universal <em>validation</em> rather than decentralised production. Short, and it is the organising principle behind M13, M14 and M20 — read it early even though it is cited late.</p>
@@ -2538,8 +2591,8 @@
               </div>
               <span class="r-used">Used in <a href="#m13">M13</a></span>
             </li>
-            <li class="resource" id="r-65">
-              <span class="r-code">R-65</span>
+            <li class="resource" id="r-69">
+              <span class="r-code">R-69</span>
               <span class="r-title"><a href="https://vitalik.eth.limo/general/2022/06/15/using_snarks.html">How do trusted setups work?</a></span>
               <span class="r-byline">— Vitalik Buterin, 2022</span>
               <p class="r-note">The clearest plain-language account of what a powers-of-tau ceremony produces, what the toxic waste is, and why the 1-of-n honesty assumption is weaker than "trustless" and stronger than "trusted party". Read before forming a view on trusted setups.</p>
@@ -2550,8 +2603,8 @@
               </div>
               <span class="r-used">Used in <a href="#m15">M15</a></span>
             </li>
-            <li class="resource" id="r-66">
-              <span class="r-code">R-66</span>
+            <li class="resource" id="r-70">
+              <span class="r-code">R-70</span>
               <span class="r-title"><a href="https://a16zcrypto.com/posts/article/zero-knowledge-canon/">Zero Knowledge Canon</a></span>
               <span class="r-byline">— Elena Burger, Justin Thaler, Ali Yahya &amp; Sonal Chokshi, a16z crypto, 2022</span>
               <p class="r-note">A curated, layered reading list for ZK — introductions, then the foundational papers, then implementation. Use it as the index for going deeper on any one branch of M15 rather than reading it as an article.</p>
@@ -2562,8 +2615,8 @@
               </div>
               <span class="r-used">Used in <a href="#m15">M15</a></span>
             </li>
-            <li class="resource" id="r-67">
-              <span class="r-code">R-67</span>
+            <li class="resource" id="r-71">
+              <span class="r-code">R-71</span>
               <span class="r-title"><a href="https://notes.ethereum.org/@vbuterin/proto_danksharding_faq">Proto-Danksharding FAQ</a></span>
               <span class="r-byline">— Vitalik Buterin, 2022</span>
               <p class="r-note">Why blobs are shaped the way they are: separate fee market, pruned after a fixed window, invisible to the EVM. Answers the design questions that EIP-4844 itself only implies. The single best explanation of the current data layer.</p>
@@ -2574,8 +2627,8 @@
               </div>
               <span class="r-used">Used in <a href="#m14">M14</a></span>
             </li>
-            <li class="resource" id="r-68">
-              <span class="r-code">R-68</span>
+            <li class="resource" id="r-72">
+              <span class="r-code">R-72</span>
               <span class="r-title"><a href="https://ethereum.org/roadmap/danksharding/">Danksharding</a></span>
               <span class="r-byline">— ethereum.org, ongoing</span>
               <p class="r-note">The destination architecture — 2D sampling across the full blob matrix with proposers who never hold all the data — kept current as the design changes. Read alongside R-67 for where this is going rather than where it is.</p>
@@ -2586,8 +2639,8 @@
               </div>
               <span class="r-used">Used in <a href="#m14">M14</a></span>
             </li>
-            <li class="resource" id="r-69">
-              <span class="r-code">R-69</span>
+            <li class="resource" id="r-73">
+              <span class="r-code">R-73</span>
               <span class="r-title"><a href="https://blog.ethereum.org/2026/02/18/protocol-priorities-update-2026">Protocol Priorities Update for 2026</a></span>
               <span class="r-byline">— Ethereum Foundation, 2026</span>
               <p class="r-note">Where the Foundation currently places its engineering priorities, which differ instructively from the 2022 roadmap. The most current statement of what is considered urgent — check for a newer one before quoting this.</p>
@@ -2598,8 +2651,8 @@
               </div>
               <span class="r-used">Used in <a href="#m8">M08</a> <a href="#m21">M21</a> <a href="#m22">M22</a></span>
             </li>
-            <li class="resource" id="r-70">
-              <span class="r-code">R-70</span>
+            <li class="resource" id="r-74">
+              <span class="r-code">R-74</span>
               <span class="r-title"><a href="https://ethereum.org/roadmap/fusaka/peerdas/">PeerDAS</a></span>
               <span class="r-byline">— ethereum.org, ongoing</span>
               <p class="r-note">What shipped in Fusaka in December 2025: column sampling instead of full blob download, and the blob-parameter-only fork mechanism that ramps capacity afterwards. The authoritative statement of the current data-availability layer.</p>
@@ -2610,8 +2663,8 @@
               </div>
               <span class="r-used">Used in <a href="#m14">M14</a></span>
             </li>
-            <li class="resource" id="r-71">
-              <span class="r-code">R-71</span>
+            <li class="resource" id="r-75">
+              <span class="r-code">R-75</span>
               <span class="r-title"><a href="https://ethereum.org/latest/building-on-ethereum-in-2026/">Building on Ethereum in 2026: what has changed</a></span>
               <span class="r-byline">— ethereum.org, 2026</span>
               <p class="r-note">What has actually been adopted rather than merely specified — useful precisely because adoption lags specification by years. Read it as a reality check against the roadmap documents.</p>
@@ -2622,8 +2675,8 @@
               </div>
               <span class="r-used">Used in <a href="#m11">M11</a></span>
             </li>
-            <li class="resource" id="r-72">
-              <span class="r-code">R-72</span>
+            <li class="resource" id="r-76">
+              <span class="r-code">R-76</span>
               <span class="r-title"><a href="https://vitalik.eth.limo/general/2024/10/17/futures2.html">Possible futures of the Ethereum protocol</a></span>
               <span class="r-byline">— Vitalik Buterin, 2024</span>
               <p class="r-note">A multi-part series covering the Surge, Scourge, Verge, Purge and Splurge — the most structured statement available of what remains open and why. Read the Verge and Purge parts for M20, the whole series for M22.</p>
@@ -2634,8 +2687,8 @@
               </div>
               <span class="r-used">Used in <a href="#m18">M18</a> <a href="#m19">M19</a> <a href="#m20">M20</a> <a href="#m22">M22</a></span>
             </li>
-            <li class="resource" id="r-73">
-              <span class="r-code">R-73</span>
+            <li class="resource" id="r-77">
+              <span class="r-code">R-77</span>
               <span class="r-title"><a href="https://vitalik.eth.limo/general/2021/06/18/verkle.html">Verkle trees</a></span>
               <span class="r-byline">— Vitalik Buterin, 2021</span>
               <p class="r-note">Why witness size rather than lookup speed is the binding constraint on statelessness, and how vector commitments shrink it by roughly an order of magnitude against a Merkle Patricia trie. The design direction has since shifted toward binary trees with hash-based commitments for post-quantum reasons — read this for the argument, then check the current roadmap for the answer.</p>
@@ -2653,8 +2706,8 @@
           <h3>Reference &amp; documentation</h3>
           <p>Specifications over documentation over blog posts, in that order, whenever they disagree. The execution and consensus specs are the ground truth for Ethereum; everything else here is a convenience layer over them.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-74">
-              <span class="r-code">R-74</span>
+            <li class="resource" id="r-78">
+              <span class="r-code">R-78</span>
               <span class="r-title"><a href="https://ethereum.org/developers/docs/">Ethereum developer documentation</a></span>
               <span class="r-byline">— ethereum.org, ongoing</span>
               <p class="r-note">The maintained overview of every layer, kept current through upgrades in a way that no book is. Use the networking, node-architecture and account-abstraction sections here; go to the specs when you need exact behaviour.</p>
@@ -2666,8 +2719,8 @@
               </div>
               <span class="r-used">Used in <a href="#m5">M05</a> <a href="#m11">M11</a> <a href="#m20">M20</a></span>
             </li>
-            <li class="resource" id="r-75">
-              <span class="r-code">R-75</span>
+            <li class="resource" id="r-79">
+              <span class="r-code">R-79</span>
               <span class="r-title"><a href="https://ethereum.org/roadmap/">Ethereum roadmap</a></span>
               <span class="r-byline">— ethereum.org, ongoing</span>
               <p class="r-note">The current shipped-and-planned state, updated as things change — which they do. Treat every date as a guess and every unshipped item as provisional; the value is in the dependency structure between items, not the schedule.</p>
@@ -2678,8 +2731,8 @@
               </div>
               <span class="r-used">Used in <a href="#m20">M20</a> <a href="#m22">M22</a></span>
             </li>
-            <li class="resource" id="r-76">
-              <span class="r-code">R-76</span>
+            <li class="resource" id="r-80">
+              <span class="r-code">R-80</span>
               <span class="r-title"><a href="https://eips.ethereum.org/">Ethereum Improvement Proposals</a></span>
               <span class="r-byline">— Ethereum community, ongoing</span>
               <p class="r-note">The specification of every change, with a Rationale section that is usually the best explanation of why the design is what it is. Read EIP-1 first for the process itself. EIP-1559, 2929, 4337, 4844, 7702, 7732 and 7805 are the ones this syllabus assigns.</p>
@@ -2691,8 +2744,8 @@
               </div>
               <span class="r-used">Used in <a href="#m9">M09</a> <a href="#m11">M11</a> <a href="#m16">M16</a> <a href="#m19">M19</a> <a href="#m21">M21</a></span>
             </li>
-            <li class="resource" id="r-77">
-              <span class="r-code">R-77</span>
+            <li class="resource" id="r-81">
+              <span class="r-code">R-81</span>
               <span class="r-title"><a href="https://github.com/ethereum/execution-specs">Ethereum execution specs</a></span>
               <span class="r-byline">— Ethereum Foundation, ongoing</span>
               <p class="r-note">The state transition function as executable Python, one directory per fork. Far more readable than the Yellow Paper for implementation questions, and it is the artefact clients are tested against. Diff two forks to see exactly what an upgrade changed.</p>
@@ -2703,8 +2756,8 @@
               </div>
               <span class="r-used">Used in <a href="#m9">M09</a></span>
             </li>
-            <li class="resource" id="r-78">
-              <span class="r-code">R-78</span>
+            <li class="resource" id="r-82">
+              <span class="r-code">R-82</span>
               <span class="r-title"><a href="https://github.com/ethereum/consensus-specs">Ethereum consensus specs</a></span>
               <span class="r-byline">— Ethereum Foundation, ongoing</span>
               <p class="r-note">The beacon chain specification, including the light-client protocol and the fork-choice rule as executable pseudocode. Read alongside R-07, which annotates it — the specs alone are terse to the point of hostility.</p>
@@ -2715,8 +2768,8 @@
               </div>
               <span class="r-used">Used in <a href="#m20">M20</a></span>
             </li>
-            <li class="resource" id="r-79">
-              <span class="r-code">R-79</span>
+            <li class="resource" id="r-83">
+              <span class="r-code">R-83</span>
               <span class="r-title"><a href="https://github.com/bitcoin/bips">Bitcoin Improvement Proposals</a></span>
               <span class="r-byline">— Bitcoin community, ongoing</span>
               <p class="r-note">BIP-32 and BIP-39 for the wallet stack, BIP-141 for SegWit, BIP-340/341/342 for Schnorr and Taproot, BIP-152 for compact blocks. BIP-340's design-rationale section is unusually good and worth reading even if you never touch Bitcoin.</p>
@@ -2727,8 +2780,8 @@
               </div>
               <span class="r-used">Used in <a href="#m2">M02</a></span>
             </li>
-            <li class="resource" id="r-80">
-              <span class="r-code">R-80</span>
+            <li class="resource" id="r-84">
+              <span class="r-code">R-84</span>
               <span class="r-title"><a href="https://developer.bitcoin.org/">Bitcoin developer documentation</a></span>
               <span class="r-byline">— Bitcoin community, ongoing</span>
               <p class="r-note">Transaction format, script opcodes, RPC reference and the p2p message types. A lookup resource rather than a read-through; use it while doing M03's raw-transaction exercise.</p>
@@ -2739,8 +2792,8 @@
               </div>
               <span class="r-used">Used in <a href="#m3">M03</a></span>
             </li>
-            <li class="resource" id="r-81">
-              <span class="r-code">R-81</span>
+            <li class="resource" id="r-85">
+              <span class="r-code">R-85</span>
               <span class="r-title"><a href="https://docs.soliditylang.org/">Solidity documentation</a></span>
               <span class="r-byline">— Solidity team, ongoing</span>
               <p class="r-note">The language reference, and specifically the "Security Considerations" and "Layout of State Variables in Storage" pages, which are short, dense and directly load-bearing for M10 and M12. Pin the version — semantics changed materially at 0.8.0.</p>
@@ -2751,8 +2804,8 @@
               </div>
               <span class="r-used">Used in <a href="#m10">M10</a></span>
             </li>
-            <li class="resource" id="r-82">
-              <span class="r-code">R-82</span>
+            <li class="resource" id="r-86">
+              <span class="r-code">R-86</span>
               <span class="r-title"><a href="https://ethereum.org/developers/docs/smart-contracts/security/">Smart contract security</a></span>
               <span class="r-byline">— ethereum.org, ongoing</span>
               <p class="r-note">A maintained index into the primary security literature — bug classes, tooling, audit practices — rather than a tutorial. Use it as a coverage check on your own review checklist and follow the outbound links.</p>
@@ -2763,8 +2816,8 @@
               </div>
               <span class="r-used">Used in <a href="#m12">M12</a></span>
             </li>
-            <li class="resource" id="r-83">
-              <span class="r-code">R-83</span>
+            <li class="resource" id="r-87">
+              <span class="r-code">R-87</span>
               <span class="r-title"><a href="https://docs.openzeppelin.com/contracts/">OpenZeppelin Contracts documentation</a></span>
               <span class="r-byline">— OpenZeppelin, ongoing</span>
               <p class="r-note">The de-facto standard library, and more usefully a set of well-audited reference implementations for proxies, access control and token standards. Read the proxy source before using a proxy; the documentation explains the storage-slot design that M10 depends on.</p>
@@ -2775,8 +2828,8 @@
               </div>
               <span class="r-used">Used in <a href="#m10">M10</a></span>
             </li>
-            <li class="resource" id="r-84">
-              <span class="r-code">R-84</span>
+            <li class="resource" id="r-88">
+              <span class="r-code">R-88</span>
               <span class="r-title"><a href="https://solidity-by-example.org/">Solidity by Example</a></span>
               <span class="r-byline">— ongoing</span>
               <p class="r-note">Minimal, correct, runnable examples of every common pattern and several common attacks, one page each. The fastest way to check a pattern you half-remember, and the attack examples are compact enough to read in a minute.</p>
@@ -2787,8 +2840,8 @@
               </div>
               <span class="r-used">Used in <a href="#m10">M10</a></span>
             </li>
-            <li class="resource" id="r-85">
-              <span class="r-code">R-85</span>
+            <li class="resource" id="r-89">
+              <span class="r-code">R-89</span>
               <span class="r-title"><a href="https://owasp.org/www-project-smart-contract-top-10/">OWASP Smart Contract Top 10</a></span>
               <span class="r-byline">— OWASP, updated annually</span>
               <p class="r-note">The current consensus list of the most damaging contract vulnerability classes, with loss figures. Use it as a coverage check rather than a curriculum — checklists find the previous year's bugs, which is necessary and not sufficient.</p>
@@ -2799,8 +2852,8 @@
               </div>
               <span class="r-used">Used in <a href="#m12">M12</a></span>
             </li>
-            <li class="resource" id="r-86">
-              <span class="r-code">R-86</span>
+            <li class="resource" id="r-90">
+              <span class="r-code">R-90</span>
               <span class="r-title"><a href="https://docs.arbitrum.io/">Arbitrum documentation</a></span>
               <span class="r-byline">— Offchain Labs, ongoing</span>
               <p class="r-note">The "Inside Arbitrum" section documents multi-round interactive fraud proofs and the delayed inbox in genuine detail — the best available description of a working optimistic-rollup dispute protocol. The bridging section is the reference for how a canonical rollup bridge differs from a third-party one.</p>
@@ -2811,8 +2864,8 @@
               </div>
               <span class="r-used">Used in <a href="#m13">M13</a> <a href="#m18">M18</a></span>
             </li>
-            <li class="resource" id="r-87">
-              <span class="r-code">R-87</span>
+            <li class="resource" id="r-91">
+              <span class="r-code">R-91</span>
               <span class="r-title"><a href="https://docs.optimism.io/">OP Stack documentation</a></span>
               <span class="r-byline">— Optimism Collective, ongoing</span>
               <p class="r-note">The derivation pipeline and fault-proof pages, which document a deliberately different implementation of the same idea as R-85. Reading the two side by side is the fastest way to see which parts of a rollup are essential and which are one team's choices.</p>
@@ -2823,8 +2876,8 @@
               </div>
               <span class="r-used">Used in <a href="#m13">M13</a></span>
             </li>
-            <li class="resource" id="r-88">
-              <span class="r-code">R-88</span>
+            <li class="resource" id="r-92">
+              <span class="r-code">R-92</span>
               <span class="r-title"><a href="https://solana.com/docs">Solana documentation</a></span>
               <span class="r-byline">— Solana Foundation, ongoing</span>
               <p class="r-note">The accounts model and transaction-processing pages are where Sealevel's declare-your-state-access design becomes concrete. Read these rather than the whitepaper for how the deployed system works — the two have diverged considerably.</p>
@@ -2835,8 +2888,8 @@
               </div>
               <span class="r-used">Used in <a href="#m17">M17</a></span>
             </li>
-            <li class="resource" id="r-89">
-              <span class="r-code">R-89</span>
+            <li class="resource" id="r-93">
+              <span class="r-code">R-93</span>
               <span class="r-title"><a href="https://docs.cosmos.network/">Cosmos SDK documentation</a></span>
               <span class="r-byline">— Interchain Foundation, ongoing</span>
               <p class="r-note">The application-specific-chain thesis as an actual framework: modules, ABCI, and the separation between the state machine and CometBFT underneath. The architecture overview is the part that matters for M17.</p>
@@ -2847,8 +2900,8 @@
               </div>
               <span class="r-used">Used in <a href="#m17">M17</a></span>
             </li>
-            <li class="resource" id="r-90">
-              <span class="r-code">R-90</span>
+            <li class="resource" id="r-94">
+              <span class="r-code">R-94</span>
               <span class="r-title"><a href="https://ibcprotocol.dev/">IBC Protocol</a></span>
               <span class="r-byline">— Interchain Foundation, ongoing</span>
               <p class="r-note">The light-client and packet-lifecycle specifications for the one widely-deployed trust-minimised interoperability protocol. This is the security benchmark M18 measures other bridges against, so read the light-client spec specifically rather than the overview.</p>
@@ -2859,8 +2912,8 @@
               </div>
               <span class="r-used">Used in <a href="#m17">M17</a> <a href="#m18">M18</a></span>
             </li>
-            <li class="resource" id="r-91">
-              <span class="r-code">R-91</span>
+            <li class="resource" id="r-95">
+              <span class="r-code">R-95</span>
               <span class="r-title"><a href="https://move-book.com/">The Move Book</a></span>
               <span class="r-byline">— Move community, ongoing</span>
               <p class="r-note">Move's linear resource types are the most interesting language-level answer to contract safety that exists, and the abilities and resources chapters are where that becomes clear. Read those two even if you never write Move — they change how you read Solidity.</p>
@@ -2871,8 +2924,8 @@
               </div>
               <span class="r-used">Used in <a href="#m17">M17</a></span>
             </li>
-            <li class="resource" id="r-92">
-              <span class="r-code">R-92</span>
+            <li class="resource" id="r-96">
+              <span class="r-code">R-96</span>
               <span class="r-title"><a href="https://docs.sui.io/">Sui documentation</a></span>
               <span class="r-byline">— Mysten Labs, ongoing</span>
               <p class="r-note">The object model and consensus pages document the owned-versus-shared object distinction that lets some transactions bypass consensus entirely. That is the single most unusual design decision among current L1s and it is explained clearly here.</p>
@@ -2890,8 +2943,8 @@
           <h3>Tools, datasets &amp; playgrounds</h3>
           <p>Install Foundry first; almost every exercise on this page assumes it. The dashboards are here because several arguments in M08, M13, M16 and M20 turn on current numbers that no syllabus can keep accurate.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-93">
-              <span class="r-code">R-93</span>
+            <li class="resource" id="r-97">
+              <span class="r-code">R-97</span>
               <span class="r-title"><a href="https://getfoundry.sh/">Foundry</a></span>
               <span class="r-byline">— Paradigm and contributors, ongoing</span>
               <p class="r-note">Tests written in Solidity, a fast local node in <code>anvil</code>, raw RPC in <code>cast</code>, and mainnet forking that makes integration tests real. The invariant-testing chapter of the Foundry Book is the highest-leverage reading in the whole toolchain.</p>
@@ -2903,8 +2956,8 @@
               </div>
               <span class="r-used">Used in <a href="#m10">M10</a> <a href="#m11">M11</a> <a href="#m12">M12</a></span>
             </li>
-            <li class="resource" id="r-94">
-              <span class="r-code">R-94</span>
+            <li class="resource" id="r-98">
+              <span class="r-code">R-98</span>
               <span class="r-title"><a href="https://www.evm.codes/">evm.codes</a></span>
               <span class="r-byline">— smlXL, ongoing</span>
               <p class="r-note">Every opcode with its gas cost, stack effect and fork history, plus an interactive playground that steps through execution showing stack, memory and storage. The fastest way to make M09 concrete, and the reference you will keep open while writing assembly.</p>
@@ -2915,8 +2968,8 @@
               </div>
               <span class="r-used">Used in <a href="#m9">M09</a></span>
             </li>
-            <li class="resource" id="r-95">
-              <span class="r-code">R-95</span>
+            <li class="resource" id="r-99">
+              <span class="r-code">R-99</span>
               <span class="r-title"><a href="https://remix.ethereum.org/">Remix IDE</a></span>
               <span class="r-byline">— Ethereum Foundation, ongoing</span>
               <p class="r-note">A browser IDE with a step-through EVM debugger that shows stack and storage per opcode. Worse than Foundry for real projects and better than anything for the first time you want to watch a transaction execute instruction by instruction.</p>
@@ -2927,8 +2980,8 @@
               </div>
               <span class="r-used">Used in <a href="#m9">M09</a></span>
             </li>
-            <li class="resource" id="r-96">
-              <span class="r-code">R-96</span>
+            <li class="resource" id="r-100">
+              <span class="r-code">R-100</span>
               <span class="r-title"><a href="https://github.com/crytic/slither">Slither</a></span>
               <span class="r-byline">— Trail of Bits, ongoing</span>
               <p class="r-note">Static analysis for Solidity: fast, catches known patterns, noisy. Its real value is the printers — inheritance graphs, function summaries, storage layouts — which give you a map of an unfamiliar codebase in seconds. Run it on your own code and read the false positives too.</p>
@@ -2939,8 +2992,8 @@
               </div>
               <span class="r-used">Used in <a href="#m12">M12</a></span>
             </li>
-            <li class="resource" id="r-97">
-              <span class="r-code">R-97</span>
+            <li class="resource" id="r-101">
+              <span class="r-code">R-101</span>
               <span class="r-title"><a href="https://docs.circom.io/">Circom</a></span>
               <span class="r-byline">— iden3, ongoing</span>
               <p class="r-note">A circuit language with a shallow enough learning curve to get a working proof in an afternoon, plus snarkjs for setup, proving and Solidity verifier generation. The practical on-ramp for M15's exercise; not what you would choose for a production zkEVM.</p>
@@ -2951,8 +3004,8 @@
               </div>
               <span class="r-used">Used in <a href="#m15">M15</a></span>
             </li>
-            <li class="resource" id="r-98">
-              <span class="r-code">R-98</span>
+            <li class="resource" id="r-102">
+              <span class="r-code">R-102</span>
               <span class="r-title"><a href="https://l2beat.com/scaling/summary">L2Beat</a></span>
               <span class="r-byline">— L2Beat, ongoing</span>
               <p class="r-note">The best-maintained empirical source in the ecosystem: per-rollup risk analysis, stage classification, upgrade-key inventories and proof-system status, all with contract addresses. Check it before believing any decentralisation claim, including ones in this syllabus.</p>
@@ -2964,8 +3017,8 @@
               </div>
               <span class="r-used">Used in <a href="#m13">M13</a></span>
             </li>
-            <li class="resource" id="r-99">
-              <span class="r-code">R-99</span>
+            <li class="resource" id="r-103">
+              <span class="r-code">R-103</span>
               <span class="r-title"><a href="https://clientdiversity.org/">clientdiversity.org</a></span>
               <span class="r-byline">— Ethereum community, ongoing</span>
               <p class="r-note">Current execution- and consensus-client distribution against the safety thresholds, with the argument for why supermajority clients are a safety problem rather than a preference. The number to check before making any claim about M20.</p>
@@ -2976,8 +3029,8 @@
               </div>
               <span class="r-used">Used in <a href="#m8">M08</a> <a href="#m20">M20</a></span>
             </li>
-            <li class="resource" id="r-100">
-              <span class="r-code">R-100</span>
+            <li class="resource" id="r-104">
+              <span class="r-code">R-104</span>
               <span class="r-title"><a href="https://mevboost.pics/">mevboost.pics</a></span>
               <span class="r-byline">— Toni Wahrstätter, ongoing</span>
               <p class="r-note">Live builder and relay market share, censorship rates and payment distributions. Concentration in block building is an empirical claim and this is where you check it — the figures move, so look rather than quoting M16.</p>
@@ -2988,8 +3041,8 @@
               </div>
               <span class="r-used">Used in <a href="#m16">M16</a></span>
             </li>
-            <li class="resource" id="r-101">
-              <span class="r-code">R-101</span>
+            <li class="resource" id="r-105">
+              <span class="r-code">R-105</span>
               <span class="r-title"><a href="https://etherscan.io/">Etherscan</a></span>
               <span class="r-byline">— Etherscan, ongoing</span>
               <p class="r-note">The block explorer, and specifically its verified-source view, internal-transaction traces and state-diff panels — which is where you actually read an exploit transaction. Its centrality is itself a fact worth noticing about M20's RPC problem. (Cloudflare challenges automated link checks; opens normally in a browser.)</p>
@@ -3007,8 +3060,8 @@
           <h3>Practice: problem sets &amp; project ideas</h3>
           <p>Do Ethernaut before Damn Vulnerable DeFi — the first teaches bug classes, the second teaches protocol-logic reasoning, and the order matters. Everything here is free and self-marking.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-102">
-              <span class="r-code">R-102</span>
+            <li class="resource" id="r-106">
+              <span class="r-code">R-106</span>
               <span class="r-title"><a href="https://ethernaut.openzeppelin.com/">Ethernaut</a></span>
               <span class="r-byline">— OpenZeppelin, ongoing</span>
               <p class="r-note">A sequence of deliberately vulnerable contracts you must exploit from a browser console. It is the fastest route from knowing what re-entrancy is to being able to spot it, and the later levels on delegatecall and storage collisions map directly onto M09 and M10.</p>
@@ -3020,8 +3073,8 @@
               </div>
               <span class="r-used">Used in <a href="#m12">M12</a></span>
             </li>
-            <li class="resource" id="r-103">
-              <span class="r-code">R-103</span>
+            <li class="resource" id="r-107">
+              <span class="r-code">R-107</span>
               <span class="r-title"><a href="https://www.damnvulnerabledefi.xyz/">Damn Vulnerable DeFi</a></span>
               <span class="r-byline">— Tincho and contributors, ongoing</span>
               <p class="r-note">Protocol-logic exploitation rather than syntax bugs: flash loans, oracle manipulation, governance capture, each as a Foundry challenge. Harder and more realistic than Ethernaut, and the closest free approximation of what auditing actually involves.</p>
@@ -3033,8 +3086,8 @@
               </div>
               <span class="r-used">Used in <a href="#m12">M12</a></span>
             </li>
-            <li class="resource" id="r-104">
-              <span class="r-code">R-104</span>
+            <li class="resource" id="r-108">
+              <span class="r-code">R-108</span>
               <span class="r-title"><a href="https://rekt.news/leaderboard">rekt.news leaderboard</a></span>
               <span class="r-byline">— rekt, ongoing</span>
               <p class="r-note">Every major on-chain loss, ranked by size, each with a post-mortem. Use it as a dataset: pick four bridge failures and classify each as a code bug, a key compromise or an operational failure. The distribution will surprise you and it should change where you look first.</p>
@@ -3045,8 +3098,8 @@
               </div>
               <span class="r-used">Used in <a href="#m18">M18</a></span>
             </li>
-            <li class="resource" id="r-105">
-              <span class="r-code">R-105</span>
+            <li class="resource" id="r-109">
+              <span class="r-code">R-109</span>
               <span class="r-title"><a href="https://cryptopals.com/">The Cryptopals Crypto Challenges</a></span>
               <span class="r-byline">— Thomas Ptacek, Sean Devlin, Alex Balducci &amp; Marcin Wielgoszewski, ongoing</span>
               <p class="r-note">Break real cryptography by implementing the attacks. Sets 1–2 and 8 are the relevant ones here — set 8 includes elliptic-curve attacks and is the best available companion to M02's nonce-reuse exercise. Not blockchain-specific, and better for it.</p>
@@ -3057,8 +3110,8 @@
               </div>
               <span class="r-used">Used in <a href="#m2">M02</a></span>
             </li>
-            <li class="resource" id="r-106">
-              <span class="r-code">R-106</span>
+            <li class="resource" id="r-110">
+              <span class="r-code">R-110</span>
               <span class="r-title"><a href="https://zkhack.dev/">ZK Hack</a></span>
               <span class="r-byline">— ZK Hack, ongoing</span>
               <p class="r-note">Puzzles that require breaking a deliberately flawed ZK construction — weak Fiat–Shamir transcripts, under-constrained circuits, bad randomness. The under-constrained-circuit puzzles are the important ones: that bug class is the leading cause of real ZK failures and is invisible to ordinary testing.</p>
@@ -3069,8 +3122,8 @@
               </div>
               <span class="r-used">Used in <a href="#m15">M15</a></span>
             </li>
-            <li class="resource" id="r-107">
-              <span class="r-code">R-107</span>
+            <li class="resource" id="r-111">
+              <span class="r-code">R-111</span>
               <span class="r-title"><a href="https://secureum.substack.com/">Secureum</a></span>
               <span class="r-byline">— Rajeev Gopalakrishna, ongoing</span>
               <p class="r-note">The Epoch 0 slide decks are a dense, well-organised survey of everything a contract auditor needs, and the RACE quizzes are calibrated harder than most real audits. Use the quizzes as a diagnostic before deciding you have finished M12.</p>
@@ -3088,8 +3141,8 @@
           <h3>Communities &amp; staying current</h3>
           <p>Everything on this page has a shelf life. These four are where the field argues with itself in public, and reading the arguments is how you find out what a specification left unsaid. Note that Week in Ethereum News, long the standard weekly, ended in January 2025 — Bitcoin Optech is the surviving equivalent for the Bitcoin side.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-108">
-              <span class="r-code">R-108</span>
+            <li class="resource" id="r-112">
+              <span class="r-code">R-112</span>
               <span class="r-title"><a href="https://ethresear.ch/">ethresear.ch</a></span>
               <span class="r-byline">— Ethereum Foundation, ongoing</span>
               <p class="r-note">Where protocol research is posted and argued before it becomes an EIP. The threads on issuance, ePBS, inclusion lists and single-slot finality are the live versions of M08, M16 and M22. Read the disagreements rather than the summaries — the summaries are always downstream of these.</p>
@@ -3101,8 +3154,8 @@
               </div>
               <span class="r-used">Used in <a href="#m8">M08</a> <a href="#m16">M16</a> <a href="#m22">M22</a></span>
             </li>
-            <li class="resource" id="r-109">
-              <span class="r-code">R-109</span>
+            <li class="resource" id="r-113">
+              <span class="r-code">R-113</span>
               <span class="r-title"><a href="https://ethereum-magicians.org/">Ethereum Magicians</a></span>
               <span class="r-byline">— Ethereum community, ongoing</span>
               <p class="r-note">Where EIPs are debated by the people who will implement them. Pick a contentious proposal and read the thread end to end for M21 — this is what "rough consensus" looks like from the inside, and it is messier and more legitimate than either its critics or its defenders suggest.</p>
@@ -3113,8 +3166,8 @@
               </div>
               <span class="r-used">Used in <a href="#m21">M21</a></span>
             </li>
-            <li class="resource" id="r-110">
-              <span class="r-code">R-110</span>
+            <li class="resource" id="r-114">
+              <span class="r-code">R-114</span>
               <span class="r-title"><a href="https://bitcoinops.org/">Bitcoin Optech</a></span>
               <span class="r-byline">— Bitcoin Optech, 2018–</span>
               <p class="r-note">A weekly newsletter plus a topic index that is the best-organised reference on Bitcoin's mempool policy, relay behaviour and soft-fork activation anywhere. The Topics pages are the ones M03 and M05 assign; the archive across an activation period is the M21 reading.</p>
@@ -3125,8 +3178,8 @@
               </div>
               <span class="r-used">Used in <a href="#m3">M03</a> <a href="#m5">M05</a> <a href="#m21">M21</a></span>
             </li>
-            <li class="resource" id="r-111">
-              <span class="r-code">R-111</span>
+            <li class="resource" id="r-115">
+              <span class="r-code">R-115</span>
               <span class="r-title"><a href="https://blog.ethereum.org/">Ethereum Foundation Blog</a></span>
               <span class="r-byline">— Ethereum Foundation, 2014–</span>
               <p class="r-note">Official announcements, upgrade specifications and the annual protocol-priorities posts. The lowest-noise source for what has actually shipped and when, which matters because secondary coverage of upgrades is unreliable about scope and timing.</p>
@@ -3146,7 +3199,7 @@
 
   <footer class="site-footer">
     <span><a href="../">← All topics</a></span>
-    <span>Updated 2026-08-06 · 22 modules · 111 resources</span>
+    <span>Updated 2026-08-06 · 22 modules · 115 resources</span>
   </footer>
 
 </div>

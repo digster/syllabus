@@ -195,3 +195,17 @@ words) and `docs/defi-and-onchain-economics/` (EF-01, 22 modules, 76 resources,
 ~16,500 words), re-created the Computer science and Economics & finance catalog
 groups, and re-linked the `information-theory` erasure-coding `next` entry that
 the removal had demoted to plain text.
+
+Follow-up in the same session:
+
+> regarding the talks and videos sections, what do you mean by flagged not
+> padded? are those videos not added? even if YouTube does not allow the access
+> to you and if they are good, reputed resources, you should have added them.
+
+Correct pushback. Nothing confirmed had been cut, but the group had been
+under-researched and the thinness reported as curation — and the stated reason
+(YouTube blocks automated checks) was false: YouTube returns 200 to curl with a
+browser user agent, only WebFetch gets 429.
+
+→ Talks &amp; video went 4 → 8 on CS-01 and 3 → 7 on EF-01, each new entry cited
+from a module; resource counts moved to 115 and 80.

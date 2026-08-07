@@ -6,7 +6,7 @@
 <title>DeFi, NFTs and On-Chain Economics — Syllabus Library</title>
 <meta name="description" content="A sequenced study plan for what was built on top of blockchains: automated market makers and LP economics, lending and liquidation, stablecoins, oracles, on-chain derivatives, MEV as a market, NFTs, DAO governance, public-goods funding, regulation, and the empirical record of what actually worked.">
 <meta name="syllabus:modules" content="22">
-<meta name="syllabus:resources" content="76">
+<meta name="syllabus:resources" content="80">
 <meta name="syllabus:updated" content="2026-08-06">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
     <p class="lede">What people built once there was a programmable ledger, and whether it works. The syllabus runs from market microstructure and the constant-product invariant through lending, stablecoins, oracles, perpetuals and MEV, then into NFTs, DAO governance and the regulatory perimeter — and ends with the empirical record, which is less flattering than the marketing and more interesting than the dismissals.</p>
     <div class="meta-row">
       <span class="meta">22 modules</span>
-      <span class="meta">76 resources</span>
+      <span class="meta">80 resources</span>
       <span class="meta">≈185 hours</span>
       <span class="meta">Intermediate → Advanced</span>
       <span class="meta">Updated 2026-08-06</span>
@@ -228,8 +228,8 @@
 
           <h4>Work through</h4>
           <ul class="assigned">
-            <li><a class="cite" href="#r-53" data-code="R-53">Ethereum Improvement Proposals</a> — ERC-20, ERC-721, ERC-1155, ERC-2612 and ERC-4626, including each one's rationale and security sections.</li>
-            <li><a class="cite" href="#r-54" data-code="R-54">OpenZeppelin Contracts documentation</a> — the ERC-20, ERC-4626 and <code>SafeERC20</code> implementations, read as source rather than as API docs.</li>
+            <li><a class="cite" href="#r-57" data-code="R-57">Ethereum Improvement Proposals</a> — ERC-20, ERC-721, ERC-1155, ERC-2612 and ERC-4626, including each one's rationale and security sections.</li>
+            <li><a class="cite" href="#r-58" data-code="R-58">OpenZeppelin Contracts documentation</a> — the ERC-20, ERC-4626 and <code>SafeERC20</code> implementations, read as source rather than as API docs.</li>
             <li><a class="cite" href="#r-12" data-code="R-12">Cyfrin Updraft</a> — the token and vault sections, if you have not implemented these before.</li>
             <li><a class="cite" href="#r-14" data-code="R-14">SoK: Decentralized Finance (DeFi) Attacks</a> — the sections on token-level and accounting bugs.</li>
           </ul>
@@ -294,8 +294,8 @@
             <li><a class="cite" href="#r-05" data-code="R-05">The Infinite Machine</a> — the ICO chapters, where most of the distribution patterns in this module were first established.</li>
             <li><a class="cite" href="#r-01" data-code="R-01">DeFi and the Future of Finance</a> — the chapters on incentives and governance tokens.</li>
             <li><a class="cite" href="#r-13" data-code="R-13">SoK: Decentralized Finance (DeFi)</a> — the incentive and governance sections.</li>
-            <li><a class="cite" href="#r-66" data-code="R-66">Token Terminal</a> — pull revenue, fees and token-incentive figures for three protocols and compare emissions against fees earned.</li>
-            <li><a class="cite" href="#r-47" data-code="R-47">a16z crypto State of Crypto</a> — read critically: it is an industry report from an interested party, which makes it a useful primary source on what the industry believes about itself.</li>
+            <li><a class="cite" href="#r-70" data-code="R-70">Token Terminal</a> — pull revenue, fees and token-incentive figures for three protocols and compare emissions against fees earned.</li>
+            <li><a class="cite" href="#r-51" data-code="R-51">a16z crypto State of Crypto</a> — read critically: it is an industry report from an interested party, which makes it a useful primary source on what the industry believes about itself.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -414,8 +414,8 @@
             <li><a class="cite" href="#r-03" data-code="R-03">Number Go Up</a> — the Tether and exchange chapters. Faux is a reporter, not an engineer, and the reporting on what these companies were actually doing is the value.</li>
             <li><a class="cite" href="#r-04" data-code="R-04">The Cryptopians</a> — for the governance and custody dysfunction in the early Ethereum ecosystem, which set several later patterns.</li>
             <li><a class="cite" href="#r-08" data-code="R-08">Bitcoin and Cryptocurrency Technologies</a> — chapter 4 on wallets and key management, which remains the clearest treatment.</li>
-            <li><a class="cite" href="#r-62" data-code="R-62">Safe documentation</a> — the multisig model and module system, as the standard on-chain custody arrangement.</li>
-            <li><a class="cite" href="#r-45" data-code="R-45">2026 Crypto Crime Report</a> — the sections on where funds are actually stolen, which is a useful correction to where people expect them to be stolen.</li>
+            <li><a class="cite" href="#r-66" data-code="R-66">Safe documentation</a> — the multisig model and module system, as the standard on-chain custody arrangement.</li>
+            <li><a class="cite" href="#r-49" data-code="R-49">2026 Crypto Crime Report</a> — the sections on where funds are actually stolen, which is a useful correction to where people expect them to be stolen.</li>
             <li><a class="cite" href="#r-40" data-code="R-40">Unchained</a> — the FTX and Celsius post-mortem episodes, for what the people involved said at the time and afterwards.</li>
           </ul>
 
@@ -484,8 +484,8 @@
             <li><a class="cite" href="#r-17" data-code="R-17">Uniswap v4 Core</a> — for the hook architecture and flash accounting.</li>
             <li><a class="cite" href="#r-18" data-code="R-18">An analysis of Uniswap markets</a> — the formal treatment of why CFMM prices track external markets, and under what conditions.</li>
             <li><a class="cite" href="#r-19" data-code="R-19">Improved Price Oracles: Constant Function Market Makers</a> — Angeris and Chitra's general CFMM framework; this is the paper that makes the whole family one object.</li>
-            <li><a class="cite" href="#r-57" data-code="R-57">Curve documentation</a> — the StableSwap invariant and the amplification parameter.</li>
-            <li><a class="cite" href="#r-72" data-code="R-72">Uniswap v3 Development Book</a> — build a v3 clone from scratch; this is the fastest route from reading the maths to believing it.</li>
+            <li><a class="cite" href="#r-61" data-code="R-61">Curve documentation</a> — the StableSwap invariant and the amplification parameter.</li>
+            <li><a class="cite" href="#r-76" data-code="R-76">Uniswap v3 Development Book</a> — build a v3 clone from scratch; this is the fastest route from reading the maths to believing it.</li>
             <li><a class="cite" href="#r-10" data-code="R-10">CS251: Cryptocurrencies and Blockchain Technologies</a> — the AMM lectures, which treat the invariant with more rigour than the whitepapers do.</li>
             <li><a class="cite" href="#r-39" data-code="R-39">Devcon Archive</a> — search for AMM design talks; the trade-offs discussed on stage rarely reach the documentation.</li>
           </ul>
@@ -550,8 +550,8 @@
             <li><a class="cite" href="#r-21" data-code="R-21">Impermanent Loss in Uniswap v3</a> — for the concentrated-liquidity case worked explicitly.</li>
             <li><a class="cite" href="#r-22" data-code="R-22">Risks and Returns of Uniswap V3 Liquidity Providers</a> — the empirical study. Read the distribution of outcomes, not the average.</li>
             <li><a class="cite" href="#r-18" data-code="R-18">An analysis of Uniswap markets</a> — re-read here for the arbitrage-equilibrium argument that LVR quantifies.</li>
-            <li><a class="cite" href="#r-67" data-code="R-67">Dune Analytics</a> — find or fork a dashboard computing LP returns for a specific pool, and reproduce its methodology yourself.</li>
-            <li><a class="cite" href="#r-43" data-code="R-43">Paradigm Research</a> — the LVR-mitigation and auction-design posts, for what the proposed fixes actually change.</li>
+            <li><a class="cite" href="#r-71" data-code="R-71">Dune Analytics</a> — find or fork a dashboard computing LP returns for a specific pool, and reproduce its methodology yourself.</li>
+            <li><a class="cite" href="#r-47" data-code="R-47">Paradigm Research</a> — the LVR-mitigation and auction-design posts, for what the proposed fixes actually change.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -618,8 +618,8 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-23" data-code="R-23">An Empirical Study of DeFi Liquidations</a> — the whole paper, for how liquidations actually behave rather than how they are specified.</li>
-            <li><a class="cite" href="#r-55" data-code="R-55">Aave documentation</a> — the risk parameters, rate strategy and liquidation sections, with a live market open beside them.</li>
-            <li><a class="cite" href="#r-56" data-code="R-56">Compound documentation</a> — the interest-rate model and the comptroller, as the contrasting implementation that most later protocols forked.</li>
+            <li><a class="cite" href="#r-59" data-code="R-59">Aave documentation</a> — the risk parameters, rate strategy and liquidation sections, with a live market open beside them.</li>
+            <li><a class="cite" href="#r-60" data-code="R-60">Compound documentation</a> — the interest-rate model and the comptroller, as the contrasting implementation that most later protocols forked.</li>
             <li><a class="cite" href="#r-01" data-code="R-01">DeFi and the Future of Finance</a> — the lending chapters, for the framing against traditional secured lending.</li>
             <li><a class="cite" href="#r-13" data-code="R-13">SoK: Decentralized Finance (DeFi)</a> — the lending and liquidation sections of the taxonomy.</li>
           </ul>
@@ -683,7 +683,7 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-29" data-code="R-29">What Drives the (In)stability of a Stablecoin?</a> — the whole paper, for depeg dynamics treated empirically rather than anecdotally.</li>
-            <li><a class="cite" href="#r-58" data-code="R-58">Sky documentation</a> — the CDP mechanics, stability fee and peg stability module, read as the reference CDP implementation.</li>
+            <li><a class="cite" href="#r-62" data-code="R-62">Sky documentation</a> — the CDP mechanics, stability fee and peg stability module, read as the reference CDP implementation.</li>
             <li><a class="cite" href="#r-37" data-code="R-37">GENIUS Act (Public Law 119-27)</a> — the reserve, disclosure and licensing sections. Read the statute rather than commentary on it; it is more specific than the summaries suggest.</li>
             <li><a class="cite" href="#r-38" data-code="R-38">Markets in Crypto-Assets Regulation (MiCA)</a> — the asset-referenced and e-money token titles, for the contrasting European approach.</li>
             <li><a class="cite" href="#r-03" data-code="R-03">Number Go Up</a> — the Tether reporting, for how the largest stablecoin's reserves became a public question.</li>
@@ -754,8 +754,8 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-25" data-code="R-25">SoK: Oracles from the Ground Truth to Market Manipulation</a> — the whole paper; it is the systematisation this module follows.</li>
-            <li><a class="cite" href="#r-59" data-code="R-59">Chainlink documentation</a> — the data-feeds architecture, deviation thresholds and heartbeats. Note what the docs say about staleness checks being the integrator's job.</li>
-            <li><a class="cite" href="#r-60" data-code="R-60">Pyth Network documentation</a> — the pull model and the confidence interval, which is a genuinely useful piece of metadata most oracles do not provide.</li>
+            <li><a class="cite" href="#r-63" data-code="R-63">Chainlink documentation</a> — the data-feeds architecture, deviation thresholds and heartbeats. Note what the docs say about staleness checks being the integrator's job.</li>
+            <li><a class="cite" href="#r-64" data-code="R-64">Pyth Network documentation</a> — the pull model and the confidence interval, which is a genuinely useful piece of metadata most oracles do not provide.</li>
             <li><a class="cite" href="#r-15" data-code="R-15">Uniswap v2 Core</a> — the TWAP oracle section specifically, which is where on-chain price oracles came from.</li>
             <li><a class="cite" href="#r-14" data-code="R-14">SoK: Decentralized Finance (DeFi) Attacks</a> — the oracle-manipulation attack taxonomy with worked cases.</li>
           </ul>
@@ -817,11 +817,12 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-26" data-code="R-26">Fundamentals of Perpetual Futures</a> — the whole paper, for the funding mechanism derived properly rather than described.</li>
-            <li><a class="cite" href="#r-63" data-code="R-63">Hyperliquid documentation</a> — the order-book, margin and liquidation mechanics of the highest-volume on-chain perp venue.</li>
-            <li><a class="cite" href="#r-64" data-code="R-64">GMX documentation</a> — the pool-as-counterparty model, read specifically for what risk the liquidity providers are taking.</li>
-            <li><a class="cite" href="#r-65" data-code="R-65">dYdX documentation</a> — the app-chain order-book design, as the third point of comparison.</li>
+            <li><a class="cite" href="#r-67" data-code="R-67">Hyperliquid documentation</a> — the order-book, margin and liquidation mechanics of the highest-volume on-chain perp venue.</li>
+            <li><a class="cite" href="#r-68" data-code="R-68">GMX documentation</a> — the pool-as-counterparty model, read specifically for what risk the liquidity providers are taking.</li>
+            <li><a class="cite" href="#r-69" data-code="R-69">dYdX documentation</a> — the app-chain order-book design, as the third point of comparison.</li>
             <li><a class="cite" href="#r-02" data-code="R-02">Trading and Exchanges</a> — the chapters on futures and margin, for the traditional-market baseline these depart from.</li>
             <li><a class="cite" href="#r-41" data-code="R-41">Epicenter</a> — the episodes with perpetual-venue designers, for the funding and liquidation trade-offs they made and why.</li>
+            <li><a class="cite" href="#r-43" data-code="R-43">Uncommon Core</a> — the "Perpetual Swaps 101" episode, which is the clearest spoken derivation of the funding mechanism.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -883,10 +884,11 @@
           <ul class="assigned">
             <li><a class="cite" href="#r-27" data-code="R-27">Flash Boys 2.0</a> — the whole paper. The founding document; read the taxonomy and the consensus-instability argument together.</li>
             <li><a class="cite" href="#r-28" data-code="R-28">Quantifying Blockchain Extractable Value</a> — for the measurement methodology, which is what lets you check any claim about magnitudes.</li>
-            <li><a class="cite" href="#r-48" data-code="R-48">Flashbots Writings</a> — the order-flow-auction and protected-transaction posts, from the party that built most of the infrastructure.</li>
-            <li><a class="cite" href="#r-67" data-code="R-67">Dune Analytics</a> — find a sandwich-attack dashboard and reproduce one of its queries against raw transaction data.</li>
+            <li><a class="cite" href="#r-52" data-code="R-52">Flashbots Writings</a> — the order-flow-auction and protected-transaction posts, from the party that built most of the infrastructure.</li>
+            <li><a class="cite" href="#r-42" data-code="R-42">MEV for the Next Trillion, Devcon VI</a> — R-27's lead author three years on, franker about the trade-offs than the paper is.</li>
+            <li><a class="cite" href="#r-71" data-code="R-71">Dune Analytics</a> — find a sandwich-attack dashboard and reproduce one of its queries against raw transaction data.</li>
             <li><a class="cite" href="#r-20" data-code="R-20">Automated Market Making and Loss-Versus-Rebalancing</a> — re-read here: arbitrage MEV and LVR are the same money seen from two sides.</li>
-            <li><a class="cite" href="#r-74" data-code="R-74">ethresear.ch</a> — the MEV and order-flow-auction threads, where the mitigation proposals are argued before they ship.</li>
+            <li><a class="cite" href="#r-78" data-code="R-78">ethresear.ch</a> — the MEV and order-flow-auction threads, where the mitigation proposals are argued before they ship.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -952,10 +954,10 @@
           <ul class="assigned">
             <li><a class="cite" href="#r-24" data-code="R-24">Attacking the DeFi Ecosystem with Flash Loans for Fun and Profit</a> — the whole paper, including the optimisation framing of maximising an attack's profit.</li>
             <li><a class="cite" href="#r-14" data-code="R-14">SoK: Decentralized Finance (DeFi) Attacks</a> — the full taxonomy with the incident dataset. This is the reference for the module.</li>
-            <li><a class="cite" href="#r-70" data-code="R-70">Damn Vulnerable DeFi</a> — the flash-loan, oracle and governance challenges. Do them before reading the solutions.</li>
-            <li><a class="cite" href="#r-68" data-code="R-68">rekt.news leaderboard</a> — pick four incidents above $50m and reconstruct each from its post-mortem and its on-chain trace.</li>
-            <li><a class="cite" href="#r-69" data-code="R-69">Etherscan</a> — used to read the exploit transactions themselves in the internal-trace and state-diff views.</li>
-            <li><a class="cite" href="#r-71" data-code="R-71">Foundry</a> — write the exploits as forked-mainnet tests; this is how security researchers actually work.</li>
+            <li><a class="cite" href="#r-74" data-code="R-74">Damn Vulnerable DeFi</a> — the flash-loan, oracle and governance challenges. Do them before reading the solutions.</li>
+            <li><a class="cite" href="#r-72" data-code="R-72">rekt.news leaderboard</a> — pick four incidents above $50m and reconstruct each from its post-mortem and its on-chain trace.</li>
+            <li><a class="cite" href="#r-73" data-code="R-73">Etherscan</a> — used to read the exploit transactions themselves in the internal-trace and state-diff views.</li>
+            <li><a class="cite" href="#r-75" data-code="R-75">Foundry</a> — write the exploits as forked-mainnet tests; this is how security researchers actually work.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -1021,8 +1023,9 @@
           <ul class="assigned">
             <li><a class="cite" href="#r-01" data-code="R-01">DeFi and the Future of Finance</a> — the chapters on yield and risk, for the finance-faculty framing of exactly this question.</li>
             <li><a class="cite" href="#r-13" data-code="R-13">SoK: Decentralized Finance (DeFi)</a> — the risk taxonomy sections.</li>
-            <li><a class="cite" href="#r-46" data-code="R-46">DefiLlama</a> — take the top ten yield opportunities and decompose each into the five sources above. Most will not survive it.</li>
-            <li><a class="cite" href="#r-66" data-code="R-66">Token Terminal</a> — protocol revenue versus token incentives, which is the same question at the protocol rather than the position level.</li>
+            <li><a class="cite" href="#r-50" data-code="R-50">DefiLlama</a> — take the top ten yield opportunities and decompose each into the five sources above. Most will not survive it.</li>
+            <li><a class="cite" href="#r-45" data-code="R-45">Bankless</a> — pick an episode where a founder explains their yield, then decompose the claim against the five sources above.</li>
+            <li><a class="cite" href="#r-70" data-code="R-70">Token Terminal</a> — protocol revenue versus token incentives, which is the same question at the protocol rather than the position level.</li>
             <li><a class="cite" href="#r-36" data-code="R-36">DeFi risks and the decentralisation illusion</a> — the BIS analysis of leverage and procyclicality, which is where these yields go in a drawdown.</li>
           </ul>
 
@@ -1081,11 +1084,12 @@
 
           <h4>Work through</h4>
           <ul class="assigned">
-            <li><a class="cite" href="#r-66" data-code="R-66">Token Terminal</a> — pull fees, revenue, incentives and treasury composition for five protocols and build the comparison yourself.</li>
-            <li><a class="cite" href="#r-46" data-code="R-46">DefiLlama</a> — TVL, revenue and the fee/revenue split, cross-checked against the above. Where the two disagree, find out why.</li>
+            <li><a class="cite" href="#r-70" data-code="R-70">Token Terminal</a> — pull fees, revenue, incentives and treasury composition for five protocols and build the comparison yourself.</li>
+            <li><a class="cite" href="#r-50" data-code="R-50">DefiLlama</a> — TVL, revenue and the fee/revenue split, cross-checked against the above. Where the two disagree, find out why.</li>
             <li><a class="cite" href="#r-33" data-code="R-33">Emergent Outcomes of the veToken Model</a> — re-read here for emissions as a business cost rather than as a governance design.</li>
-            <li><a class="cite" href="#r-47" data-code="R-47">a16z crypto State of Crypto</a> — the industry's own account of where value accrues, useful precisely because it is an interested one.</li>
-            <li><a class="cite" href="#r-61" data-code="R-61">Uniswap Blog</a> — the fee-switch and governance posts, as the best-documented instance of this decision being made in public.</li>
+            <li><a class="cite" href="#r-51" data-code="R-51">a16z crypto State of Crypto</a> — the industry's own account of where value accrues, useful precisely because it is an interested one.</li>
+            <li><a class="cite" href="#r-65" data-code="R-65">Uniswap Blog</a> — the fee-switch and governance posts, as the best-documented instance of this decision being made in public.</li>
+            <li><a class="cite" href="#r-44" data-code="R-44">Bell Curve</a> — the DeFi-value-proposition season, for the argument about whether any of these are businesses.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -1143,8 +1147,8 @@
 
           <h4>Work through</h4>
           <ul class="assigned">
-            <li><a class="cite" href="#r-53" data-code="R-53">Ethereum Improvement Proposals</a> — ERC-721, ERC-1155 and ERC-2981, with attention to what each one does not specify.</li>
-            <li><a class="cite" href="#r-54" data-code="R-54">OpenZeppelin Contracts documentation</a> — the ERC-721 implementation and its enumerable and URI-storage extensions.</li>
+            <li><a class="cite" href="#r-57" data-code="R-57">Ethereum Improvement Proposals</a> — ERC-721, ERC-1155 and ERC-2981, with attention to what each one does not specify.</li>
+            <li><a class="cite" href="#r-58" data-code="R-58">OpenZeppelin Contracts documentation</a> — the ERC-721 implementation and its enumerable and URI-storage extensions.</li>
             <li><a class="cite" href="#r-14" data-code="R-14">SoK: Decentralized Finance (DeFi) Attacks</a> — the NFT-specific incidents, for mint and marketplace exploits.</li>
             <li><a class="cite" href="#r-12" data-code="R-12">Cyfrin Updraft</a> — the NFT sections, if you want to implement the storage variants yourself.</li>
           </ul>
@@ -1214,8 +1218,8 @@
           <ul class="assigned">
             <li><a class="cite" href="#r-31" data-code="R-31">NFT Wash Trading</a> — the whole paper, for detection methodology and magnitude estimates.</li>
             <li><a class="cite" href="#r-30" data-code="R-30">Crypto Wash Trading</a> — the fungible-market counterpart; the statistical tests are the part to take away.</li>
-            <li><a class="cite" href="#r-67" data-code="R-67">Dune Analytics</a> — pull a collection's full trade history and compute the fraction of tokens that have never traded.</li>
-            <li><a class="cite" href="#r-45" data-code="R-45">2026 Crypto Crime Report</a> — the market-manipulation sections, for how this is measured at scale.</li>
+            <li><a class="cite" href="#r-71" data-code="R-71">Dune Analytics</a> — pull a collection's full trade history and compute the fraction of tokens that have never traded.</li>
+            <li><a class="cite" href="#r-49" data-code="R-49">2026 Crypto Crime Report</a> — the market-manipulation sections, for how this is measured at scale.</li>
             <li><a class="cite" href="#r-06" data-code="R-06">Attack of the 50 Foot Blockchain</a> — Gerard as the sceptical baseline. He is often unfair and frequently correct, and reading him against the industry sources is the exercise.</li>
           </ul>
 
@@ -1276,11 +1280,11 @@
 
           <h4>Work through</h4>
           <ul class="assigned">
-            <li><a class="cite" href="#r-50" data-code="R-50">Moving beyond coin voting governance</a> — Buterin's own critique of the standard mechanism, written from inside it.</li>
-            <li><a class="cite" href="#r-51" data-code="R-51">DAOs are not corporations</a> — for the argument that decentralisation in governance should be evaluated as fault tolerance rather than as democracy.</li>
-            <li><a class="cite" href="#r-54" data-code="R-54">OpenZeppelin Contracts documentation</a> — the Governor and TimelockController implementations, which are what most on-chain governance actually runs.</li>
-            <li><a class="cite" href="#r-52" data-code="R-52">Snapshot documentation</a> — the off-chain voting model and its strategy system.</li>
-            <li><a class="cite" href="#r-62" data-code="R-62">Safe documentation</a> — the multisig and module architecture that sits under most governance executors.</li>
+            <li><a class="cite" href="#r-54" data-code="R-54">Moving beyond coin voting governance</a> — Buterin's own critique of the standard mechanism, written from inside it.</li>
+            <li><a class="cite" href="#r-55" data-code="R-55">DAOs are not corporations</a> — for the argument that decentralisation in governance should be evaluated as fault tolerance rather than as democracy.</li>
+            <li><a class="cite" href="#r-58" data-code="R-58">OpenZeppelin Contracts documentation</a> — the Governor and TimelockController implementations, which are what most on-chain governance actually runs.</li>
+            <li><a class="cite" href="#r-56" data-code="R-56">Snapshot documentation</a> — the off-chain voting model and its strategy system.</li>
+            <li><a class="cite" href="#r-66" data-code="R-66">Safe documentation</a> — the multisig and module architecture that sits under most governance executors.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -1339,8 +1343,8 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-32" data-code="R-32">On the Centralization of Governance Power in Decentralized Autonomous Organizations</a> — the whole paper; it is the current systematic measurement.</li>
-            <li><a class="cite" href="#r-50" data-code="R-50">Moving beyond coin voting governance</a> — re-read here against the evidence rather than as a design document.</li>
-            <li><a class="cite" href="#r-68" data-code="R-68">rekt.news leaderboard</a> — the Beanstalk entry, then reconstruct the proposal from the transaction.</li>
+            <li><a class="cite" href="#r-54" data-code="R-54">Moving beyond coin voting governance</a> — re-read here against the evidence rather than as a design document.</li>
+            <li><a class="cite" href="#r-72" data-code="R-72">rekt.news leaderboard</a> — the Beanstalk entry, then reconstruct the proposal from the transaction.</li>
             <li><a class="cite" href="#r-14" data-code="R-14">SoK: Decentralized Finance (DeFi) Attacks</a> — the governance-attack category.</li>
             <li><a class="cite" href="#r-33" data-code="R-33">Emergent Outcomes of the veToken Model</a> — for vote markets as the equilibrium of transferable governance power.</li>
           </ul>
@@ -1402,9 +1406,9 @@
           <h4>Work through</h4>
           <ul class="assigned">
             <li><a class="cite" href="#r-34" data-code="R-34">A Flexible Design for Funding Public Goods</a> — Buterin, Hitzig and Weyl's quadratic funding paper. Work the optimality argument and then locate exactly which assumption Sybils break.</li>
-            <li><a class="cite" href="#r-49" data-code="R-49">ENS documentation</a> — the registry, resolver and renewal model, as the case where the mechanism shipped and stuck.</li>
-            <li><a class="cite" href="#r-73" data-code="R-73">Ethereum Attestation Service documentation</a> — the attestation schema model, as the general-purpose reputation primitive.</li>
-            <li><a class="cite" href="#r-51" data-code="R-51">DAOs are not corporations</a> — for why decentralisation should be argued as fault tolerance, which reframes the identity problem usefully.</li>
+            <li><a class="cite" href="#r-53" data-code="R-53">ENS documentation</a> — the registry, resolver and renewal model, as the case where the mechanism shipped and stuck.</li>
+            <li><a class="cite" href="#r-77" data-code="R-77">Ethereum Attestation Service documentation</a> — the attestation schema model, as the general-purpose reputation primitive.</li>
+            <li><a class="cite" href="#r-55" data-code="R-55">DAOs are not corporations</a> — for why decentralisation should be argued as fault tolerance, which reframes the identity problem usefully.</li>
             <li><a class="cite" href="#r-32" data-code="R-32">On the Centralization of Governance Power in Decentralized Autonomous Organizations</a> — re-read for why one-person-one-vote is the missing alternative and what it would require.</li>
           </ul>
 
@@ -1472,9 +1476,9 @@
             <li><a class="cite" href="#r-37" data-code="R-37">GENIUS Act (Public Law 119-27)</a> — the reserve, disclosure and licensing provisions. Read the statute; the secondary coverage is unreliable about scope.</li>
             <li><a class="cite" href="#r-38" data-code="R-38">Markets in Crypto-Assets Regulation (MiCA)</a> — the ESMA overview and the asset-referenced token requirements.</li>
             <li><a class="cite" href="#r-11" data-code="R-11">15.S12 Blockchain and Money</a> — the regulatory lectures, from someone who subsequently chaired the SEC. Dated on specifics, valuable on how the framing was constructed.</li>
-            <li><a class="cite" href="#r-45" data-code="R-45">2026 Crypto Crime Report</a> — for the illicit-finance data that drives most AML policy in this area.</li>
+            <li><a class="cite" href="#r-49" data-code="R-49">2026 Crypto Crime Report</a> — for the illicit-finance data that drives most AML policy in this area.</li>
             <li><a class="cite" href="#r-36" data-code="R-36">DeFi risks and the decentralisation illusion</a> — the BIS argument that every DeFi protocol has a controlling group and is therefore regulable, which is the analytical basis for much of the current approach.</li>
-            <li><a class="cite" href="#r-76" data-code="R-76">FEDS Notes</a> — the stablecoin and tokenisation notes, for what US regulators are analysing ahead of rulemaking.</li>
+            <li><a class="cite" href="#r-80" data-code="R-80">FEDS Notes</a> — the stablecoin and tokenisation notes, for what US regulators are analysing ahead of rulemaking.</li>
           </ul>
 
           <div class="callout callout--practice">
@@ -1540,10 +1544,10 @@
             <li><a class="cite" href="#r-30" data-code="R-30">Crypto Wash Trading</a> — for how much reported activity survives statistical scrutiny.</li>
             <li><a class="cite" href="#r-22" data-code="R-22">Risks and Returns of Uniswap V3 Liquidity Providers</a> — re-read as evidence rather than as mechanism.</li>
             <li><a class="cite" href="#r-36" data-code="R-36">DeFi risks and the decentralisation illusion</a> — the central-bank critique, which is the most rigorous sceptical position available.</li>
-            <li><a class="cite" href="#r-44" data-code="R-44">Web3 is Going Just Great</a> — Molly White's incident record. Use it as a dataset of failures rather than as commentary.</li>
-            <li><a class="cite" href="#r-75" data-code="R-75">The Block Data</a> — apply this module's six questions to three of its charts before quoting any of them.</li>
+            <li><a class="cite" href="#r-48" data-code="R-48">Web3 is Going Just Great</a> — Molly White's incident record. Use it as a dataset of failures rather than as commentary.</li>
+            <li><a class="cite" href="#r-79" data-code="R-79">The Block Data</a> — apply this module's six questions to three of its charts before quoting any of them.</li>
             <li><a class="cite" href="#r-06" data-code="R-06">Attack of the 50 Foot Blockchain</a> — the strongest early sceptical case; note which of its predictions held and which did not.</li>
-            <li><a class="cite" href="#r-42" data-code="R-42">The Crypto Story</a> — Levine's long piece, which is the best-written attempt to take both the mechanisms and the objections seriously at once. (Bloomberg returns 403 to automated link checks; it opens normally in a browser.)</li>
+            <li><a class="cite" href="#r-46" data-code="R-46">The Crypto Story</a> — Levine's long piece, which is the best-written attempt to take both the mechanisms and the objections seriously at once. (Bloomberg returns 403 to automated link checks; it opens normally in a browser.)</li>
             <li><a class="cite" href="#r-13" data-code="R-13">SoK: Decentralized Finance (DeFi)</a> — the concluding sections on open problems, as the academic version of this module.</li>
           </ul>
 
@@ -2157,6 +2161,55 @@
               </div>
               <span class="r-used">Used in <a href="#m11">M11</a></span>
             </li>
+            <li class="resource" id="r-42">
+              <span class="r-code">R-42</span>
+              <span class="r-title"><a href="https://archive.devcon.org/archive/watch/6/mev-for-the-next-trillion/">MEV for the Next Trillion, Devcon VI</a></span>
+              <span class="r-byline">— Phil Daian, Flashbots, 2022</span>
+              <p class="r-note">The lead author of R-27 on what MEV looks like three years after naming it: the supply chain as built, what centralised, and what he thinks the mitigations have to be. Read the written adaptation on the Flashbots blog alongside it — the talk is franker about the trade-offs than the paper.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate → Advanced</span>
+                <span class="tag">~30 min</span>
+              </div>
+              <span class="r-used">Used in <a href="#m12">M12</a></span>
+            </li>
+            <li class="resource" id="r-43">
+              <span class="r-code">R-43</span>
+              <span class="r-title"><a href="https://creators.spotify.com/pod/profile/uncommoncore/">Uncommon Core</a></span>
+              <span class="r-byline">— Hasu, Su Zhu &amp; Tarun Chitra, 2020–2022</span>
+              <p class="r-note">Long-form episodes that derive mechanisms rather than describing them. "Perpetual Swaps 101" is the single best spoken explanation of the funding-rate mechanism in M11, and the AMM and governance episodes with Tarun Chitra cover trade-offs the protocol documentation omits. Ended in 2022, so the archive is a fixed and unusually dense corpus.</p>
+              <div class="r-tags">
+                <span class="tag tag--core">Core</span>
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate → Advanced</span>
+                <span class="tag">Archive</span>
+              </div>
+              <span class="r-used">Used in <a href="#m11">M11</a></span>
+            </li>
+            <li class="resource" id="r-44">
+              <span class="r-code">R-44</span>
+              <span class="r-title"><a href="https://blockworks.co/podcast/bellcurve">Bell Curve</a></span>
+              <span class="r-byline">— Blockworks, 2022–</span>
+              <p class="r-note">Season-length arguments about a single thesis, tested against practitioners — DeFi's value proposition, stablecoin market structure, the institutional turn. The most useful current source for M15 and M22, and openly an industry podcast with industry incentives, which is worth holding while listening.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Intermediate</span>
+                <span class="tag">Ongoing</span>
+              </div>
+              <span class="r-used">Used in <a href="#m15">M15</a></span>
+            </li>
+            <li class="resource" id="r-45">
+              <span class="r-code">R-45</span>
+              <span class="r-title"><a href="https://www.bankless.com/">Bankless</a></span>
+              <span class="r-byline">— Ryan Sean Adams &amp; David Hoffman, 2019–</span>
+              <p class="r-note">The largest DeFi interview show, and the place protocol founders go to explain a launch. Use it as a primary source on what teams claim about their own mechanisms, then check the claims against M14's decomposition — the gap between the pitch and the arithmetic is the exercise.</p>
+              <div class="r-tags">
+                <span class="tag tag--free">Free online</span>
+                <span class="tag">Beginner → Intermediate</span>
+                <span class="tag">Ongoing</span>
+              </div>
+              <span class="r-used">Used in <a href="#m14">M14</a></span>
+            </li>
           </ol>
         </div>
 
@@ -2164,8 +2217,8 @@
           <h3>Articles, essays &amp; blogs</h3>
           <p>Much of this field's argument happens in posts rather than papers. Read the industry sources knowing they are interested parties, and the sceptical sources knowing the same — both are more useful that way.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-42">
-              <span class="r-code">R-42</span>
+            <li class="resource" id="r-46">
+              <span class="r-code">R-46</span>
               <span class="r-title"><a href="https://www.bloomberg.com/features/2022-the-crypto-story/">The Crypto Story</a></span>
               <span class="r-byline">— Matt Levine, <em>Bloomberg Businessweek</em>, 2022</span>
               <p class="r-note">Forty thousand words that take both the mechanisms and the objections seriously, by someone who understands derivatives and is funny about it. The best single explanation of what a token is as a financial object, and the sections on DeFi lending and on "number go up technology" are the ones to reread. (Bloomberg returns 403 to automated link checks; the page opens normally in a browser.)</p>
@@ -2177,8 +2230,8 @@
               </div>
               <span class="r-used">Used in <a href="#m22">M22</a></span>
             </li>
-            <li class="resource" id="r-43">
-              <span class="r-code">R-43</span>
+            <li class="resource" id="r-47">
+              <span class="r-code">R-47</span>
               <span class="r-title"><a href="https://research.paradigm.xyz/">Paradigm Research</a></span>
               <span class="r-byline">— Paradigm, ongoing</span>
               <p class="r-note">Mechanism-design writing from a fund whose researchers publish real work — TWAMM, batch auctions, oracle designs and LVR mitigations. They are investors in much of what they analyse, which is worth holding in mind and does not make the mathematics wrong.</p>
@@ -2189,8 +2242,8 @@
               </div>
               <span class="r-used">Used in <a href="#m7">M07</a></span>
             </li>
-            <li class="resource" id="r-44">
-              <span class="r-code">R-44</span>
+            <li class="resource" id="r-48">
+              <span class="r-code">R-48</span>
               <span class="r-title"><a href="https://www.web3isgoinggreat.com/">Web3 is Going Just Great</a></span>
               <span class="r-byline">— Molly White, 2021–</span>
               <p class="r-note">A dated, sourced timeline of every significant failure, hack, rug and collapse, with running loss totals. Openly hostile in tone and rigorous about facts. Use it as a dataset for M22's base rates rather than as commentary — the citations are the value.</p>
@@ -2201,8 +2254,8 @@
               </div>
               <span class="r-used">Used in <a href="#m22">M22</a></span>
             </li>
-            <li class="resource" id="r-45">
-              <span class="r-code">R-45</span>
+            <li class="resource" id="r-49">
+              <span class="r-code">R-49</span>
               <span class="r-title"><a href="https://www.chainalysis.com/blog/2026-crypto-crime-report-introduction/">2026 Crypto Crime Report</a></span>
               <span class="r-byline">— Chainalysis, 2026</span>
               <p class="r-note">The annual measurement of illicit flows, exploit totals and market manipulation, from the firm whose data most regulators use. Methodology is proprietary and the firm sells to law enforcement — read the numbers as the best available estimate rather than as ground truth, and note their proportional as well as absolute figures.</p>
@@ -2213,8 +2266,8 @@
               </div>
               <span class="r-used">Used in <a href="#m5">M05</a> <a href="#m17">M17</a> <a href="#m21">M21</a></span>
             </li>
-            <li class="resource" id="r-46">
-              <span class="r-code">R-46</span>
+            <li class="resource" id="r-50">
+              <span class="r-code">R-50</span>
               <span class="r-title"><a href="https://defillama.com/">DefiLlama</a></span>
               <span class="r-byline">— DefiLlama, ongoing</span>
               <p class="r-note">TVL, fees, revenue and yields across every chain and protocol, with an explicit methodology and open data. The yields section is the input to M14's decomposition exercise. Note its own warnings about double-counting across composed protocols — most sources quoting it omit them.</p>
@@ -2226,8 +2279,8 @@
               </div>
               <span class="r-used">Used in <a href="#m14">M14</a> <a href="#m15">M15</a></span>
             </li>
-            <li class="resource" id="r-47">
-              <span class="r-code">R-47</span>
+            <li class="resource" id="r-51">
+              <span class="r-code">R-51</span>
               <span class="r-title"><a href="https://a16zcrypto.com/state-of-crypto/">a16z crypto State of Crypto</a></span>
               <span class="r-byline">— a16z crypto, annual</span>
               <p class="r-note">The industry's own annual account of itself, with real data underneath a promotional frame. Valuable precisely as a primary source on what the best-funded participants believe and want you to believe — read it against R-45 and R-36 rather than alone.</p>
@@ -2238,8 +2291,8 @@
               </div>
               <span class="r-used">Used in <a href="#m3">M03</a> <a href="#m15">M15</a></span>
             </li>
-            <li class="resource" id="r-48">
-              <span class="r-code">R-48</span>
+            <li class="resource" id="r-52">
+              <span class="r-code">R-52</span>
               <span class="r-title"><a href="https://writings.flashbots.net/">Flashbots Writings</a></span>
               <span class="r-byline">— Flashbots, 2020–</span>
               <p class="r-note">The primary source on MEV infrastructure, order-flow auctions and protected transactions, from the organisation that built most of it. They benefit from the arrangements they describe, which makes the posts both the best available documentation and an interested account.</p>
@@ -2250,8 +2303,8 @@
               </div>
               <span class="r-used">Used in <a href="#m12">M12</a></span>
             </li>
-            <li class="resource" id="r-49">
-              <span class="r-code">R-49</span>
+            <li class="resource" id="r-53">
+              <span class="r-code">R-53</span>
               <span class="r-title"><a href="https://docs.ens.domains/">ENS documentation</a></span>
               <span class="r-byline">— ENS Labs, ongoing</span>
               <p class="r-note">Registry, resolver, renewal and the namehash algorithm. Worth reading because ENS is the clearest case on this page of an NFT whose token is load-bearing for a working service, which is the test M03, M16 and M17 all apply.</p>
@@ -2262,8 +2315,8 @@
               </div>
               <span class="r-used">Used in <a href="#m20">M20</a></span>
             </li>
-            <li class="resource" id="r-50">
-              <span class="r-code">R-50</span>
+            <li class="resource" id="r-54">
+              <span class="r-code">R-54</span>
               <span class="r-title"><a href="https://vitalik.eth.limo/general/2021/08/16/voting3.html">Moving beyond coin voting governance</a></span>
               <span class="r-byline">— Vitalik Buterin, 2021</span>
               <p class="r-note">A critique of token-weighted voting written by the person most associated with the ecosystem that uses it: vote buying, plutocracy, and the specific ways coin voting fails. Read it before the empirical papers so you know which failures were predicted rather than discovered.</p>
@@ -2275,8 +2328,8 @@
               </div>
               <span class="r-used">Used in <a href="#m18">M18</a> <a href="#m19">M19</a></span>
             </li>
-            <li class="resource" id="r-51">
-              <span class="r-code">R-51</span>
+            <li class="resource" id="r-55">
+              <span class="r-code">R-55</span>
               <span class="r-title"><a href="https://vitalik.eth.limo/general/2022/09/20/daos.html">DAOs are not corporations</a></span>
               <span class="r-byline">— Vitalik Buterin, 2022</span>
               <p class="r-note">Argues that decentralisation in governance should be justified as fault tolerance and censorship resistance rather than as efficiency or democracy — which reframes M18's mechanisms usefully and explains why some DAOs should be centralised and say so.</p>
@@ -2294,8 +2347,8 @@
           <h3>Reference &amp; documentation</h3>
           <p>Read protocol documentation with the live contracts open beside it. Where the docs and the deployed parameters disagree, the parameters are right — and the disagreement is itself worth noting.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-52">
-              <span class="r-code">R-52</span>
+            <li class="resource" id="r-56">
+              <span class="r-code">R-56</span>
               <span class="r-title"><a href="https://docs.snapshot.box/">Snapshot documentation</a></span>
               <span class="r-byline">— Snapshot Labs, ongoing</span>
               <p class="r-note">Off-chain voting with signed messages and pluggable voting-power strategies. Read the strategies section specifically: how voting power is computed is a governance decision hiding in a configuration file, and it is where delegation, vote-escrow and multi-chain balances get resolved.</p>
@@ -2306,8 +2359,8 @@
               </div>
               <span class="r-used">Used in <a href="#m18">M18</a></span>
             </li>
-            <li class="resource" id="r-53">
-              <span class="r-code">R-53</span>
+            <li class="resource" id="r-57">
+              <span class="r-code">R-57</span>
               <span class="r-title"><a href="https://eips.ethereum.org/">Ethereum Improvement Proposals</a></span>
               <span class="r-byline">— Ethereum community, ongoing</span>
               <p class="r-note">The token standards this page is built on: ERC-20, ERC-721, ERC-1155, ERC-2612, ERC-2981 and ERC-4626. Read each one's Rationale and Security Considerations sections — they name the sharp edges M02 and M16 spend their time on, and almost nobody reads them.</p>
@@ -2319,8 +2372,8 @@
               </div>
               <span class="r-used">Used in <a href="#m2">M02</a> <a href="#m16">M16</a></span>
             </li>
-            <li class="resource" id="r-54">
-              <span class="r-code">R-54</span>
+            <li class="resource" id="r-58">
+              <span class="r-code">R-58</span>
               <span class="r-title"><a href="https://docs.openzeppelin.com/contracts/">OpenZeppelin Contracts documentation</a></span>
               <span class="r-byline">— OpenZeppelin, ongoing</span>
               <p class="r-note">The reference implementations of every standard here plus Governor and TimelockController, which is what most on-chain governance actually runs. Read the ERC-4626 implementation's inflation-attack mitigation and the Governor's voting-power snapshot logic as source, not as API documentation.</p>
@@ -2332,8 +2385,8 @@
               </div>
               <span class="r-used">Used in <a href="#m2">M02</a> <a href="#m16">M16</a> <a href="#m18">M18</a></span>
             </li>
-            <li class="resource" id="r-55">
-              <span class="r-code">R-55</span>
+            <li class="resource" id="r-59">
+              <span class="r-code">R-59</span>
               <span class="r-title"><a href="https://aave.com/docs">Aave documentation</a></span>
               <span class="r-byline">— Aave, ongoing</span>
               <p class="r-note">Risk parameters, the interest-rate strategy with its kink, health factors, liquidation penalties, isolation mode and the safety module. The most complete public documentation of a lending protocol's risk machinery; read it with a live market's parameters open.</p>
@@ -2345,8 +2398,8 @@
               </div>
               <span class="r-used">Used in <a href="#m8">M08</a></span>
             </li>
-            <li class="resource" id="r-56">
-              <span class="r-code">R-56</span>
+            <li class="resource" id="r-60">
+              <span class="r-code">R-60</span>
               <span class="r-title"><a href="https://docs.compound.finance/">Compound documentation</a></span>
               <span class="r-byline">— Compound Labs, ongoing</span>
               <p class="r-note">The original pooled-lending design that most later protocols forked, and worth reading against R-56 for what the two teams decided differently about isolation and rate curves. The comptroller model is the ancestor of a large amount of deployed code.</p>
@@ -2357,8 +2410,8 @@
               </div>
               <span class="r-used">Used in <a href="#m8">M08</a></span>
             </li>
-            <li class="resource" id="r-57">
-              <span class="r-code">R-57</span>
+            <li class="resource" id="r-61">
+              <span class="r-code">R-61</span>
               <span class="r-title"><a href="https://docs.curve.finance/">Curve documentation</a></span>
               <span class="r-byline">— Curve, ongoing</span>
               <p class="r-note">The StableSwap invariant with its amplification coefficient, plus the veCRV gauge system. Two things worth having: the invariant that makes stablecoin swaps cheap, and the governance mechanism that turned emissions direction into a market (M03).</p>
@@ -2369,8 +2422,8 @@
               </div>
               <span class="r-used">Used in <a href="#m6">M06</a></span>
             </li>
-            <li class="resource" id="r-58">
-              <span class="r-code">R-58</span>
+            <li class="resource" id="r-62">
+              <span class="r-code">R-62</span>
               <span class="r-title"><a href="https://docs.sky.money/">Sky documentation</a></span>
               <span class="r-byline">— Sky (formerly MakerDAO), ongoing</span>
               <p class="r-note">The reference CDP stablecoin: vaults, the stability fee, the savings rate, liquidation auctions and the peg stability module. Read the PSM section specifically — it is where the decentralisation argument in M09 becomes concrete and uncomfortable.</p>
@@ -2381,8 +2434,8 @@
               </div>
               <span class="r-used">Used in <a href="#m9">M09</a></span>
             </li>
-            <li class="resource" id="r-59">
-              <span class="r-code">R-59</span>
+            <li class="resource" id="r-63">
+              <span class="r-code">R-63</span>
               <span class="r-title"><a href="https://docs.chain.link/">Chainlink documentation</a></span>
               <span class="r-byline">— Chainlink Labs, ongoing</span>
               <p class="r-note">The push-oracle architecture: node operators, aggregation, deviation thresholds and heartbeats. Note what the integration guides say about staleness checks being the consumer's responsibility — that sentence is the source of a recurring exploit class.</p>
@@ -2393,8 +2446,8 @@
               </div>
               <span class="r-used">Used in <a href="#m10">M10</a></span>
             </li>
-            <li class="resource" id="r-60">
-              <span class="r-code">R-60</span>
+            <li class="resource" id="r-64">
+              <span class="r-code">R-64</span>
               <span class="r-title"><a href="https://docs.pyth.network/">Pyth Network documentation</a></span>
               <span class="r-byline">— Pyth Data Association, ongoing</span>
               <p class="r-note">The pull model with first-party publishers, and a confidence interval alongside each price — genuinely useful metadata that most oracles do not provide and most integrators ignore. Read it against R-60 as the two live architectures.</p>
@@ -2405,8 +2458,8 @@
               </div>
               <span class="r-used">Used in <a href="#m10">M10</a></span>
             </li>
-            <li class="resource" id="r-61">
-              <span class="r-code">R-61</span>
+            <li class="resource" id="r-65">
+              <span class="r-code">R-65</span>
               <span class="r-title"><a href="https://blog.uniswap.org/">Uniswap Blog</a></span>
               <span class="r-byline">— Uniswap Labs, ongoing</span>
               <p class="r-note">Design rationale for v3 and v4, and the fee-switch governance discussions — the best-documented instance of a protocol deciding in public whether to become a business. Read the v4 hooks posts alongside R-17.</p>
@@ -2417,8 +2470,8 @@
               </div>
               <span class="r-used">Used in <a href="#m15">M15</a></span>
             </li>
-            <li class="resource" id="r-62">
-              <span class="r-code">R-62</span>
+            <li class="resource" id="r-66">
+              <span class="r-code">R-66</span>
               <span class="r-title"><a href="https://docs.safe.global/">Safe documentation</a></span>
               <span class="r-byline">— Safe Ecosystem Foundation, ongoing</span>
               <p class="r-note">The multisig that holds most DAO treasuries and most protocol upgrade keys, plus its module and guard system. Reading this is how you evaluate the sentence "controlled by a 5-of-9 multisig" instead of repeating it.</p>
@@ -2429,8 +2482,8 @@
               </div>
               <span class="r-used">Used in <a href="#m5">M05</a> <a href="#m18">M18</a></span>
             </li>
-            <li class="resource" id="r-63">
-              <span class="r-code">R-63</span>
+            <li class="resource" id="r-67">
+              <span class="r-code">R-67</span>
               <span class="r-title"><a href="https://hyperliquid.gitbook.io/hyperliquid-docs">Hyperliquid documentation</a></span>
               <span class="r-byline">— Hyperliquid, ongoing</span>
               <p class="r-note">A fully on-chain central limit order book with its own chain: margin, funding, liquidation and the vault that backstops it. The clearest current documentation of order-book perpetuals on-chain, and worth reading for what running the matching engine as consensus costs.</p>
@@ -2441,8 +2494,8 @@
               </div>
               <span class="r-used">Used in <a href="#m11">M11</a></span>
             </li>
-            <li class="resource" id="r-64">
-              <span class="r-code">R-64</span>
+            <li class="resource" id="r-68">
+              <span class="r-code">R-68</span>
               <span class="r-title"><a href="https://docs.gmx.io/">GMX documentation</a></span>
               <span class="r-byline">— GMX, ongoing</span>
               <p class="r-note">The pool-as-counterparty perpetual design. Read the liquidity-provider sections asking one question throughout: what is the pool short? The answer — the aggregate P&amp;L of every trader — is a genuinely different risk from AMM liquidity provision and has been exploited as such.</p>
@@ -2453,8 +2506,8 @@
               </div>
               <span class="r-used">Used in <a href="#m11">M11</a></span>
             </li>
-            <li class="resource" id="r-65">
-              <span class="r-code">R-65</span>
+            <li class="resource" id="r-69">
+              <span class="r-code">R-69</span>
               <span class="r-title"><a href="https://docs.dydx.exchange/">dYdX documentation</a></span>
               <span class="r-byline">— dYdX, ongoing</span>
               <p class="r-note">The app-chain order-book design, and the third point of comparison for M11. Its migration from an Ethereum rollup to its own chain is documented and is a useful case study in what an application gives up and gains by owning its consensus.</p>
@@ -2472,8 +2525,8 @@
           <h3>Tools, datasets &amp; playgrounds</h3>
           <p>Every practice exercise on this page uses at least one of these. Dune and Etherscan are the two you cannot substitute — one for aggregate queries, one for reading a single transaction until you understand it.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-66">
-              <span class="r-code">R-66</span>
+            <li class="resource" id="r-70">
+              <span class="r-code">R-70</span>
               <span class="r-title"><a href="https://tokenterminal.com/">Token Terminal</a></span>
               <span class="r-byline">— Token Terminal, ongoing</span>
               <p class="r-note">Protocol financials with consistent definitions: fees, revenue, token incentives, treasury. The consistency is the value — it lets you compare protocols that report differently. Check its definitions page before using a number, because "revenue" means something specific here.</p>
@@ -2484,8 +2537,8 @@
               </div>
               <span class="r-used">Used in <a href="#m3">M03</a> <a href="#m14">M14</a> <a href="#m15">M15</a></span>
             </li>
-            <li class="resource" id="r-67">
-              <span class="r-code">R-67</span>
+            <li class="resource" id="r-71">
+              <span class="r-code">R-71</span>
               <span class="r-title"><a href="https://dune.com/">Dune Analytics</a></span>
               <span class="r-byline">— Dune, ongoing</span>
               <p class="r-note">SQL over decoded blockchain data, with a large library of public dashboards you can fork and inspect. The right habit is to fork a dashboard and read its query rather than trusting its chart — most of this page's empirical exercises are Dune queries. (Cloudflare challenges automated link checks; the site opens normally in a browser.)</p>
@@ -2497,8 +2550,8 @@
               </div>
               <span class="r-used">Used in <a href="#m7">M07</a> <a href="#m12">M12</a> <a href="#m17">M17</a></span>
             </li>
-            <li class="resource" id="r-68">
-              <span class="r-code">R-68</span>
+            <li class="resource" id="r-72">
+              <span class="r-code">R-72</span>
               <span class="r-title"><a href="https://rekt.news/leaderboard">rekt.news leaderboard</a></span>
               <span class="r-byline">— rekt, ongoing</span>
               <p class="r-note">Every major on-chain loss ranked by size, each with a post-mortem. Use it as the dataset behind M13 and M14: pick incidents, classify each as a code bug, an economic exploit or a key compromise, and derive your own base rates rather than quoting someone else's.</p>
@@ -2510,8 +2563,8 @@
               </div>
               <span class="r-used">Used in <a href="#m13">M13</a> <a href="#m19">M19</a></span>
             </li>
-            <li class="resource" id="r-69">
-              <span class="r-code">R-69</span>
+            <li class="resource" id="r-73">
+              <span class="r-code">R-73</span>
               <span class="r-title"><a href="https://etherscan.io/">Etherscan</a></span>
               <span class="r-byline">— Etherscan, ongoing</span>
               <p class="r-note">Verified source, internal-transaction traces and state diffs — which is how you actually read an exploit rather than reading about one. Every M13 reconstruction starts here. (Cloudflare challenges automated link checks; the site opens normally in a browser.)</p>
@@ -2529,8 +2582,8 @@
           <h3>Practice: problem sets &amp; project ideas</h3>
           <p>Damn Vulnerable DeFi is the single highest-value exercise set on this page — it teaches protocol-logic reasoning, which is the skill that separates reading a protocol from evaluating one.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-70">
-              <span class="r-code">R-70</span>
+            <li class="resource" id="r-74">
+              <span class="r-code">R-74</span>
               <span class="r-title"><a href="https://www.damnvulnerabledefi.xyz/">Damn Vulnerable DeFi</a></span>
               <span class="r-byline">— Tincho and contributors, ongoing</span>
               <p class="r-note">Flash loans, oracle manipulation, governance capture and vault accounting, each as a Foundry challenge you must actually exploit. These are protocol-logic bugs rather than syntax bugs, which is exactly the class M13 is about. Do them before reading any solution.</p>
@@ -2542,8 +2595,8 @@
               </div>
               <span class="r-used">Used in <a href="#m13">M13</a></span>
             </li>
-            <li class="resource" id="r-71">
-              <span class="r-code">R-71</span>
+            <li class="resource" id="r-75">
+              <span class="r-code">R-75</span>
               <span class="r-title"><a href="https://getfoundry.sh/">Foundry</a></span>
               <span class="r-byline">— Paradigm and contributors, ongoing</span>
               <p class="r-note">Mainnet forking pinned to a specific block is the tool that makes M13's exploit reconstruction possible, and invariant fuzzing is how you find the bug rather than confirm it. The invariant-testing chapter of the Foundry Book is the highest-leverage reading here.</p>
@@ -2555,8 +2608,8 @@
               </div>
               <span class="r-used">Used in <a href="#m13">M13</a></span>
             </li>
-            <li class="resource" id="r-72">
-              <span class="r-code">R-72</span>
+            <li class="resource" id="r-76">
+              <span class="r-code">R-76</span>
               <span class="r-title"><a href="https://uniswapv3book.com/">Uniswap V3 Development Book</a></span>
               <span class="r-byline">— Ivan Kuznetsov, ongoing</span>
               <p class="r-note">Builds a concentrated-liquidity AMM from scratch, deriving the tick mathematics and the √P representation as you go. The fastest route from reading R-16 to believing it, and the only way most people ever really understand v3's virtual reserves.</p>
@@ -2567,8 +2620,8 @@
               </div>
               <span class="r-used">Used in <a href="#m6">M06</a></span>
             </li>
-            <li class="resource" id="r-73">
-              <span class="r-code">R-73</span>
+            <li class="resource" id="r-77">
+              <span class="r-code">R-77</span>
               <span class="r-title"><a href="https://docs.attest.org/">Ethereum Attestation Service documentation</a></span>
               <span class="r-byline">— EAS, ongoing</span>
               <p class="r-note">Schemas, on- and off-chain attestations, and resolver contracts — the general-purpose primitive for making structured claims about addresses. Build a toy reputation schema with it for M20; the mechanism is sound and the missing piece is issuers anyone trusts, which is the point.</p>
@@ -2586,8 +2639,8 @@
           <h3>Communities &amp; staying current</h3>
           <p>This page dates faster than the sibling one, because protocols change parameters weekly and regulators change the perimeter quarterly. These are the lowest-noise places to track both.</p>
           <ol class="resource-list">
-            <li class="resource" id="r-74">
-              <span class="r-code">R-74</span>
+            <li class="resource" id="r-78">
+              <span class="r-code">R-78</span>
               <span class="r-title"><a href="https://ethresear.ch/">ethresear.ch</a></span>
               <span class="r-byline">— Ethereum Foundation, ongoing</span>
               <p class="r-note">Protocol and mechanism research argued in public before it becomes a proposal. The economics and MEV categories are the relevant ones here — several results in M12 and M20 appeared as forum posts a year before publication.</p>
@@ -2598,8 +2651,8 @@
               </div>
               <span class="r-used">Used in <a href="#m12">M12</a></span>
             </li>
-            <li class="resource" id="r-75">
-              <span class="r-code">R-75</span>
+            <li class="resource" id="r-79">
+              <span class="r-code">R-79</span>
               <span class="r-title"><a href="https://www.theblock.co/data">The Block Data</a></span>
               <span class="r-byline">— The Block, ongoing</span>
               <p class="r-note">Charts with stated methodology across exchange volumes, stablecoin supply, DEX share and NFT activity. Useful precisely because the methodology is published — which lets you apply M22's six questions to it rather than accepting the chart.</p>
@@ -2610,8 +2663,8 @@
               </div>
               <span class="r-used">Used in <a href="#m22">M22</a></span>
             </li>
-            <li class="resource" id="r-76">
-              <span class="r-code">R-76</span>
+            <li class="resource" id="r-80">
+              <span class="r-code">R-80</span>
               <span class="r-title"><a href="https://www.federalreserve.gov/econres/notes/feds-notes/">FEDS Notes</a></span>
               <span class="r-byline">— Board of Governors of the Federal Reserve System, ongoing</span>
               <p class="r-note">Short research notes, several of which analyse stablecoins, tokenisation and DeFi with actual data and no position to sell. The most reliable non-industry source for the M09 and M21 material, and it will tell you what the regulators are actually worried about before the rules appear.</p>
@@ -2631,7 +2684,7 @@
 
   <footer class="site-footer">
     <span><a href="../">← All topics</a></span>
-    <span>Updated 2026-08-06 · 22 modules · 76 resources</span>
+    <span>Updated 2026-08-06 · 22 modules · 80 resources</span>
   </footer>
 
 </div>

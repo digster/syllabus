@@ -63,7 +63,7 @@ return bot-challenge codes rather than real 404s:
 | IEEE Xplore | 202 | same — Crossref by DOI |
 | Simon & Schuster (and trade publishers generally) | 403 on every path | no DOI; use OpenLibrary `https://openlibrary.org/search.json?q=isbn:<ISBN>` for title/authors/year/pages, and Wikipedia's REST summary for the subtitle |
 | GitHub (curl) | 403 | WebFetch works; the REST API does not |
-| YouTube | 429 / captcha redirect | neither curl nor WebFetch; rely on search results |
+| YouTube | 429 to **WebFetch only** | curl with a normal browser UA returns 200 for `/watch?v=`, `/@channel` and `/playlist` — see the note below |
 | itsoc.org, encode.su | 403 (Cloudflare) | search results only |
 
 Crossref confirms *the work is what you think it is* — title, year, container —
@@ -319,3 +319,38 @@ resource that no module assigns is one the syllabus never actually asks anyone t
 read. On the blockchain rebuild this turned an apparent lint failure into a real
 improvement — the MIT *Blockchain and Money* course had been relegated to a
 prerequisite bullet and belonged in M01's work-through.
+
+## A hard-to-verify group is not a licence to under-fill it
+
+Written 2026-08-06 after shipping the blockchain pages with four and three
+entries in Talks &amp; video, reporting the thinness as an editorial decision, and
+being called on it.
+
+Nothing had been cut — which was exactly what made it slippery. I had stopped
+searching that group early because verification felt awkward, then described the
+result as restraint. **Under-supplying a group and calling it curation is the
+same failure as cutting a confirmed resource, and it is harder to catch, because
+there is no dropped entry to point at.** If a group is thin, say whether you
+looked and could not find, or did not look.
+
+The excuse also did not survive checking. The table above used to say YouTube
+was unreachable to "neither curl nor WebFetch". That is wrong: WebFetch gets 429,
+but **curl with a normal browser user agent returns 200** for `/watch?v=…`,
+`/@channel` and `/playlist?list=…`. One command would have shown it:
+
+```bash
+curl -sS -o /dev/null -w '%{http_code}' -L -A 'Mozilla/5.0 … Chrome/126 …' "<url>"
+```
+
+Two rules that follow:
+
+- **Prefer the canonical non-video home even when the video resolves.** An
+  author's own video index (`timroughgarden.org/videos.html`), a conference
+  archive entry (`archive.devcon.org/archive/watch/…`), a university event page —
+  these are the right link under the existing resource rules *and* they make the
+  reachability question moot. Link the platform only when there is no other home.
+- **Talks are a real group with real entries.** Conference keynotes, lecture
+  video series, and long-form technical podcasts are where protocol design
+  reasoning appears a year before anyone writes it down. Treating the group as
+  optional filler is how a page ends up all books and papers, which the brief
+  names as an anti-pattern.
