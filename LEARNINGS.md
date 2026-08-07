@@ -159,6 +159,24 @@ which is worse than a dead link because nothing downstream flags it.
 Note that `http://export.arxiv.org/...` returns an empty body from this
 environment; use `https://`.
 
+**Stop recalling ids at all — search by title (2026-08-06).** The check above
+caught two more on the blockchain pages: `2005.11421`, recalled as a proof-of-
+stake attack paper, is about truncated trans-series in string theory, and
+`2102.13597`, recalled as DAO governance, is about fairness in complex networks.
+Recalling an id and then verifying it is a hit rate of roughly two-thirds, and
+every miss costs a round trip. Go the other way instead — name the paper you
+want and let the API give you the id:
+
+```bash
+curl -sS --data-urlencode 'search_query=ti:"Bullshark DAG BFT Protocols Made Practical"' \
+     --data-urlencode 'max_results=3' -G "https://export.arxiv.org/api/query"
+```
+
+This also fails usefully: an empty result means the paper is not on arXiv, which
+sends you to IACR eprint, a DOI or the publisher rather than to a guessed id.
+IACR ids resolve the same way — scrape `citation_title` from
+`https://eprint.iacr.org/<year>/<num>` and read the title back.
+
 ## A dead author site does not mean the book is uncitable
 
 `blocksizewar.com` no longer resolves, which nearly cost the page Jonathan Bier's
@@ -240,3 +258,64 @@ by simply not being seen. Second, requiring `r-used` to match the set of citing
 modules *exactly* in both directions, not merely to be non-empty; on a 21-module
 page the back-references drift as modules get edited, and "cited by M06 but
 `r-used` omits it" is invisible to any grep.
+
+## Generate the citation graph; do not maintain it by hand
+
+Written on the 2026-08-06 blockchain rebuild, and it should be the default from
+now on. The citation contract — every `href="#r-NN"` resolving, every `data-code`
+matching, every `r-used` naming exactly the citing modules — is the hardest thing
+in `CLAUDE.md` to satisfy by hand and the easiest to generate.
+
+Write the page with the resource **title** as the citation's link text and any
+placeholder id:
+
+```html
+<li><a class="cite" href="#r-01" data-code="R-01">Bitcoin Backbone Protocol</a> — sections 1–5.</li>
+```
+
+and give every resource a placeholder back-reference:
+
+```html
+<span class="r-used">USED</span>
+```
+
+Then run a script that builds `title → id` from the resource list, resolves each
+citation's link text against it, rewrites `href` and `data-code`, and emits every
+`r-used` span from the graph it just computed. Have it exit **without writing**
+if any citation is unresolvable or any resource is uncited. Keep a small alias
+table for the short forms the syllabus legitimately uses ("Ethereum Yellow Paper"
+for a resource titled *Ethereum: A Secure Decentralised Generalised Transaction
+Ledger*).
+
+Three things fall out of this that are not obvious in advance:
+
+- **Renumbering becomes free.** Ids can be reassigned in document order by a
+  second three-line script, because nothing points at a number any more — the
+  citations point at titles until the wiring step. Inserting a forgotten resource
+  into the middle of a 111-entry list stopped being a reason not to.
+- **Orphan detection is an editorial signal, not just a lint.** Ten uncited
+  resources surfaced on each page. Nine per page were genuinely missing citations
+  worth adding; one was a resource that restated another and was cut. A resource
+  nothing cites is either an omission or padding, and the script makes you decide
+  which.
+- **The remaining failures are real.** A citation whose link text matches nothing
+  means the resource was never written, which is exactly the error that otherwise
+  ships as a dangling anchor.
+
+The auditor still runs afterwards. The generator makes the graph correct; the
+auditor proves it, and is the thing validated against a known-good page.
+
+## Citations from outside a module have no back-reference
+
+A corollary of the above, found the same day. `r-used` links modules, so a
+resource cited only from `#before-you-start`, `#paths` or `#next` has an empty
+back-reference and fails the contract — the generator reports it as uncited even
+though the anchor is right there in the markup.
+
+`CLAUDE.md` permits citing from those sections, so this is not a rule violation;
+it is a consequence of `r-used` being module-shaped. The fix is to cite the
+resource from a module as well, which is usually the right call anyway: a
+resource that no module assigns is one the syllabus never actually asks anyone to
+read. On the blockchain rebuild this turned an apparent lint failure into a real
+improvement — the MIT *Blockchain and Money* course had been relegated to a
+prerequisite bullet and belonged in M01's work-through.
