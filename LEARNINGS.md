@@ -322,6 +322,11 @@ prerequisite bullet and belonged in M01's work-through.
 
 ## A hard-to-verify group is not a licence to under-fill it
 
+**This is now the rule in `CLAUDE.md`, learned the hard way** — the Resource
+rules gained a "a thin group is a research result, not a curation decision"
+bullet and the pre-flight checklist gained a line requiring every group to have
+actually been searched. What stays here is the environment fact underneath it.
+
 Written 2026-08-06 after shipping the blockchain pages with four and three
 entries in Talks &amp; video, reporting the thinness as an editorial decision, and
 being called on it.

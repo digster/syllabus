@@ -221,6 +221,14 @@ This is the mechanical rule the whole page hangs on.
   documentation · Tools, datasets & playgrounds · Practice: problem sets & project
   ideas · Communities & staying current. Drop a group only if the topic truly has
   nothing for it. Never invent new groups without adding them to the template.
+- **A thin group is a research result, not a curation decision.** Keeping a group
+  and under-filling it is the same failure as cutting a good resource, and it is
+  harder to spot because nothing was visibly dropped. If a group ends up short,
+  the report says which of two things happened: you searched and the topic really
+  has little there, or you did not search it properly. "Flagged rather than
+  padded" is not an answer to that question. Verification being awkward for a
+  format — video especially — is a reason to work harder on it, never a reason to
+  stop early.
 - **Every entry needs a note** — one or two sentences on what it's good for, what
   it assumes, and which parts to read. "A great introduction to X" is not a note.
   "Chapters 1–6 are the clearest treatment of the CAP tradeoff in print; skip the
@@ -323,6 +331,8 @@ Run this before you tell me it's done.
 - [ ] Every external URL was actually fetched or searched — no remembered links.
 - [ ] Any URL that refused an automated check is still on the page, with the
       refusal stated in brackets in its note — not quietly dropped.
+- [ ] Every resource group was actually searched. Any group that came out thin is
+      named in the report as searched-and-sparse, not left to look deliberate.
 - [ ] `docs/index.html` has the new card, in the right group, and the empty-state
       paragraph is gone.
 - [ ] Page renders at 380 px and with JS disabled.
