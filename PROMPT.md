@@ -209,3 +209,22 @@ browser user agent, only WebFetch gets 429.
 
 → Talks &amp; video went 4 → 8 on CS-01 and 3 → 7 on EF-01, each new entry cited
 from a module; resource counts moved to 115 and 80.
+
+---
+
+## 2026-08-07 — Information Theory: the Talks &amp; video group, applied to itself
+
+> recently we added new learnings regarding the video section in the learnings
+> and claude file. See if its feasible for the thin video section in the
+> information theory topic.
+
+The rule added on 2026-08-06 — a thin group is a research result, not a
+curation decision — had been written after the blockchain pages and never
+applied to the page that shipped with the same defect. `information-theory`'s
+Talks &amp; video group held three entries behind the sentence "A short group,
+because this field's best teaching is written", which is the excuse the rule
+names.
+
+→ Talks &amp; video 3 → 14 and Courses &amp; lecture series 7 → 10; resources
+94 → 108, ids renumbered in document order, every new entry cited from a module.
+Fourteen of twenty-one modules now have a video assignment where four did before.

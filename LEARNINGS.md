@@ -359,3 +359,83 @@ Two rules that follow:
   reasoning appears a year before anyone writes it down. Treating the group as
   optional filler is how a page ends up all books and papers, which the brief
   names as an anti-pattern.
+## A promoted rule has to be applied backwards, not just forwards
+
+Written 2026-08-07. On 2026-08-06 the thin-group rule went into `CLAUDE.md` —
+under-filling a resource group and reporting it as curation is the same failure
+as cutting a confirmed resource. It was written after the two blockchain pages
+were caught doing it. `information-theory` had shipped **hours earlier that same
+day** with a three-entry Talks group and this sentence on the page:
+
+> A short group, because this field's best teaching is written.
+
+That is verbatim the excuse the new rule forbids, and `memory/2026-08-06.md`
+even flagged it under a heading called "Thin spot". The rule was written, the
+offending page was known, and the two never met — because nothing in the
+workflow re-checks existing pages when a rule changes. Ten minutes of searching
+produced eleven more entries, all with canonical homes, all module-cited.
+
+**When you promote a learning into `CLAUDE.md`, grep the existing pages for the
+thing it forbids before closing the session.** For a resource-group rule that is
+one command:
+
+```bash
+for f in docs/*/index.html; do
+  echo "$f"; awk '/resource-group/,/<\/ol>/' "$f" | grep -c 'class="resource"'
+done
+```
+
+The generalisation: a new rule is evidence that the pages written before it are
+wrong in the same way. Treat the rule's own commit as a to-do list.
+
+## Renumbering must rewrite prose references, not just anchors
+
+The generate-the-citation-graph entry above covers `href`, `data-code` and
+`r-used`. It misses a fourth place resource codes appear: **ordinary prose**.
+`information-theory` names resources inline about forty times — "R-19 is the
+option if you learn by watching", "Read the FSE code against R-70 and R-76",
+"Worth reading immediately after R-32" — in `r-note` bodies and in every
+`.resource-group` intro paragraph.
+
+Inserting fourteen resources mid-list shifted 78 ids. An id-only renumber would
+have left every one of those sentences pointing at a different resource, and
+**nothing would have caught it**: the anchors all still resolve, the audit
+passes, the citation graph is intact. The page just quietly starts telling the
+reader to read the wrong thing.
+
+So renumber by mapping every `r-NN` and `R-NN` token in the file, not by
+rewriting attributes:
+
+```python
+order   = re.findall(r'id="(r-\d+)"', s)
+mapping = {old: f"r-{i:02d}" for i, old in enumerate(order, 1)}
+s = re.sub(r'r-\d+', lambda m: "\x00%s\x00"  % mapping[m.group(0)], s)
+s = re.sub(r'R-\d+', lambda m: "\x01%s\x01"  % mapping[m.group(0).lower()].upper(), s)
+s = s.replace("\x00", "").replace("\x01", "")
+```
+
+The sentinel characters matter: without them a rewrite can land on an id that
+has not been rewritten yet (r-30 → r-44 when r-44 is still pending) and the
+second pass mangles it. Two passes with a placeholder are the cheap fix.
+
+This is safe on these pages because every `R-\d+` token in them is a resource
+reference. Check that assumption before reusing the snippet on a page that might
+contain, say, a part number.
+
+## Two ITSoc hosts, two different failures
+
+`itsoc.org` returns 403 to automated checks behind Cloudflare — already recorded
+above, still true, and it applies to `/video`, `/outreach` and
+`/conferences/schools/...` as well as the Shannon Award page.
+
+`media.itsoc.org`, which several search results still point at for the School of
+Information Theory lecture recordings, **no longer resolves** — `curl` fails at
+DNS, not at HTTP. That is the one case where the "keep it and bracket the
+caveat" rule does not apply: a host with no DNS record is not a server refusing
+a script. Find the resource's current home or cut it.
+
+Worth separating the three states before deciding: DNS failure (dead — cut or
+relocate), HTTP 403/202/challenge (alive, refusing robots — keep and bracket),
+and HTTP 200 with a challenge body (Khan Academy does this — also alive, also
+keep and bracket, but a status-code-only check will call it healthy and tell you
+nothing).
