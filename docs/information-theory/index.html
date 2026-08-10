@@ -7,7 +7,7 @@
 <meta name="description" content="A sequenced study plan for Shannon's theory of information: entropy and divergence, compression, channel capacity, the codes that ship in 5G, rate–distortion, network and quantum information, and the modern crossover into statistics and machine learning.">
 <meta name="syllabus:modules" content="21">
 <meta name="syllabus:resources" content="108">
-<meta name="syllabus:updated" content="2026-08-07">
+<meta name="syllabus:updated" content="2026-08-10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
@@ -35,7 +35,7 @@
       <span class="meta">108 resources</span>
       <span class="meta">≈160 hours</span>
       <span class="meta">Beginner → Advanced</span>
-      <span class="meta">Updated 2026-08-07</span>
+      <span class="meta">Updated 2026-08-10</span>
     </div>
   </div>
 
@@ -1661,7 +1661,9 @@
           <li><strong><a href="../blockchain-systems/">Erasure coding in distributed storage and data availability</a></strong> — the Reed–Solomon material in M11 is the load-bearing mechanism behind erasure-coded object stores and behind data-availability sampling in permissionless systems, where the same construction is read as a cryptographic commitment rather than as a storage code. The Blockchain Systems page develops that reading directly, and the data-availability-sampling papers it cites are the continuation.</li>
           <li><strong>Quantum computation</strong> — M20 covered the information-theoretic half and deliberately stopped. Shor's and Grover's algorithms, circuit synthesis, and the engineering of fault tolerance answer a different question: not what can be communicated, but what can be computed. Nielsen and Chuang is the same book for both halves.</li>
           <li><strong>Applied cryptography</strong> — M15 established what information-theoretic security costs and why almost nothing uses it. Everything that ships is computational instead, and the security definitions, reductions and proof techniques there are a separate discipline that begins where this module ends.</li>
-          <li><strong>Statistical learning theory</strong> — M16 and M17 give the information-theoretic route to generalisation bounds. VC dimension, Rademacher complexity and the uniform-convergence tradition arrive at overlapping results by a different road, and reading them against each other is the fastest way to see what each framework can and cannot express.</li>
+          <li><strong><a href="../classical-machine-learning/">Statistical learning theory</a></strong> — M16 and M17 give the information-theoretic route to generalisation bounds. VC dimension, Rademacher complexity and the uniform-convergence tradition arrive at overlapping results by a different road, and reading them against each other is the fastest way to see what each framework can and cannot express. The Classical Machine Learning page develops that second route in full, along with the model-selection machinery M17's bounds are supposed to justify.</li>
+          <li><strong><a href="../deep-learning/">Deep learning, where these quantities are used and misused</a></strong> — M17 treats the information bottleneck as a cautionary case; the Deep Learning page is where the models it was proposed to explain actually live, including the generalisation puzzle that makes every information-theoretic explanation of deep networks contested. Its scaling-law material is the empirical counterpart to M07's compression-is-prediction equivalence.</li>
+          <li><strong><a href="../generative-models-beyond-language/">Generative models as rate–distortion machines</a></strong> — M17 shows the β-VAE objective is a rate–distortion Lagrangian with β playing the role of M13's λ. The generative-modelling page follows that identification forward through latent diffusion, where the autoencoder's rate budget determines what the generator can ever produce, and through the evaluation problem, which is a distortion measure nobody can write down.</li>
           <li><strong>Digital communications and signal processing</strong> — the layer this syllabus sits on top of. Modulation, synchronisation, equalisation and OFDM decide how a bit becomes a waveform, which is the part M09 abstracts into a single Gaussian.</li>
           <li><strong>Stochastic thermodynamics</strong> — M19's Landauer material is the entry point to a live field: fluctuation theorems, information engines, and the thermodynamic cost of computation and of inference.</li>
         </ul>
@@ -3050,7 +3052,7 @@
 
   <footer class="site-footer">
     <span><a href="../">← All topics</a></span>
-    <span>Updated 2026-08-07 · 21 modules · 108 resources</span>
+    <span>Updated 2026-08-10 · 21 modules · 108 resources</span>
   </footer>
 
 </div>

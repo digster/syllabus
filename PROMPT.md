@@ -228,3 +228,30 @@ names.
 → Talks &amp; video 3 → 14 and Courses &amp; lecture series 7 → 10; resources
 94 → 108, ids renumbered in document order, every new entry cited from a module.
 Fourteen of twenty-one modules now have a video assignment where four did before.
+
+---
+
+## 2026-08-09 — five AI and ML syllabi in one pass
+
+> add syllabus for(separately) - ml(classical), ai(deep learning), generative
+> ai(llm), generative ai(non llm), ai(think artificial intelligence by peter
+> norvig).
+
+Five pages, not one: the parenthesised readings are five different subjects
+that share a marketing word, and the word "separately" settles it. The library
+had no AI or ML coverage at all before this.
+
+The plan's load-bearing artefact was a boundary table, because transformers,
+reinforcement learning and probabilistic modelling each have a defensible home
+on more than one of the five, and *no two modules teach the same thing* is the
+test most easily failed by a set of pages built in sequence. Each subject was
+assigned one owner; the others cite it in a sentence and link the sibling from
+`#next`.
+
+→ A new `Artificial intelligence` catalog group with five cards:
+`classical-ai` AI-01 (22 modules, 125 resources), `classical-machine-learning`
+AI-02 (20, 91), `deep-learning` AI-03 (21, 99), `large-language-models`
+AI-04 (22, 107), `generative-models-beyond-language` AI-05 (22, 124).
+`information-theory`'s `#next` gained links to AI-02, AI-03 and AI-05, where it
+had been discussing statistical learning theory, the information bottleneck and
+the rate–distortion reading of the ELBO as unlinked prose.
