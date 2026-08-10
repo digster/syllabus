@@ -439,3 +439,85 @@ relocate), HTTP 403/202/challenge (alive, refusing robots — keep and bracket),
 and HTTP 200 with a challenge body (Khan Academy does this — also alive, also
 keep and bracket, but a status-code-only check will call it healthy and tell you
 nothing).
+
+## Duplicate resource titles break the wiring script
+
+`wire.py` resolves a citation by matching its link text against resource titles,
+so two resources sharing a title make every citation to either one ambiguous.
+This is not hypothetical — it happened three times in one session:
+
+- Goodfellow, Bengio &amp; Courville's *Deep Learning* against LeCun, Bengio &amp;
+  Hinton's *Nature* review, also called *Deep Learning*.
+- Lilian Weng's post *What are Diffusion Models?* against Ari Seff's video of
+  exactly the same name.
+- Yang Song's blog post *Generative Modeling by Estimating Gradients of the Data
+  Distribution* against the NCSN paper it summarises, same title.
+
+The fix is to disambiguate in the **resource title**, not in an alias table:
+*Deep Learning (Nature review)*, *What are Diffusion Models? (video explainer)*,
+*…(blog)*. The title is the wiring key and it is also what the reader sees, so a
+title that cannot be told apart from another one is a reader-facing problem too,
+not only a script-facing one. Then fix any module citation that used the old
+label — the script will name it.
+
+Related: the script exits without writing on a duplicate, which is correct. Two
+resources with one name is a page defect, and a wiring pass that silently picked
+one of them would bury it.
+
+## Scan tag spans for non-ASCII before wiring
+
+Several `<span class="tag">` page counts came out of a long generation pass as
+garbage tokens — `~perm 8 pp`, `~ylon 12 pp`, `~ањ 27 pp`, `~server 7 pp`,
+`~ionis 44 pp`. They render, they validate, they pass every structural check, and
+they are visibly wrong to a reader.
+
+Nothing in the citation contract or the audit catches this, because the tag text
+is free-form. One grep does:
+
+```bash
+grep -o '<span class="tag">[^<]*</span>' docs/<slug>/index.html | grep -P '[^\x00-\x7F]'
+```
+
+Run it on every page before wiring. Legitimate non-ASCII in a tag is rare enough
+that a hit is nearly always corruption; the odd real one (`~5 h`, `≈`) is obvious
+on sight. The same scan over `r-byline` catches mangled author names, which fail
+the same way and are worse.
+
+## Insert generated markup with the surrounding indentation, not without it
+
+The script that adds module citations for the orphans `wire.py` reports appended
+its `<li>` elements at the insertion offset without accounting for the whitespace
+already sitting before the closing `</ul>`. The result was structurally perfect
+and visibly ragged — new lines indented 22 spaces among lines indented 12.
+
+Nothing checks this and the browser does not care, but the file is hand-edited
+afterwards and the diff is read by a person. When a script writes into hand-
+written HTML, normalise leading whitespace on the lines it produced:
+
+```bash
+python3 - <<'PY'
+import re
+s = open(path, encoding="utf-8").read()
+s = re.sub(r'(?m)^ {13,}(<li><a class="cite")', r'            \1', s)
+open(path, "w", encoding="utf-8").write(s)
+PY
+```
+
+The general form of the lesson: a generator that emits into an existing file owns
+the file's formatting conventions, not just its syntax.
+
+## GitHub answers WebFetch and refuses curl
+
+Every `github.com` URL returns 403 to `curl` from this environment, with or
+without a browser user agent, and `api.github.com` is unreachable through the
+proxy. That is two dead ends for what looks like a reachability problem — and it
+is not one. `WebFetch` retrieves GitHub repository pages normally, returning the
+README, the description and the owner, which is enough to confirm identity
+properly rather than guessing.
+
+So for a repository: confirm with `WebFetch`, link `github.com/<owner>/<repo>`,
+and add the bracketed refusal note for the automated check. Do **not** reach for
+`tag--unverified` — the identity is established, only the checker is blocked, and
+the tag would tell the reader something false. Watch for redirects while you are
+there: `comfyanonymous/ComfyUI` now resolves to `Comfy-Org/ComfyUI`, which the
+fetch reveals and a status check never would.
